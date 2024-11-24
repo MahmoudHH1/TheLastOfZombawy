@@ -1,3 +1,7 @@
+#pragma once
+#ifndef TEXTURE_BUILDER_H
+#define TEXTURE_BUILDER_H
+
 #include <stdio.h>
 #include "glew.h"
 #include "glaux.h"
@@ -5,16 +9,17 @@
 #pragma comment(lib, "glew32.lib")
 #pragma comment(lib, "glaux.lib")
 
-void loadPPM(GLuint *textureID, char *strFileName, int width, int height, int wrap) {
-	BYTE *data;
-	FILE *pFile;
+void loadPPM(GLuint* textureID, char* strFileName, int width, int height, int wrap) {
+	BYTE* data;
+	FILE* pFile;
 
 	fopen_s(&pFile, strFileName, "r");
 	if (pFile) {
 		data = (BYTE*)malloc(width * height * 3);
 		fread(data, 1, width * height * 3, pFile);
 		fclose(pFile);
-	} else {
+	}
+	else {
 		MessageBoxA(NULL, "Texture file not found!", "Error!", MB_OK);
 		exit(EXIT_FAILURE);
 	}
@@ -31,9 +36,9 @@ void loadPPM(GLuint *textureID, char *strFileName, int width, int height, int wr
 	free(data);
 }
 
-void loadBMP(GLuint *textureID, char *strFileName, int wrap) {
-	AUX_RGBImageRec *pBitmap = NULL;
-	FILE *pFile = NULL;
+void loadBMP(GLuint* textureID, char* strFileName, int wrap) {
+	AUX_RGBImageRec* pBitmap = NULL;
+	FILE* pFile = NULL;
 
 	fopen_s(&pFile, strFileName, "r");
 	if (pFile) {
@@ -59,3 +64,9 @@ void loadBMP(GLuint *textureID, char *strFileName, int wrap) {
 		free(pBitmap);
 	}
 }
+
+
+
+#endif // !TEXTURE_BUILDER_H
+
+

@@ -1,12 +1,12 @@
-#include "TextureBuilder.h"
-#include "../Headers/Model_3DS.h"
-#include "../Headers/GLTexture.h"
+#include "Headers/Model_3DS.h"
+#include "Headers/GLTexture.h"
+#include "Headers/RenderEnviroment.h"
 #include <glut.h>
 
 int WIDTH = 1280;
 int HEIGHT = 720;
 
-GLuint tex;
+//GLuint tex;
 char title[] = "3D Model Loader Sample";
 
 // 3D Projection Options
@@ -39,16 +39,16 @@ Vector Up(0, 1, 0);
 
 int cameraZoom = 0;
 
-// Model Variables
-Model_3DS model_house;
-Model_3DS model_tree;
-
-Model_3DS model_shooter;
-Model_3DS model_zombie;
-Model_3DS model_bigBoss;
+//// Model Variables
+//Model_3DS model_house;
+//Model_3DS model_tree;
+//
+//Model_3DS model_shooter;
+//Model_3DS model_zombie;
+//Model_3DS model_bigBoss;
 
 // Textures
-GLTexture tex_ground;
+//GLTexture tex_ground;
 
 //=======================================================================
 // Lighting Configuration Function
@@ -138,37 +138,6 @@ void myInit(void)
 	glEnable(GL_NORMALIZE);
 }
 
-//=======================================================================
-// Render Ground Function
-//=======================================================================
-void RenderGround()
-{
-	glDisable(GL_LIGHTING);	// Disable lighting 
-
-	glColor3f(0.6, 0.6, 0.6);	// Dim the ground texture a bit
-
-	glEnable(GL_TEXTURE_2D);	// Enable 2D texturing
-
-	glBindTexture(GL_TEXTURE_2D, tex_ground.texture[0]);	// Bind the ground texture
-
-	glPushMatrix();
-	glBegin(GL_QUADS);
-	glNormal3f(0, 1, 0);	// Set quad normal direction.
-	glTexCoord2f(0, 0);		// Set tex coordinates ( Using (0,0) -> (5,5) with texture wrapping set to GL_REPEAT to simulate the ground repeated grass texture).
-	glVertex3f(-20, 0, -20);
-	glTexCoord2f(5, 0);
-	glVertex3f(20, 0, -20);
-	glTexCoord2f(5, 5);
-	glVertex3f(20, 0, 20);
-	glTexCoord2f(0, 5);
-	glVertex3f(-20, 0, 20);
-	glEnd();
-	glPopMatrix();
-
-	glEnable(GL_LIGHTING);	// Enable lighting again for other entites coming throung the pipeline.
-
-	glColor3f(1, 1, 1);	// Set material back to white instead of grey used for the ground texture.
-}
 
 //=======================================================================
 // Display Function
@@ -184,40 +153,24 @@ void myDisplay(void)
 	glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
 	glLightfv(GL_LIGHT0, GL_AMBIENT, lightIntensity);
 
-	// Draw Ground
-	RenderGround();
-
-	// Draw Tree Model
-	glPushMatrix();
-	glTranslatef(10, 0, 0);
-	glScalef(0.7, 0.7, 0.7);
-	model_tree.Draw();
-	glPopMatrix();
-
-	// Draw house Model
-	glPushMatrix();
-	glRotatef(90.f, 1, 0, 0);
-	model_house.Draw();
-	glPopMatrix();
+	RenderEnvironment();
 
 
+	//// Draw Tree Model
+	//glPushMatrix();
+	//glTranslatef(10, 0, 0);
+	//glScalef(0.7, 0.7, 0.7);
+	//model_tree.Draw();
+	//glPopMatrix();
+
+	//// Draw house Model
+	//glPushMatrix();
+	//glRotatef(90.f, 1, 0, 0);
+	//model_house.Draw();
+	//glPopMatrix();
 
 
-	//sky box
-	glPushMatrix();
 
-	GLUquadricObj* qobj;
-	qobj = gluNewQuadric();
-	glTranslated(50, 0, 0);
-	glRotated(90, 1, 0, 1);
-	glBindTexture(GL_TEXTURE_2D, tex);
-	gluQuadricTexture(qobj, true);
-	gluQuadricNormals(qobj, GL_SMOOTH);
-	gluSphere(qobj, 100, 100, 100);
-	gluDeleteQuadric(qobj);
-
-
-	glPopMatrix();
 
 
 
@@ -321,6 +274,7 @@ void myReshape(int w, int h)
 //=======================================================================
 void LoadAssets()
 {
+	loadEnvironmentAssets();
 	// Loading Model files
 	/*model_house.Load("Models/house/house.3DS");
 	model_tree.Load("Models/shooter/Centaur_3DS.3DS");*/
