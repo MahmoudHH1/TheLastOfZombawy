@@ -1,7 +1,7 @@
 #ifndef SHOOTER_H 
 #define SHOOTER_H 
 
-#include "Model_3DS"
+#include "Model_3DS.h"
 
 class Shooter : public Model_3DS {
 public:
@@ -21,6 +21,6 @@ public:
 	void CollectMedKit();
 	void heal();
 
-}
+};
 
 #endif SHOOTER_H

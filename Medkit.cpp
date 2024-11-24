@@ -1,5 +1,5 @@
 #include "Medkit.h"
-#include "Model_3DS"
+#include "Model_3DS.h"
 
 Medkit::Medkit(float x, float y, float z,
 	float rotX, float rotY, float rotZ, int healthRecovery) :

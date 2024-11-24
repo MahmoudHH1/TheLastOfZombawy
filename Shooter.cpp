@@ -1,5 +1,5 @@
 #include "Shooter.h"
-#include "Model_3DS"
+#include "Model_3DS.h"
 
 Shooter::Shooter(float x, float y, float z,
 	float rotX, float rotY, float rotZ) :

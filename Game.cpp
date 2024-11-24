@@ -322,8 +322,8 @@ void myReshape(int w, int h)
 void LoadAssets()
 {
 	// Loading Model files
-	model_house.Load("Models/house/house.3DS");
-	model_tree.Load("Models/shooter/Centaur_3DS.3DS");
+	/*model_house.Load("Models/house/house.3DS");
+	model_tree.Load("Models/shooter/Centaur_3DS.3DS");*/
 	//model_shooter.Load("models/shooter/Redman.3ds");
 
 	// Loading texture files
