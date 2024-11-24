@@ -1,9 +1,10 @@
 ﻿  Game.cpp
 D:\Uni\graphics\TheLastOfZombawy\TextureBuilder.h(27,52): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
-  (compiling source file 'Game.cpp')
+  (compiling source file 'Controllers/Game.cpp')
   
 D:\Uni\graphics\TheLastOfZombawy\TextureBuilder.h(28,52): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
-  (compiling source file 'Game.cpp')
+  (compiling source file 'Controllers/Game.cpp')
   
 BoudingBox.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/INCREMENTAL:NO' specification
+OpenGLMe.2EE1F2C2\Debug\Medkit.obj : warning LNK4042: object specified more than once; extras ignored
   OpenGLMeshLoader.vcxproj -> D:\Uni\graphics\TheLastOfZombawy\Debug\OpenGLMeshLoader19.exe

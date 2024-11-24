@@ -83,19 +83,19 @@
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BoudingBox.cpp" />
-    <ClCompile Include="BoundingBox.h" />
-    <ClCompile Include="GLTexture.cpp" />
-    <ClCompile Include="Medkit.cpp" />
-    <ClCompile Include="Medkit.h" />
-    <ClCompile Include="Model_3DS.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Shooter.cpp" />
+    <ClCompile Include="Controllers\BoudingBox.cpp" />
+    <ClCompile Include="Headers\BoundingBox.h" />
+    <ClCompile Include="Controllers\GLTexture.cpp" />
+    <ClCompile Include="Controllers\Medkit.cpp" />
+    <ClCompile Include="Headers\Medkit.h" />
+    <ClCompile Include="Controllers\Model_3DS.cpp" />
+    <ClCompile Include="Controllers\Game.cpp" />
+    <ClCompile Include="Controllers\Shooter.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GLTexture.h" />
-    <ClInclude Include="Model_3DS.h" />
-    <ClInclude Include="Shooter.h" />
+    <ClInclude Include="Headers\GLTexture.h" />
+    <ClInclude Include="Headers\Model_3DS.h" />
+    <ClInclude Include="Headers\Shooter.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

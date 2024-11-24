@@ -15,39 +15,39 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GLTexture.cpp">
+    <ClCompile Include="Controllers\GLTexture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Model_3DS.cpp">
+    <ClCompile Include="Controllers\Model_3DS.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Game.cpp">
+    <ClCompile Include="Controllers\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BoundingBox.h">
+    <ClCompile Include="Headers\BoundingBox.h">
       <Filter>Header Files</Filter>
     </ClCompile>
-    <ClCompile Include="BoudingBox.cpp">
+    <ClCompile Include="Controllers\BoudingBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Shooter.cpp">
+    <ClCompile Include="Controllers\Shooter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Medkit.h">
+    <ClCompile Include="Headers\Medkit.h">
       <Filter>Header Files</Filter>
     </ClCompile>
-    <ClCompile Include="Medkit.cpp">
+    <ClCompile Include="Controllers\Medkit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GLTexture.h">
+    <ClInclude Include="Headers\GLTexture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Model_3DS.h">
+    <ClInclude Include="Headers\Model_3DS.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Shooter.h">
+    <ClInclude Include="Headers\Shooter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
