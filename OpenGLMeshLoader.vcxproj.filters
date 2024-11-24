@@ -39,6 +39,7 @@
     <ClCompile Include="Controllers\Medkit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Views\RenderEnviroment.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\GLTexture.h">
@@ -50,5 +51,9 @@
     <ClInclude Include="Headers\Shooter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Headers\RenderGround.h" />
+    <ClInclude Include="Headers\RenderWall.h" />
+    <ClInclude Include="Headers\RenderEnviroment.h" />
+    <ClInclude Include="Headers\Camera.h" />
   </ItemGroup>
 </Project>

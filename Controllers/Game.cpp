@@ -1,12 +1,15 @@
-#include "TextureBuilder.h"
-#include "../Headers/Model_3DS.h"
-#include "../Headers/GLTexture.h"
+#include "Headers/Model_3DS.h"
+#include "Headers/GLTexture.h"
+#include "Headers/RenderEnviroment.h"
+#include "Headers/Camera.h"
 #include <glut.h>
 
 int WIDTH = 1280;
 int HEIGHT = 720;
 
-GLuint tex;
+float camMoveSpeed = 0.05f; // Camera movement speed
+
+//GLuint tex;
 char title[] = "3D Model Loader Sample";
 
 // 3D Projection Options
@@ -15,40 +18,99 @@ GLdouble aspectRatio = (GLdouble)WIDTH / (GLdouble)HEIGHT;
 GLdouble zNear = 0.1;
 GLdouble zFar = 100;
 
-class Vector
-{
-public:
-	GLdouble x, y, z;
-	Vector() {}
-	Vector(GLdouble _x, GLdouble _y, GLdouble _z) : x(_x), y(_y), z(_z) {}
-	//================================================================================================//
-	// Operator Overloading; In C++ you can override the behavior of operators for you class objects. //
-	// Here we are overloading the += operator to add a given value to all vector coordinates.        //
-	//================================================================================================//
-	void operator +=(float value)
-	{
-		x += value;
-		y += value;
-		z += value;
+Cam camera;
+bool isMouseLocked = true; // Flag to lock the mouse inside
+bool keys[256] = { false };
+
+void centerMouse() {
+	POINT windowCenter;
+	windowCenter.x = WIDTH / 2;
+	windowCenter.y = HEIGHT / 2;
+	ClientToScreen(GetActiveWindow(), &windowCenter);
+	SetCursorPos(windowCenter.x, windowCenter.y);
+}
+
+void MouseMovement(int x, int y) {
+	if (isMouseLocked) {
+		int dx = x - WIDTH / 2;
+		int dy = y - HEIGHT / 2;
+
+		float sensitivity = -0.1f;
+		camera.rotateY(dx * sensitivity);
+		camera.rotateX(dy * sensitivity);
+
+		centerMouse();
 	}
-};
 
-Vector Eye(20, 5, 20);
-Vector At(0, 0, 0);
-Vector Up(0, 1, 0);
+	glutPostRedisplay();
+}
 
-int cameraZoom = 0;
+void cam() {
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluPerspective(60, (float)WIDTH / (float)HEIGHT, 0.001, 100);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	camera.look();
+}
 
-// Model Variables
-Model_3DS model_house;
-Model_3DS model_tree;
+void Keyboard(unsigned char key, int x, int y) {
+	keys[key] = true;  // Set the key state to true when the key is pressed
+}
 
-Model_3DS model_shooter;
-Model_3DS model_zombie;
-Model_3DS model_bigBoss;
+void KeyboardUp(unsigned char key, int x, int y) {
+	keys[key] = false;  // Set the key state to false when the key is released
+}
 
-// Textures
-GLTexture tex_ground;
+
+void controlKeyboard() {
+	if (keys['w']) {
+		camera.moveForward(camMoveSpeed);
+	}
+	if (keys['s']) {
+		camera.moveForward(-camMoveSpeed);
+	}
+	if (keys['a']) {
+		camera.moveRight(-camMoveSpeed);
+	}
+	if (keys['d']) {
+		camera.moveRight(camMoveSpeed);
+	}
+	if (keys[' ']) {
+		camera.moveUp(camMoveSpeed);
+	}
+	if (keys['c']) {
+		camera.moveUp(-camMoveSpeed);
+	}
+	if (keys['t']) {
+		camera.eye = Vector3f(0, 5, 0);
+		camera.center = Vector3f(0, 0, 0);
+		camera.top = Vector3f(0, 0, -1);
+	}
+	if (keys['y']) {
+		camera.eye = Vector3f(5, 0, 0);
+		camera.center = Vector3f(0, 0, 0);
+		camera.top = Vector3f(0, 1, 0);
+	}
+	if (keys['u']) {
+		camera.eye = Vector3f(0, 0, 5);
+		camera.center = Vector3f(0, 0, 0);
+		camera.top = Vector3f(0, 1, 0);
+	}
+	if (keys[27]) {
+		isMouseLocked = false;
+		exit(EXIT_SUCCESS);
+	}
+}
+
+//// Model Variables
+//Model_3DS model_house;
+//Model_3DS model_tree;
+//
+//Model_3DS model_shooter;
+//Model_3DS model_zombie;
+//Model_3DS model_bigBoss;
+
 
 //=======================================================================
 // Lighting Configuration Function
@@ -122,13 +184,8 @@ void myInit(void)
 
 	glLoadIdentity();
 
-	gluLookAt(Eye.x, Eye.y, Eye.z, At.x, At.y, At.z, Up.x, Up.y, Up.z);
-	//*******************************************************************************************//
-	// EYE (ex, ey, ez): defines the location of the camera.									 //
-	// AT (ax, ay, az):	 denotes the direction where the camera is aiming at.					 //
-	// UP (ux, uy, uz):  denotes the upward orientation of the camera.							 //
-	//*******************************************************************************************//
-
+	
+	
 	InitLightSource();
 
 	InitMaterial();
@@ -138,37 +195,6 @@ void myInit(void)
 	glEnable(GL_NORMALIZE);
 }
 
-//=======================================================================
-// Render Ground Function
-//=======================================================================
-void RenderGround()
-{
-	glDisable(GL_LIGHTING);	// Disable lighting 
-
-	glColor3f(0.6, 0.6, 0.6);	// Dim the ground texture a bit
-
-	glEnable(GL_TEXTURE_2D);	// Enable 2D texturing
-
-	glBindTexture(GL_TEXTURE_2D, tex_ground.texture[0]);	// Bind the ground texture
-
-	glPushMatrix();
-	glBegin(GL_QUADS);
-	glNormal3f(0, 1, 0);	// Set quad normal direction.
-	glTexCoord2f(0, 0);		// Set tex coordinates ( Using (0,0) -> (5,5) with texture wrapping set to GL_REPEAT to simulate the ground repeated grass texture).
-	glVertex3f(-20, 0, -20);
-	glTexCoord2f(5, 0);
-	glVertex3f(20, 0, -20);
-	glTexCoord2f(5, 5);
-	glVertex3f(20, 0, 20);
-	glTexCoord2f(0, 5);
-	glVertex3f(-20, 0, 20);
-	glEnd();
-	glPopMatrix();
-
-	glEnable(GL_LIGHTING);	// Enable lighting again for other entites coming throung the pipeline.
-
-	glColor3f(1, 1, 1);	// Set material back to white instead of grey used for the ground texture.
-}
 
 //=======================================================================
 // Display Function
@@ -176,7 +202,7 @@ void RenderGround()
 void myDisplay(void)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
+	controlKeyboard();
 
 
 	GLfloat lightIntensity[] = { 0.7, 0.7, 0.7, 1.0f };
@@ -184,111 +210,34 @@ void myDisplay(void)
 	glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
 	glLightfv(GL_LIGHT0, GL_AMBIENT, lightIntensity);
 
-	// Draw Ground
-	RenderGround();
+	cam();
 
-	// Draw Tree Model
-	glPushMatrix();
-	glTranslatef(10, 0, 0);
-	glScalef(0.7, 0.7, 0.7);
-	model_tree.Draw();
-	glPopMatrix();
-
-	// Draw house Model
-	glPushMatrix();
-	glRotatef(90.f, 1, 0, 0);
-	model_house.Draw();
-	glPopMatrix();
+	RenderEnvironment();
 
 
+	//// Draw Tree Model
+	//glPushMatrix();
+	//glTranslatef(10, 0, 0);
+	//glScalef(0.7, 0.7, 0.7);
+	//model_tree.Draw();
+	//glPopMatrix();
+
+	//// Draw house Model
+	//glPushMatrix();
+	//glRotatef(90.f, 1, 0, 0);
+	//model_house.Draw();
+	//glPopMatrix();
 
 
-	//sky box
-	glPushMatrix();
 
-	GLUquadricObj* qobj;
-	qobj = gluNewQuadric();
-	glTranslated(50, 0, 0);
-	glRotated(90, 1, 0, 1);
-	glBindTexture(GL_TEXTURE_2D, tex);
-	gluQuadricTexture(qobj, true);
-	gluQuadricNormals(qobj, GL_SMOOTH);
-	gluSphere(qobj, 100, 100, 100);
-	gluDeleteQuadric(qobj);
-
-
-	glPopMatrix();
 
 
 
 	glutSwapBuffers();
 }
 
-//=======================================================================
-// Keyboard Function
-//=======================================================================
-void myKeyboard(unsigned char button, int x, int y)
-{
-	switch (button)
-	{
-	case 'w':
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-		break;
-	case 'r':
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-		break;
-	case 27:
-		exit(0);
-		break;
-	default:
-		break;
-	}
 
-	glutPostRedisplay();
-}
 
-//=======================================================================
-// Motion Function
-//=======================================================================
-void myMotion(int x, int y)
-{
-	y = HEIGHT - y;
-
-	if (cameraZoom - y > 0)
-	{
-		Eye.x += -0.1;
-		Eye.z += -0.1;
-	}
-	else
-	{
-		Eye.x += 0.1;
-		Eye.z += 0.1;
-	}
-
-	cameraZoom = y;
-
-	glLoadIdentity();	//Clear Model_View Matrix
-
-	gluLookAt(Eye.x, Eye.y, Eye.z, At.x, At.y, At.z, Up.x, Up.y, Up.z);	//Setup Camera with modified paramters
-
-	GLfloat light_position[] = { 0.0f, 10.0f, 0.0f, 1.0f };
-	glLightfv(GL_LIGHT0, GL_POSITION, light_position);
-
-	glutPostRedisplay();	//Re-draw scene 
-}
-
-//=======================================================================
-// Mouse Function
-//=======================================================================
-void myMouse(int button, int state, int x, int y)
-{
-	y = HEIGHT - y;
-
-	if (state == GLUT_DOWN)
-	{
-		cameraZoom = y;
-	}
-}
 
 //=======================================================================
 // Reshape Function
@@ -313,7 +262,6 @@ void myReshape(int w, int h)
 	// go back to modelview matrix so we can move the objects about
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	gluLookAt(Eye.x, Eye.y, Eye.z, At.x, At.y, At.z, Up.x, Up.y, Up.z);
 }
 
 //=======================================================================
@@ -321,20 +269,9 @@ void myReshape(int w, int h)
 //=======================================================================
 void LoadAssets()
 {
-	// Loading Model files
-	/*model_house.Load("Models/house/house.3DS");
-	model_tree.Load("Models/shooter/Centaur_3DS.3DS");*/
-	//model_shooter.Load("models/shooter/Redman.3ds");
-
-	// Loading texture files
-	/*tex_ground.Load("../Assets/textures/ground.bmp");
-	loadBMP(&tex, "../Assets/Textures/blu-sky-3.bmp", true);*/
-
+	loadEnvironmentAssets();
 }
 
-//=======================================================================
-// Main Function
-//=======================================================================
 void main(int argc, char** argv)
 {
 	glutInit(&argc, argv);
@@ -349,11 +286,10 @@ void main(int argc, char** argv)
 
 	glutDisplayFunc(myDisplay);
 
-	glutKeyboardFunc(myKeyboard);
-
-	glutMotionFunc(myMotion);
-
-	glutMouseFunc(myMouse);
+	glutKeyboardFunc(Keyboard);
+	glutKeyboardUpFunc(KeyboardUp);
+	glutPassiveMotionFunc(MouseMovement);
+	glutSetCursor(GLUT_CURSOR_NONE);
 
 	glutReshapeFunc(myReshape);
 
@@ -367,6 +303,8 @@ void main(int argc, char** argv)
 	glEnable(GL_COLOR_MATERIAL);
 
 	glShadeModel(GL_SMOOTH);
+
+	centerMouse();
 
 	glutMainLoop();
 }
