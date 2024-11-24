@@ -54,5 +54,6 @@
     <ClInclude Include="Headers\RenderGround.h" />
     <ClInclude Include="Headers\RenderWall.h" />
     <ClInclude Include="Headers\RenderEnviroment.h" />
+    <ClInclude Include="Headers\Camera.h" />
   </ItemGroup>
 </Project>

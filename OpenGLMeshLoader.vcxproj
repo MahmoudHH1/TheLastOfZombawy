@@ -94,6 +94,7 @@
     <ClCompile Include="Views\RenderEnviroment.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Headers\Camera.h" />
     <ClInclude Include="Headers\GLTexture.h" />
     <ClInclude Include="Headers\Model_3DS.h" />
     <ClInclude Include="Headers\RenderEnviroment.h" />

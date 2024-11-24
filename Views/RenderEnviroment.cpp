@@ -111,57 +111,41 @@ void RenderGround()
 void RenderEnvironment() {
 	
 	glPushMatrix();
-	glTranslatef(-10, 0, -19.75);
-	for (int i = 0; i < 20; i++) {
-		for (int j = 0; j < 3; j++) {
-			glPushMatrix();
-			glTranslatef(0, j, i + 10);
-			glScalef(0.1, 1, 1.5);
-			RenderWallLevel2();
-			glPopMatrix();
-		}
-	}
+	glTranslatef(-10, 0, -10);
+	glPushMatrix();
+	glTranslatef(0, 2.5, 10);
+	glScalef(0.1, 5, 25);
+	RenderWallLevel2();
+	glPopMatrix();
 	glPopMatrix();
 
 	glPushMatrix();
-	glTranslatef(10, 0, -19.75);
-	for (int i = 0; i < 20; i++) {
-		for (int j = 0; j < 3; j++) {
-			glPushMatrix();
-			glTranslatef(0, j, i + 10);
-			glScalef(0.1, 1, 1.5);
-			RenderWallLevel2();
-			glPopMatrix();
-		}
-	}
+	glTranslatef(10, 0, -10);
+	glPushMatrix();
+	glTranslatef(0, 2.5,  10);
+	glScalef(0.1, 5, 25);
+	RenderWallLevel2();
+	glPopMatrix();
 	glPopMatrix();
 
 	glPushMatrix();
 	glRotatef(90, 0, 1, 0);
-	glTranslatef(10, 0, -19.75);
-	for (int i = 0; i < 20; i++) {
-		for (int j = 0; j < 3; j++) {
-			glPushMatrix();
-			glTranslatef(0, j, i + 10);
-			glScalef(0.1, 1, 1.5);
-			RenderWallLevel2();
-			glPopMatrix();
-		}
-	}
+	glTranslatef(10, 0, -10);
+	glPushMatrix();
+	glTranslatef(0, 2.5, 10);
+	glScalef(0.1, 5, 25);
+	RenderWallLevel2();
+	glPopMatrix();
 	glPopMatrix();
 
 	glPushMatrix();
 	glRotatef(90, 0, 1, 0);
-	glTranslatef(-10, 0, -19.75);
-	for (int i = 0; i < 20; i++) {
-		for (int j = 0; j < 3; j++) {
-			glPushMatrix();
-			glTranslatef(0, j, i + 10);
-			glScalef(0.1, 1, 1.5);
-			RenderWallLevel2();
-			glPopMatrix();
-		}
-	}
+	glTranslatef(-10, 0, -10);
+	glPushMatrix();
+	glTranslatef(0, 2.5,  10);
+	glScalef(0.1, 5, 25);
+	RenderWallLevel2();
+	glPopMatrix();
 	glPopMatrix();
 	
 	glPushMatrix();
