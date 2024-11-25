@@ -78,7 +78,7 @@
 #pragma warn( You need to uncomment this if you are using MFC )
 //#include "stdafx.h"
 #include <string>
-#include "../Headers/Model_3DS.h"
+#include "Headers/Model_3DS.h"
 
 #include <math.h>			// Header file for the math library
 #include <gl\gl.h>			// Header file for the OpenGL32 library
@@ -211,8 +211,7 @@ Model_3DS::Model_3DS(float x, float y, float z) {
 }
 
 
-Model_3DS::Model_3DS(float x, float y, float z
-					,float rotX , float rotY , float rotZ ) {
+Model_3DS::Model_3DS(float x, float y, float z,float rotX , float rotY , float rotZ , float objScale ) {
 
 	// Initialization
 
@@ -245,7 +244,7 @@ Model_3DS::Model_3DS(float x, float y, float z
 	numMaterials = 0;
 
 	// Set the scale to one
-	scale = 1.0f;
+	scale = objScale;
 }
 
 

@@ -80,7 +80,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="Assets\models\Coin\Coin.3ds" />
+    <None Include="Assets\models\house\house.3ds" />
+    <None Include="Assets\models\Key\Key.3DS" />
+    <None Include="Assets\models\Medkit\Medkit.3DS" />
     <None Include="Assets\models\Shooter\Shooter.3DS" />
+    <None Include="Assets\models\Zombie\Zombie.3DS" />
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>

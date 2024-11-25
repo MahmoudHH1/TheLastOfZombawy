@@ -11,7 +11,7 @@ public:
 
 	Zombie(float x, float y, float z,
 		float rotX, float rotY, float rotZ,
-		int hitDamage);
+		float scale, int hitDamage);
 	Zombie();
 
 	void getHit(int hitDamage);

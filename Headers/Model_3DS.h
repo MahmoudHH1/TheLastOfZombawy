@@ -163,9 +163,8 @@ public:
 	BoundingBox bounds;        // Store the model's bounding box
 	bool boundsCalculated;
 	Model_3DS();			// Constructor
-	Model_3DS(float x , float y , float z);
-	Model_3DS(float x, float y, float z,
-		float rotX, float rotY, float rotZ);
+	Model_3DS(float x, float y, float z);
+	Model_3DS(float x, float y, float z, float rotX, float rotY, float rotZ, float scale);
 	virtual ~Model_3DS();	// Destructor
 
 	void IntColorChunkProcessor(long length, long findex, int matindex);
@@ -212,7 +211,7 @@ public:
 	// Additional helper methods
 	float GetWidth();
 	float GetHeight();
-	float GetDepth();	
+	float GetDepth();
 };
 
 #endif MODEL_3DS_H

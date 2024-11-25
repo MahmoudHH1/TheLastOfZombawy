@@ -34,7 +34,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "../Headers/GLTexture.h"
+#include "Headers/GLTexture.h"
 
 #include <stdio.h>
 #include <string.h>

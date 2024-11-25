@@ -15,7 +15,7 @@ public:
 	bool hasKey;
 
 	Shooter(float x, float y, float z
-		, float rotX, float rotY, float rotZ);
+		, float rotX, float rotY, float rotZ , float scale);
 	Shooter();
 	void CollectKey();
 	void CollectCoin();

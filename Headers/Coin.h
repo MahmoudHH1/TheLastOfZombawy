@@ -6,7 +6,7 @@
 class Coin :public Model_3DS {
 public:
 	Coin();
-	Coin(float x, float y, float z, float rotX, float rotY, float rotZ);
+	Coin(float x, float y, float z, float rotX, float rotY, float rotZ , float scale);
 };
 
 #endif

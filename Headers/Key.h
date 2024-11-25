@@ -6,7 +6,7 @@
 class Key :public Model_3DS {
 public:
 	Key();
-	Key(float x, float y, float z, float rotX, float rotY, float rotZ);
+	Key(float x, float y, float z, float rotX, float rotY, float rotZ , float scale);
 
 };
 
