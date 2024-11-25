@@ -10,8 +10,6 @@ public:
 		float rotX, float rotY, float rotZ , 
 		int healthRecovery);
 	Medkit();
-
-	void spawnMidkets(int groundLenght , int groundWidth);
 };
 
 #endif MEDKIT_H

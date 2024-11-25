@@ -80,27 +80,36 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="Assets\models\Shooter\Shooter.3DS" />
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Controllers\BoudingBox.cpp" />
+    <ClCompile Include="Controllers\Coin.cpp" />
+    <ClCompile Include="Controllers\Game.cpp" />
+    <ClCompile Include="Controllers\Key.cpp" />
+    <ClCompile Include="Controllers\Zombie.cpp" />
     <ClCompile Include="Headers\BoundingBox.h" />
     <ClCompile Include="Controllers\GLTexture.cpp" />
     <ClCompile Include="Controllers\Medkit.cpp" />
     <ClCompile Include="Headers\Medkit.h" />
     <ClCompile Include="Controllers\Model_3DS.cpp" />
-    <ClCompile Include="Controllers\Game.cpp" />
+    <ClCompile Include="Controllers\main.cpp" />
     <ClCompile Include="Controllers\Shooter.cpp" />
     <ClCompile Include="Views\RenderEnviroment.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\Camera.h" />
+    <ClInclude Include="Headers\Coin.h" />
+    <ClInclude Include="Headers\Game.h" />
     <ClInclude Include="Headers\GLTexture.h" />
+    <ClInclude Include="Headers\Key.h" />
     <ClInclude Include="Headers\Model_3DS.h" />
     <ClInclude Include="Headers\RenderEnviroment.h" />
     <ClInclude Include="Headers\RenderGround.h" />
     <ClInclude Include="Headers\RenderWall.h" />
     <ClInclude Include="Headers\Shooter.h" />
+    <ClInclude Include="Headers\Zombie.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
