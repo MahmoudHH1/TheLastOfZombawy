@@ -38,7 +38,7 @@ void MouseMovement(int x, int y) {
 		int dx = x - WIDTH / 2;
 		int dy = y - HEIGHT / 2;
 
-		float sensitivity = -0.1f;
+		float sensitivity = -0.01f;
 		game.camera.rotateY(dx * sensitivity);
 		game.camera.rotateX(dy * sensitivity);
 
@@ -158,7 +158,6 @@ void draw(void)
 	glLightfv(GL_LIGHT0, GL_AMBIENT, lightIntensity);
 
 	game.Draw();
-
 	cam();
 
 	glutSwapBuffers();
@@ -196,6 +195,10 @@ void myReshape(int w, int h)
 }
 
 
+void updateGame() {
+	game.update();
+}
+
 void main(int argc, char** argv)
 {
 	glutInit(&argc, argv);
@@ -214,6 +217,7 @@ void main(int argc, char** argv)
 	//glutKeyboardUpFunc(KeyboardUp);
 	glutPassiveMotionFunc(MouseMovement);
 	glutSetCursor(GLUT_CURSOR_NONE);
+
 
 	glutReshapeFunc(myReshape);
 

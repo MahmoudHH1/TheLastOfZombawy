@@ -35,3 +35,15 @@ void Shooter::Heal(int healthRecovery) {
 	}
 }
 
+void Shooter::moveForward() {
+	pos.z += speed;
+}
+void Shooter::moveBackward() {
+	pos.z -= speed;
+}
+void Shooter::moveLeft() {
+	pos.x -= speed;
+}
+void Shooter::moveRight() {
+	pos.x += speed;
+}

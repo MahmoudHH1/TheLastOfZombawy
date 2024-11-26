@@ -103,6 +103,16 @@ public:
         center = Vector3f(0.0f, 0.0f, 0.0f);
         top = Vector3f(0.0f, 1.0f, 0.0f);
     }
+
+    void followPlayer(Vector3f playerPos, Vector3f offset) {
+        // Set the camera position relative to the player
+        eye = playerPos + offset;
+
+        // Ensure the camera looks at the player
+        center = playerPos;
+    }
+
+
 };
 
 
