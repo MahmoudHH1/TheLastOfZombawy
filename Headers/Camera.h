@@ -10,6 +10,7 @@
 class Vector3f {
 public:
     float x, y, z;
+	bool isMouseLocked;
 
     Vector3f(float _x = 0.0f, float _y = 0.0f, float _z = 0.0f) {
         x = _x;
@@ -46,11 +47,13 @@ public:
 class Cam {
 public:
     Vector3f eye, center, top;
+    bool isMouseLocked;
 
     Cam(float X = 1.0f, float Y = 1.0f, float Z = 5.0f, float cenX = 0.0f, float cenY = 0.0f, float cenZ = 0.0f, float upX = 0.0f, float upY = 1.0f, float upZ = 0.0f) {
         eye = Vector3f(X, Y, Z);
         center = Vector3f(cenX, cenY, cenZ);
         top = Vector3f(upX, upY, upZ);
+        isMouseLocked = true;
     }
 
     void look() {
@@ -58,7 +61,7 @@ public:
             eye.x, eye.y, eye.z,
             center.x, center.y, center.z,
             top.x, top.y, top.z
-        );
+        );  
     }
 
     void moveForward(float distance) {

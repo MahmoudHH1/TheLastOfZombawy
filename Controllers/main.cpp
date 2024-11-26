@@ -8,7 +8,7 @@
 int WIDTH = 1280;
 int HEIGHT = 720;
 
-float camMoveSpeed = 0.05f; // Camera movement speed
+//float camMoveSpeed = 0.05f; // Camera movement speed
 
 //GLuint tex;
 char title[] = "3D Model Loader Sample";
@@ -19,10 +19,9 @@ GLdouble aspectRatio = (GLdouble)WIDTH / (GLdouble)HEIGHT;
 GLdouble zNear = 0.1;
 GLdouble zFar = 100;
 
-Cam camera;
+//Cam camera;
 Game game;
-bool isMouseLocked = true; // Flag to lock the mouse inside
-bool keys[256] = { false };
+//bool keys[256] = { false };
 
 
 
@@ -35,13 +34,13 @@ void centerMouse() {
 }
 
 void MouseMovement(int x, int y) {
-	if (isMouseLocked) {
+	if (game.camera.isMouseLocked) {
 		int dx = x - WIDTH / 2;
 		int dy = y - HEIGHT / 2;
 
 		float sensitivity = -0.1f;
-		camera.rotateY(dx * sensitivity);
-		camera.rotateX(dy * sensitivity);
+		game.camera.rotateY(dx * sensitivity);
+		game.camera.rotateX(dy * sensitivity);
 
 		centerMouse();
 	}
@@ -55,56 +54,7 @@ void cam() {
 	gluPerspective(60, (float)WIDTH / (float)HEIGHT, 0.001, 100);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	camera.look();
-}
-
-void Keyboard(unsigned char key, int x, int y) {
-	keys[key] = true;  // Set the key state to true when the key is pressed
-}
-
-void KeyboardUp(unsigned char key, int x, int y) {
-	keys[key] = false;  // Set the key state to false when the key is released
-}
-
-
-void controlKeyboard() {
-	if (keys['w']) {
-		camera.moveForward(camMoveSpeed);
-	}
-	if (keys['s']) {
-		camera.moveForward(-camMoveSpeed);
-	}
-	if (keys['a']) {
-		camera.moveRight(-camMoveSpeed);
-	}
-	if (keys['d']) {
-		camera.moveRight(camMoveSpeed);
-	}
-	if (keys[' ']) {
-		camera.moveUp(camMoveSpeed);
-	}
-	if (keys['c']) {
-		camera.moveUp(-camMoveSpeed);
-	}
-	if (keys['t']) {
-		camera.eye = Vector3f(0, 5, 0);
-		camera.center = Vector3f(0, 0, 0);
-		camera.top = Vector3f(0, 0, -1);
-	}
-	if (keys['y']) {
-		camera.eye = Vector3f(5, 0, 0);
-		camera.center = Vector3f(0, 0, 0);
-		camera.top = Vector3f(0, 1, 0);
-	}
-	if (keys['u']) {
-		camera.eye = Vector3f(0, 0, 5);
-		camera.center = Vector3f(0, 0, 0);
-		camera.top = Vector3f(0, 1, 0);
-	}
-	if (keys[27]) {
-		isMouseLocked = false;
-		exit(EXIT_SUCCESS);
-	}
+	game.camera.look();
 }
 
 
@@ -199,7 +149,7 @@ void init(void)
 void draw(void)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	controlKeyboard();
+	//controlKeyboard();
 
 
 	GLfloat lightIntensity[] = { 0.7, 0.7, 0.7, 1.0f };
@@ -216,6 +166,9 @@ void draw(void)
 
 
 
+void handleUserInput(unsigned char key, int x, int y) {
+	game.handleKeyPress(key, x, y);
+}
 
 //=======================================================================
 // Reshape Function
@@ -257,8 +210,8 @@ void main(int argc, char** argv)
 
 	glutDisplayFunc(draw);
 
-	glutKeyboardFunc(Keyboard);
-	glutKeyboardUpFunc(KeyboardUp);
+	glutKeyboardFunc(handleUserInput);
+	//glutKeyboardUpFunc(KeyboardUp);
 	glutPassiveMotionFunc(MouseMovement);
 	glutSetCursor(GLUT_CURSOR_NONE);
 

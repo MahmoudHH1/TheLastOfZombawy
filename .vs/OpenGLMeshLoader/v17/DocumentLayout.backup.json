@@ -7,6 +7,26 @@
       "RelativeMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|solutionrelative:Controllers\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|D:\\Uni\\graphics\\TheLastOfZombawy\\Headers\\Camera.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|solutionrelative:Headers\\Camera.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|D:\\Uni\\graphics\\TheLastOfZombawy\\Controllers\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|solutionrelative:Controllers\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|D:\\Uni\\graphics\\TheLastOfZombawy\\Headers\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|solutionrelative:Headers\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|D:\\Uni\\graphics\\TheLastOfZombawy\\Headers\\Shooter.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|solutionrelative:Headers\\Shooter.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|D:\\Uni\\graphics\\TheLastOfZombawy\\Controllers\\Shooter.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|solutionrelative:Controllers\\Shooter.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|D:\\Uni\\graphics\\TheLastOfZombawy\\Controllers\\Model_3DS.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|solutionrelative:Controllers\\Model_3DS.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -23,10 +43,6 @@
       "RelativeMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|solutionrelative:Controllers\\Medkit.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|D:\\Uni\\graphics\\TheLastOfZombawy\\Controllers\\Shooter.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|solutionrelative:Controllers\\Shooter.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|D:\\Uni\\graphics\\TheLastOfZombawy\\Controllers\\Zombie.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|solutionrelative:Controllers\\Zombie.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -35,20 +51,12 @@
       "RelativeMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|solutionrelative:Headers\\Coin.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|D:\\Uni\\graphics\\TheLastOfZombawy\\Headers\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|solutionrelative:Headers\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|D:\\Uni\\graphics\\TheLastOfZombawy\\Headers\\Key.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|solutionrelative:Headers\\Key.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|D:\\Uni\\graphics\\TheLastOfZombawy\\Headers\\Medkit.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|solutionrelative:Headers\\Medkit.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|D:\\Uni\\graphics\\TheLastOfZombawy\\Headers\\Shooter.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|solutionrelative:Headers\\Shooter.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|D:\\Uni\\graphics\\TheLastOfZombawy\\Headers\\Zombie.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -79,10 +87,6 @@
       "RelativeMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|solutionrelative:Controllers\\BoudingBox.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|D:\\Uni\\graphics\\TheLastOfZombawy\\Controllers\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|solutionrelative:Controllers\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|D:\\Uni\\graphics\\TheLastOfZombawy\\Headers\\RenderEnviroment.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{2EE1F2C2-040C-46D8-8332-127B746115A6}|OpenGLMeshLoader.vcxproj|solutionrelative:Headers\\RenderEnviroment.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
@@ -94,7 +98,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 12,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -110,119 +114,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Key.h",
-              "DocumentMoniker": "D:\\Uni\\graphics\\TheLastOfZombawy\\Headers\\Key.h",
-              "RelativeDocumentMoniker": "Headers\\Key.h",
-              "ToolTip": "D:\\Uni\\graphics\\TheLastOfZombawy\\Headers\\Key.h",
-              "RelativeToolTip": "Headers\\Key.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-25T17:29:13.787Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Medkit.h",
-              "DocumentMoniker": "D:\\Uni\\graphics\\TheLastOfZombawy\\Headers\\Medkit.h",
-              "RelativeDocumentMoniker": "Headers\\Medkit.h",
-              "ToolTip": "D:\\Uni\\graphics\\TheLastOfZombawy\\Headers\\Medkit.h",
-              "RelativeToolTip": "Headers\\Medkit.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-25T17:29:27.66Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Game.h",
-              "DocumentMoniker": "D:\\Uni\\graphics\\TheLastOfZombawy\\Headers\\Game.h",
-              "RelativeDocumentMoniker": "Headers\\Game.h",
-              "ToolTip": "D:\\Uni\\graphics\\TheLastOfZombawy\\Headers\\Game.h",
-              "RelativeToolTip": "Headers\\Game.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-25T17:30:29.228Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Coin.h",
-              "DocumentMoniker": "D:\\Uni\\graphics\\TheLastOfZombawy\\Headers\\Coin.h",
-              "RelativeDocumentMoniker": "Headers\\Coin.h",
-              "ToolTip": "D:\\Uni\\graphics\\TheLastOfZombawy\\Headers\\Coin.h",
-              "RelativeToolTip": "Headers\\Coin.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-25T17:28:45.705Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Zombie.cpp",
-              "DocumentMoniker": "D:\\Uni\\graphics\\TheLastOfZombawy\\Controllers\\Zombie.cpp",
-              "RelativeDocumentMoniker": "Controllers\\Zombie.cpp",
-              "ToolTip": "D:\\Uni\\graphics\\TheLastOfZombawy\\Controllers\\Zombie.cpp",
-              "RelativeToolTip": "Controllers\\Zombie.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-11-25T14:55:29.809Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Shooter.cpp",
-              "DocumentMoniker": "D:\\Uni\\graphics\\TheLastOfZombawy\\Controllers\\Shooter.cpp",
-              "RelativeDocumentMoniker": "Controllers\\Shooter.cpp",
-              "ToolTip": "D:\\Uni\\graphics\\TheLastOfZombawy\\Controllers\\Shooter.cpp",
-              "RelativeToolTip": "Controllers\\Shooter.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-11-25T14:55:29.236Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Medkit.cpp",
-              "DocumentMoniker": "D:\\Uni\\graphics\\TheLastOfZombawy\\Controllers\\Medkit.cpp",
-              "RelativeDocumentMoniker": "Controllers\\Medkit.cpp",
-              "ToolTip": "D:\\Uni\\graphics\\TheLastOfZombawy\\Controllers\\Medkit.cpp",
-              "RelativeToolTip": "Controllers\\Medkit.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-11-25T14:55:26.485Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Key.cpp",
-              "DocumentMoniker": "D:\\Uni\\graphics\\TheLastOfZombawy\\Controllers\\Key.cpp",
-              "RelativeDocumentMoniker": "Controllers\\Key.cpp",
-              "ToolTip": "D:\\Uni\\graphics\\TheLastOfZombawy\\Controllers\\Key.cpp",
-              "RelativeToolTip": "Controllers\\Key.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAACDAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-11-25T14:55:22.587Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Model_3DS.cpp",
-              "DocumentMoniker": "D:\\Uni\\graphics\\TheLastOfZombawy\\Controllers\\Model_3DS.cpp",
-              "RelativeDocumentMoniker": "Controllers\\Model_3DS.cpp",
-              "ToolTip": "D:\\Uni\\graphics\\TheLastOfZombawy\\Controllers\\Model_3DS.cpp",
-              "RelativeToolTip": "Controllers\\Model_3DS.cpp",
-              "ViewState": "AgIAANcAAAAAAAAAAAAowPgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-11-25T15:25:28.022Z",
+              "Title": "Camera.h",
+              "DocumentMoniker": "D:\\Uni\\graphics\\TheLastOfZombawy\\Headers\\Camera.h",
+              "RelativeDocumentMoniker": "Headers\\Camera.h",
+              "ToolTip": "D:\\Uni\\graphics\\TheLastOfZombawy\\Headers\\Camera.h",
+              "RelativeToolTip": "Headers\\Camera.h",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAAAD8AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-11-26T16:22:44.05Z",
               "EditorCaption": ""
             },
             {
@@ -233,14 +133,150 @@
               "RelativeDocumentMoniker": "Controllers\\Game.cpp",
               "ToolTip": "D:\\Uni\\graphics\\TheLastOfZombawy\\Controllers\\Game.cpp",
               "RelativeToolTip": "Controllers\\Game.cpp",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA0AAAA8AAAAAAAAAA==",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAAABAAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-11-25T14:55:11.303Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Game.h",
+              "DocumentMoniker": "D:\\Uni\\graphics\\TheLastOfZombawy\\Headers\\Game.h",
+              "RelativeDocumentMoniker": "Headers\\Game.h",
+              "ToolTip": "D:\\Uni\\graphics\\TheLastOfZombawy\\Headers\\Game.h",
+              "RelativeToolTip": "Headers\\Game.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-11-25T17:30:29.228Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Coin.h",
+              "DocumentMoniker": "D:\\Uni\\graphics\\TheLastOfZombawy\\Headers\\Coin.h",
+              "RelativeDocumentMoniker": "Headers\\Coin.h",
+              "ToolTip": "D:\\Uni\\graphics\\TheLastOfZombawy\\Headers\\Coin.h",
+              "RelativeToolTip": "Headers\\Coin.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-11-25T17:28:45.705Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Shooter.cpp",
+              "DocumentMoniker": "D:\\Uni\\graphics\\TheLastOfZombawy\\Controllers\\Shooter.cpp",
+              "RelativeDocumentMoniker": "Controllers\\Shooter.cpp",
+              "ToolTip": "D:\\Uni\\graphics\\TheLastOfZombawy\\Controllers\\Shooter.cpp",
+              "RelativeToolTip": "Controllers\\Shooter.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-11-25T14:55:29.236Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Medkit.cpp",
+              "DocumentMoniker": "D:\\Uni\\graphics\\TheLastOfZombawy\\Controllers\\Medkit.cpp",
+              "RelativeDocumentMoniker": "Controllers\\Medkit.cpp",
+              "ToolTip": "D:\\Uni\\graphics\\TheLastOfZombawy\\Controllers\\Medkit.cpp",
+              "RelativeToolTip": "Controllers\\Medkit.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-11-25T14:55:26.485Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Key.cpp",
+              "DocumentMoniker": "D:\\Uni\\graphics\\TheLastOfZombawy\\Controllers\\Key.cpp",
+              "RelativeDocumentMoniker": "Controllers\\Key.cpp",
+              "ToolTip": "D:\\Uni\\graphics\\TheLastOfZombawy\\Controllers\\Key.cpp",
+              "RelativeToolTip": "Controllers\\Key.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAACDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-11-25T14:55:22.587Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Shooter.h",
+              "DocumentMoniker": "D:\\Uni\\graphics\\TheLastOfZombawy\\Headers\\Shooter.h",
+              "RelativeDocumentMoniker": "Headers\\Shooter.h",
+              "ToolTip": "D:\\Uni\\graphics\\TheLastOfZombawy\\Headers\\Shooter.h",
+              "RelativeToolTip": "Headers\\Shooter.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-11-25T17:30:01.655Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "main.cpp",
+              "DocumentMoniker": "D:\\Uni\\graphics\\TheLastOfZombawy\\Controllers\\main.cpp",
+              "RelativeDocumentMoniker": "Controllers\\main.cpp",
+              "ToolTip": "D:\\Uni\\graphics\\TheLastOfZombawy\\Controllers\\main.cpp",
+              "RelativeToolTip": "Controllers\\main.cpp",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAANUAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-11-24T18:12:20.556Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Zombie.cpp",
+              "DocumentMoniker": "D:\\Uni\\graphics\\TheLastOfZombawy\\Controllers\\Zombie.cpp",
+              "RelativeDocumentMoniker": "Controllers\\Zombie.cpp",
+              "ToolTip": "D:\\Uni\\graphics\\TheLastOfZombawy\\Controllers\\Zombie.cpp",
+              "RelativeToolTip": "Controllers\\Zombie.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-11-25T14:55:29.809Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Model_3DS.cpp",
+              "DocumentMoniker": "D:\\Uni\\graphics\\TheLastOfZombawy\\Controllers\\Model_3DS.cpp",
+              "RelativeDocumentMoniker": "Controllers\\Model_3DS.cpp",
+              "ToolTip": "D:\\Uni\\graphics\\TheLastOfZombawy\\Controllers\\Model_3DS.cpp",
+              "RelativeToolTip": "Controllers\\Model_3DS.cpp",
+              "ViewState": "AgIAANcAAAAAAAAAAAAowPgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-11-25T15:25:28.022Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Medkit.h",
+              "DocumentMoniker": "D:\\Uni\\graphics\\TheLastOfZombawy\\Headers\\Medkit.h",
+              "RelativeDocumentMoniker": "Headers\\Medkit.h",
+              "ToolTip": "D:\\Uni\\graphics\\TheLastOfZombawy\\Headers\\Medkit.h",
+              "RelativeToolTip": "Headers\\Medkit.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-11-25T17:29:27.66Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Key.h",
+              "DocumentMoniker": "D:\\Uni\\graphics\\TheLastOfZombawy\\Headers\\Key.h",
+              "RelativeDocumentMoniker": "Headers\\Key.h",
+              "ToolTip": "D:\\Uni\\graphics\\TheLastOfZombawy\\Headers\\Key.h",
+              "RelativeToolTip": "Headers\\Key.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-11-25T17:29:13.787Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "Model_3DS.h",
               "DocumentMoniker": "D:\\Uni\\graphics\\TheLastOfZombawy\\Headers\\Model_3DS.h",
               "RelativeDocumentMoniker": "Headers\\Model_3DS.h",
@@ -248,25 +284,11 @@
               "RelativeToolTip": "Headers\\Model_3DS.h",
               "ViewState": "AgIAAJAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-25T17:41:36.43Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-25T17:41:36.43Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Shooter.h",
-              "DocumentMoniker": "D:\\Uni\\graphics\\TheLastOfZombawy\\Headers\\Shooter.h",
-              "RelativeDocumentMoniker": "Headers\\Shooter.h",
-              "ToolTip": "D:\\Uni\\graphics\\TheLastOfZombawy\\Headers\\Shooter.h",
-              "RelativeToolTip": "Headers\\Shooter.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-25T17:30:01.655Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "Zombie.h",
               "DocumentMoniker": "D:\\Uni\\graphics\\TheLastOfZombawy\\Headers\\Zombie.h",
               "RelativeDocumentMoniker": "Headers\\Zombie.h",
@@ -274,12 +296,11 @@
               "RelativeToolTip": "Headers\\Zombie.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-25T14:55:58.327Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-25T14:55:58.327Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 15,
               "Title": "RenderWall.h",
               "DocumentMoniker": "D:\\Uni\\graphics\\TheLastOfZombawy\\Headers\\RenderWall.h",
               "RelativeDocumentMoniker": "Headers\\RenderWall.h",
@@ -287,12 +308,11 @@
               "RelativeToolTip": "Headers\\RenderWall.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-25T17:29:59.901Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-25T17:29:59.901Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 16,
               "Title": "GLTexture.h",
               "DocumentMoniker": "D:\\Uni\\graphics\\TheLastOfZombawy\\Headers\\GLTexture.h",
               "RelativeDocumentMoniker": "Headers\\GLTexture.h",
@@ -300,12 +320,11 @@
               "RelativeToolTip": "Headers\\GLTexture.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-25T17:29:12.217Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-25T17:29:12.217Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 17,
               "Title": "RenderGround.h",
               "DocumentMoniker": "D:\\Uni\\graphics\\TheLastOfZombawy\\Headers\\RenderGround.h",
               "RelativeDocumentMoniker": "Headers\\RenderGround.h",
@@ -313,12 +332,11 @@
               "RelativeToolTip": "Headers\\RenderGround.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-25T17:29:49.694Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-25T17:29:49.694Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 18,
               "Title": "GLTexture.cpp",
               "DocumentMoniker": "D:\\Uni\\graphics\\TheLastOfZombawy\\Controllers\\GLTexture.cpp",
               "RelativeDocumentMoniker": "Controllers\\GLTexture.cpp",
@@ -326,25 +344,11 @@
               "RelativeToolTip": "Controllers\\GLTexture.cpp",
               "ViewState": "AgIAAB0AAAAAAAAAAADwv44BAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-11-25T17:17:04.338Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-25T17:17:04.338Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 19,
-              "Title": "main.cpp",
-              "DocumentMoniker": "D:\\Uni\\graphics\\TheLastOfZombawy\\Controllers\\main.cpp",
-              "RelativeDocumentMoniker": "Controllers\\main.cpp",
-              "ToolTip": "D:\\Uni\\graphics\\TheLastOfZombawy\\Controllers\\main.cpp",
-              "RelativeToolTip": "Controllers\\main.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEsAAAACAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-11-24T18:12:20.556Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
               "Title": "Coin.cpp",
               "DocumentMoniker": "D:\\Uni\\graphics\\TheLastOfZombawy\\Controllers\\Coin.cpp",
               "RelativeDocumentMoniker": "Controllers\\Coin.cpp",
@@ -352,12 +356,11 @@
               "RelativeToolTip": "Controllers\\Coin.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-11-25T14:55:08.726Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-25T14:55:08.726Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 20,
               "Title": "BoudingBox.cpp",
               "DocumentMoniker": "D:\\Uni\\graphics\\TheLastOfZombawy\\Controllers\\BoudingBox.cpp",
               "RelativeDocumentMoniker": "Controllers\\BoudingBox.cpp",
@@ -365,12 +368,11 @@
               "RelativeToolTip": "Controllers\\BoudingBox.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-11-25T17:16:20.037Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-25T17:16:20.037Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "RenderEnviroment.h",
               "DocumentMoniker": "D:\\Uni\\graphics\\TheLastOfZombawy\\Headers\\RenderEnviroment.h",
               "RelativeDocumentMoniker": "Headers\\RenderEnviroment.h",
@@ -378,8 +380,7 @@
               "RelativeToolTip": "Headers\\RenderEnviroment.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-25T17:14:40.094Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-25T17:14:40.094Z"
             }
           ]
         }

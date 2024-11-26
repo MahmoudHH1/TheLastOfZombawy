@@ -24,6 +24,7 @@ class Game {
 		void spawnZombies();
 		void spawnKey();
 		void spawnMedkit();
+		void handleKeyPress(unsigned char key , int x , int y);
 };
 
 #endif // !GAMAE_H
