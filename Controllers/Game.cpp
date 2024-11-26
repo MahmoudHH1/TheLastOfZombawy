@@ -56,21 +56,29 @@ void Game::update() {
 }
 
 void Game::updateCamera() {
+
+
     // Player position
     Vector3f playerPos = { shooter.pos.x , shooter.pos.y , shooter.pos.z };
-
-    // Offset to place the camera slightly behind and above the player's right shoulder
-    Vector3f cameraOffset = Vector3f(1.75f, 8.5f, -5.0f);
-
+    Vector3f cameraOffset;
+    Vector3f forwardOffset;
+    if (camera.isThirdPerson) {
+        // Offset to place the camera slightly behind and above the player's right shoulder
+        cameraOffset = Vector3f(1.75f, 8.5f, -5.0f);
+        forwardOffset = Vector3f(0.0f, 5.5f, 3.0f);
+        // Keep the camera upright
+        camera.top = Vector3f(0.0f, 1.0f, 0.0f);
+    }
+    else { // first Person
+		// Offset to place the camera slightly above the player's head
+		cameraOffset = Vector3f(0.0f, 7.5f, 0.0f);
+		forwardOffset = Vector3f(0.0f, 7.0f, 1.5f);
+		// Keep the camera upright
+		//camera.top = Vector3f(0.0f, 5.0f, 0.0f);
+    }
     // Set camera position relative to the player's position
     camera.eye = playerPos + cameraOffset;
-
-    // Point the camera towards a position slightly in front of the player for visibility
-    Vector3f forwardOffset = Vector3f(0.0f, 1.0f, 3.0f); // Forward look direction
     camera.center = playerPos + forwardOffset;
-
-    // Keep the camera upright
-    camera.top = Vector3f(0.0f, 1.0f, 0.0f);
 }
 
 void Game::handleKeyPress(unsigned char key, int x, int y) {
@@ -111,6 +119,10 @@ void Game::handleKeyPress(unsigned char key, int x, int y) {
         camera.eye = Vector3f(0, 0, 5);
         camera.center = Vector3f(0, 0, 0);
         camera.top = Vector3f(0, 1, 0);
+        break;
+    case 'p':
+		camera.toggleThirdPerson();
+		updateCamera();
         break;
     case 27: // Escape key
         isMouseLocked = false;
