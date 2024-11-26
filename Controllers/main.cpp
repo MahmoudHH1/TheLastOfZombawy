@@ -94,8 +94,8 @@ void updateLights() {
 		blinkTimer = 0.0f;
 	}
 
-	GLfloat light1_position[] = { 0.0f, 5.0f, 5.0f, 1.0f };
-	GLfloat light1_direction[] = { 0.0f, -1.0f, 0.0f };
+	GLfloat light1_position[] = { 0.0f, 10.0f, 5.0f, 1.0f };
+	GLfloat light1_direction[] = { 0.0f, 0.0f, 1.0f };
 
 	glLightfv(GL_LIGHT1, GL_POSITION, light1_position);
 	glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, light1_direction);
@@ -124,8 +124,8 @@ void InitLightSource() {
 
 	// First light setup
 	GLfloat ambient0[] = { 0.1f, 0.1f, 0.1f, 1.0f };
-	GLfloat light0_position[] = { 0.0f, 15.0f, -10.0f, 1.0f };
-	GLfloat light0_direction[] = { 0.0f, -1.0f, 0.0f };
+	GLfloat light0_position[] = { 0.0f, 10.0f, -5.0f, 1.0f };
+	GLfloat light0_direction[] = { 0.0f, 0.0f, -1.0f };
 
 	glLightfv(GL_LIGHT0, GL_AMBIENT, ambient0);
 	glLightfv(GL_LIGHT0, GL_POSITION, light0_position);
