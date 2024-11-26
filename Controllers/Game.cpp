@@ -9,7 +9,7 @@
 #include <vector>
 
 bool isMouseLocked = true;
-float camMoveSpeed = 0.05f; // Camera movement speed
+float camMoveSpeed = 0.2f; // Camera movement speed
 
 
 Game::Game() {

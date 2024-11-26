@@ -19,9 +19,17 @@ GLdouble aspectRatio = (GLdouble)WIDTH / (GLdouble)HEIGHT;
 GLdouble zNear = 0.1;
 GLdouble zFar = 100;
 
+// Add these global variables at the top of your file
+float colorTimer = 0.0f;
+bool secondLightOn = true;
+float blinkTimer = 0.0f;
+const float BLINK_INTERVAL = 1.0f; // 1 second interval for blinking
+const float COLOR_CHANGE_SPEED = 0.01f;
+
 //Cam camera;
 Game game;
 //bool keys[256] = { false };
+
 
 
 
@@ -58,34 +66,95 @@ void cam() {
 }
 
 
-//=======================================================================
-// Lighting Configuration Function
-//=======================================================================
-void InitLightSource()
-{
-	// Enable Lighting for this OpenGL Program
-	glEnable(GL_LIGHTING);
 
-	// Enable Light Source number 0
-	// OpengL has 8 light sources
-	glEnable(GL_LIGHT0);
+void updateLights() {
+	// First light - Color changing spotlight
+	GLfloat r = (sin(colorTimer) + 1.0f) / 2.0f;
+	GLfloat g = (sin(colorTimer + 2.0944f) + 1.0f) / 2.0f;
+	GLfloat b = (sin(colorTimer + 4.18879f) + 1.0f) / 2.0f;
 
-	// Define Light source 0 ambient light
-	GLfloat ambient[] = { 0.1f, 0.1f, 0.1, 1.0f };
-	glLightfv(GL_LIGHT0, GL_AMBIENT, ambient);
+	GLfloat coloredLight[] = { r, g, b, 1.0f };
+	GLfloat light0_position[] = { 0.0f, 15.0f, -10.0f, 1.0f };
+	GLfloat light0_direction[] = { 0.0f, -1.0f, 0.0f }; // Points straight down
 
-	// Define Light source 0 diffuse light
-	GLfloat diffuse[] = { 0.5f, 0.5f, 0.5f, 1.0f };
-	glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse);
+	glLightfv(GL_LIGHT0, GL_POSITION, light0_position);
+	glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, light0_direction);
+	glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, 45.0f);         // 45-degree spotlight cone
+	glLightf(GL_LIGHT0, GL_SPOT_EXPONENT, 2.0f);        // How focused the spotlight is
+	glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, 1.0f);
+	glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, 0.05f);  // Controls how quickly light fades with distance
+	glLightf(GL_LIGHT0, GL_QUADRATIC_ATTENUATION, 0.02f);
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, coloredLight);
+	glLightfv(GL_LIGHT0, GL_SPECULAR, coloredLight);
 
-	// Define Light source 0 Specular light
-	GLfloat specular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-	glLightfv(GL_LIGHT0, GL_SPECULAR, specular);
+	// Second light - Blinking spotlight
+	blinkTimer += 0.016f;
+	if (blinkTimer >= BLINK_INTERVAL) {
+		secondLightOn = !secondLightOn;
+		blinkTimer = 0.0f;
+	}
 
-	// Finally, define light source 0 position in World Space
-	GLfloat light_position[] = { 0.0f, 10.0f, 0.0f, 1.0f };
-	glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+	GLfloat light1_position[] = { 0.0f, \.0f, 10.0f, 1.0f };
+	GLfloat light1_direction[] = { 0.0f, -1.0f, 0.0f };
+
+	glLightfv(GL_LIGHT1, GL_POSITION, light1_position);
+	glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, light1_direction);
+	glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 45.0f);
+	glLightf(GL_LIGHT1, GL_SPOT_EXPONENT, 2.0f);
+	glLightf(GL_LIGHT1, GL_CONSTANT_ATTENUATION, 1.0f);
+	glLightf(GL_LIGHT1, GL_LINEAR_ATTENUATION, 0.05f);
+	glLightf(GL_LIGHT1, GL_QUADRATIC_ATTENUATION, 0.02f);
+
+	if (secondLightOn) {
+		glEnable(GL_LIGHT1);
+		GLfloat light1_diffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+		glLightfv(GL_LIGHT1, GL_DIFFUSE, light1_diffuse);
+	}
+	else {
+		glDisable(GL_LIGHT1);
+	}
+
+	colorTimer += COLOR_CHANGE_SPEED;
 }
+
+void InitLightSource() {
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
+	glEnable(GL_LIGHT1);
+
+	// First light setup
+	GLfloat ambient0[] = { 0.1f, 0.1f, 0.1f, 1.0f };
+	GLfloat light0_position[] = { 0.0f, 15.0f, -10.0f, 1.0f };
+	GLfloat light0_direction[] = { 0.0f, -1.0f, 0.0f };
+
+	glLightfv(GL_LIGHT0, GL_AMBIENT, ambient0);
+	glLightfv(GL_LIGHT0, GL_POSITION, light0_position);
+	glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, light0_direction);
+	glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, 45.0f);
+	glLightf(GL_LIGHT0, GL_SPOT_EXPONENT, 2.0f);
+	glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, 1.0f);
+	glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, 0.05f);
+	glLightf(GL_LIGHT0, GL_QUADRATIC_ATTENUATION, 0.02f);
+
+	// Second light setup
+	GLfloat light1_position[] = { 0.0f, 15.0f, 10.0f, 1.0f };
+	GLfloat light1_direction[] = { 0.0f, -1.0f, 0.0f };
+	GLfloat ambient1[] = { 0.1f, 0.1f, 0.1f, 1.0f };
+	GLfloat diffuse1[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+	GLfloat specular1[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+
+	glLightfv(GL_LIGHT1, GL_POSITION, light1_position);
+	glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, light1_direction);
+	glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 45.0f);
+	glLightf(GL_LIGHT1, GL_SPOT_EXPONENT, 2.0f);
+	glLightf(GL_LIGHT1, GL_CONSTANT_ATTENUATION, 1.0f);
+	glLightf(GL_LIGHT1, GL_LINEAR_ATTENUATION, 0.05f);
+	glLightf(GL_LIGHT1, GL_QUADRATIC_ATTENUATION, 0.02f);
+	glLightfv(GL_LIGHT1, GL_AMBIENT, ambient1);
+	glLightfv(GL_LIGHT1, GL_DIFFUSE, diffuse1);
+	glLightfv(GL_LIGHT1, GL_SPECULAR, specular1);
+}
+
 
 //=======================================================================
 // Material Configuration Function
@@ -156,6 +225,8 @@ void draw(void)
 	GLfloat lightPosition[] = { 0.0f, 100.0f, 0.0f, 0.0f };
 	glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
 	glLightfv(GL_LIGHT0, GL_AMBIENT, lightIntensity);
+
+	updateLights();
 
 	game.Draw();
 

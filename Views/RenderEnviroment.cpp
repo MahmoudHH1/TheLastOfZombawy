@@ -109,47 +109,59 @@ void RenderGround()
 }
 
 void RenderEnvironment() {
-	
+	// Original outer walls - made bigger
 	glPushMatrix();
-	glTranslatef(-10, 0, -10);
+	glTranslatef(-20, 0, -20);  // Doubled from -10 to -20
 	glPushMatrix();
-	glTranslatef(0, 2.5, 10);
-	glScalef(0.1, 5, 25);
+	glTranslatef(0, 4.5, 20);   // Increased height and adjusted Z position
+	glScalef(0.2, 9, 45);       // Increased thickness, height, and length
 	RenderWallLevel2();
 	glPopMatrix();
 	glPopMatrix();
 
 	glPushMatrix();
-	glTranslatef(10, 0, -10);
+	glTranslatef(20, 0, -20);   // Doubled from 10 to 20
 	glPushMatrix();
-	glTranslatef(0, 2.5,  10);
-	glScalef(0.1, 5, 25);
-	RenderWallLevel2();
-	glPopMatrix();
-	glPopMatrix();
-
-	glPushMatrix();
-	glRotatef(90, 0, 1, 0);
-	glTranslatef(10, 0, -10);
-	glPushMatrix();
-	glTranslatef(0, 2.5, 10);
-	glScalef(0.1, 5, 25);
+	glTranslatef(0, 4.5, 20);   // Increased height and adjusted Z position
+	glScalef(0.2, 9, 45);       // Increased thickness, height, and length
 	RenderWallLevel2();
 	glPopMatrix();
 	glPopMatrix();
 
 	glPushMatrix();
 	glRotatef(90, 0, 1, 0);
-	glTranslatef(-10, 0, -10);
+	glTranslatef(20, 0, -20);   // Doubled positions
 	glPushMatrix();
-	glTranslatef(0, 2.5,  10);
-	glScalef(0.1, 5, 25);
+	glTranslatef(0, 4.5, 20);   // Adjusted height and position
+	glScalef(0.2, 9, 45);       // Increased dimensions
 	RenderWallLevel2();
 	glPopMatrix();
 	glPopMatrix();
-	
+
 	glPushMatrix();
-	glScalef(0.5, 1, 0.5);
+	glRotatef(90, 0, 1, 0);
+	glTranslatef(-20, 0, -20);  // Doubled positions
+	glPushMatrix();
+	glTranslatef(0, 4.5, 20);   // Adjusted height and position
+	glScalef(0.2, 9, 45);       // Increased dimensions
+	RenderWallLevel2();
+	glPopMatrix();
+	glPopMatrix();
+
+	// Middle wall - scaled to match
+	glPushMatrix();
+	glRotatef(90, 0, 1, 0);
+	glTranslatef(0, 0, -20);    // Adjusted position
+	glPushMatrix();
+	glTranslatef(0, 4.5, 20);   // Adjusted height and position
+	glScalef(0.2, 9, 45);       // Increased dimensions
+	RenderWallLevel1();
+	glPopMatrix();
+	glPopMatrix();
+
+	// Ground - scaled up to match new room size
+	glPushMatrix();
+	glScalef(1, 1, 1);          // Increased from 0.5 to match new room size
 	RenderGround();
 	glPopMatrix();
 }
