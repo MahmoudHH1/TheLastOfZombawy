@@ -25,6 +25,7 @@ class Game {
 		void spawnKey();
 		void spawnMedkit();
 		void handleKeyPress(unsigned char key , int x , int y);
+		void updateCamera();
 };
 
 #endif // !GAMAE_H

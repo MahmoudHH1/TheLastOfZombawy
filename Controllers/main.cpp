@@ -46,7 +46,7 @@ void MouseMovement(int x, int y) {
 		int dx = x - WIDTH / 2;
 		int dy = y - HEIGHT / 2;
 
-		float sensitivity = -0.1f;
+		float sensitivity = -0.01f;
 		game.camera.rotateY(dx * sensitivity);
 		game.camera.rotateX(dy * sensitivity);
 
@@ -74,7 +74,7 @@ void updateLights() {
 	GLfloat b = (sin(colorTimer + 4.18879f) + 1.0f) / 2.0f;
 
 	GLfloat coloredLight[] = { r, g, b, 1.0f };
-	GLfloat light0_position[] = { 0.0f, 15.0f, -10.0f, 1.0f };
+	GLfloat light0_position[] = { 0.0f, 5.0f, -5.0f, 1.0f };
 	GLfloat light0_direction[] = { 0.0f, -1.0f, 0.0f }; // Points straight down
 
 	glLightfv(GL_LIGHT0, GL_POSITION, light0_position);
@@ -94,7 +94,7 @@ void updateLights() {
 		blinkTimer = 0.0f;
 	}
 
-	GLfloat light1_position[] = { 0.0f, \.0f, 10.0f, 1.0f };
+	GLfloat light1_position[] = { 0.0f, 5.0f, 5.0f, 1.0f };
 	GLfloat light1_direction[] = { 0.0f, -1.0f, 0.0f };
 
 	glLightfv(GL_LIGHT1, GL_POSITION, light1_position);
@@ -198,8 +198,8 @@ void init(void)
 	glMatrixMode(GL_MODELVIEW);
 
 	glLoadIdentity();
-	
-	
+
+
 	InitLightSource();
 
 	InitMaterial();
@@ -229,7 +229,6 @@ void draw(void)
 	updateLights();
 
 	game.Draw();
-
 	cam();
 
 	glutSwapBuffers();
@@ -267,6 +266,10 @@ void myReshape(int w, int h)
 }
 
 
+void updateGame() {
+	game.update();
+}
+
 void main(int argc, char** argv)
 {
 	glutInit(&argc, argv);
@@ -285,6 +288,7 @@ void main(int argc, char** argv)
 	//glutKeyboardUpFunc(KeyboardUp);
 	glutPassiveMotionFunc(MouseMovement);
 	glutSetCursor(GLUT_CURSOR_NONE);
+
 
 	glutReshapeFunc(myReshape);
 

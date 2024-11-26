@@ -2,15 +2,15 @@
 #include "Headers/Model_3DS.h"
 
 Shooter::Shooter(float x, float y, float z,
-	float rotX, float rotY, float rotZ , float scale) :
+	float rotX, float rotY, float rotZ, float scale) :
 	health(100), score(0), hitDamage(50)
-	, Model_3DS(x, y, z, rotX, rotY, rotZ , scale) , hasKey(false) , medkits(0) {
+	, Model_3DS(x, y, z, rotX, rotY, rotZ, scale), hasKey(false), medkits(0) {
 	Load("Assets/models/Shooter/Shooter.3DS");
 };
 
 Shooter::Shooter() :
 	health(100), score(0), hitDamage(50),
-	Model_3DS(0, 0, 0, 0, 0, 0 , 0.1) , hasKey(false) , medkits(0) {
+	Model_3DS(0, 0, 0, 0, 0, 0, 0.1), hasKey(false), medkits(0) {
 	Load("Assets/models/Shooter/Shooter.3DS");
 };
 
@@ -35,3 +35,15 @@ void Shooter::Heal(int healthRecovery) {
 	}
 }
 
+void Shooter::moveForward() {
+	pos.z += speed;
+}
+void Shooter::moveBackward() {
+	pos.z -= speed;
+}
+void Shooter::moveLeft() {
+	pos.x -= speed;
+}
+void Shooter::moveRight() {
+	pos.x += speed;
+}

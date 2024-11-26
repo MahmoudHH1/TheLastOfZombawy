@@ -10,7 +10,7 @@
 class Vector3f {
 public:
     float x, y, z;
-	bool isMouseLocked;
+    bool isMouseLocked;
 
     Vector3f(float _x = 0.0f, float _y = 0.0f, float _z = 0.0f) {
         x = _x;
@@ -61,7 +61,7 @@ public:
             eye.x, eye.y, eye.z,
             center.x, center.y, center.z,
             top.x, top.y, top.z
-        );  
+        );
     }
 
     void moveForward(float distance) {
@@ -103,6 +103,16 @@ public:
         center = Vector3f(0.0f, 0.0f, 0.0f);
         top = Vector3f(0.0f, 1.0f, 0.0f);
     }
+
+    void followPlayer(Vector3f playerPos, Vector3f offset) {
+        // Set the camera position relative to the player
+        eye = playerPos + offset;
+
+        // Ensure the camera looks at the player
+        center = playerPos;
+    }
+
+
 };
 
 

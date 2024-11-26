@@ -14,14 +14,19 @@ public:
 	int medkits;
 	bool hasKey;
 
+	#define speed 0.1f;
+
 	Shooter(float x, float y, float z
-		, float rotX, float rotY, float rotZ , float scale);
+		, float rotX, float rotY, float rotZ, float scale);
 	Shooter();
 	void CollectKey();
 	void CollectCoin();
 	void CollectMedKit();
 	void Heal(int healthRecovery);
-
+	void moveForward();
+	void moveBackward();
+	void moveLeft();
+	void moveRight();
 };
 
 #endif SHOOTER_H

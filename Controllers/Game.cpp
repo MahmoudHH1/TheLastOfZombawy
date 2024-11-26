@@ -13,60 +13,83 @@ float camMoveSpeed = 0.2f; // Camera movement speed
 
 
 Game::Game() {
-	loadEnvironmentAssets();
+    loadEnvironmentAssets();
+    zombies.push_back(Zombie(10.0f, 0.0f, 10.0f, 0.0f, 0.0f, 0.0f, 0.1f, 12));
+    keys.push_back(Key(5.0f, 0.0f, 5.0f, 0.0f, 0.0f, 0.0f, 1.0f));
+    coins.push_back(Coin(2.0f, 0.0f, 2.0f, 0.0f, 0.0f, 0.0f, 0.1f));
+    medkits.push_back(Medkit(8.0f, 0.0f, 8.0f, 0.0f, 0.0f, 0.0f, 0.01f, 12));
     camera = Cam();
-	zombies.push_back(Zombie(10.0f, 0.0f, 10.0f, 0.0f, 0.0f, 0.0f , 0.1f ,  12));
-	keys.push_back(Key(5.0f, 0.0f, 5.0f, 0.0f, 0.0f, 0.0f , 1.0f));
-	coins.push_back(Coin(2.0f, 0.0f, 2.0f, 0.0f, 0.0f, 0.0f , 0.1f));
-	medkits.push_back(Medkit(8.0f, 0.0f, 8.0f, 0.0f, 0.0f, 0.0f , 0.01f,12));
+    updateCamera();
 }
 
 void Game::Draw() {
-	RenderEnvironment();
-	shooter.Draw();
-	for (int i = 0; i < zombies.size(); i++) {
-		zombies[i].Draw();
-	}
-	for (int i = 0; i < coins.size(); i++) {
-		coins[i].Draw();
-	}
-	for (int i = 0; i < keys.size(); i++) {
-		keys[i].Draw();
-	}
-	for (int i = 0; i < medkits.size(); i++) {
-		medkits[i].Draw();
-	}
+    RenderEnvironment();
+    shooter.Draw();
+    for (int i = 0; i < zombies.size(); i++) {
+        zombies[i].Draw();
+    }
+    for (int i = 0; i < coins.size(); i++) {
+        coins[i].Draw();
+    }
+    for (int i = 0; i < keys.size(); i++) {
+        keys[i].Draw();
+    }
+    for (int i = 0; i < medkits.size(); i++) {
+        medkits[i].Draw();
+    }
 }
 
 void Game::spawnZombies() {
-	//zombies.push_back(Zombie());
+    //zombies.push_back(Zombie());
 }
 
 void Game::spawnKey() {
-	//keys.push_back(Key());
+    //keys.push_back(Key());
 }
 
 void Game::spawnMedkit() {
-	//medkits.push_back(Medkit());
+    //medkits.push_back(Medkit());
 }
 
 void Game::update() {
 
 }
 
+void Game::updateCamera() {
+    // Player position
+    Vector3f playerPos = { shooter.pos.x , shooter.pos.y , shooter.pos.z };
+
+    // Offset to place the camera slightly behind and above the player's right shoulder
+    Vector3f cameraOffset = Vector3f(1.75f, 8.5f, -5.0f);
+
+    // Set camera position relative to the player's position
+    camera.eye = playerPos + cameraOffset;
+
+    // Point the camera towards a position slightly in front of the player for visibility
+    Vector3f forwardOffset = Vector3f(0.0f, 1.0f, 3.0f); // Forward look direction
+    camera.center = playerPos + forwardOffset;
+
+    // Keep the camera upright
+    camera.top = Vector3f(0.0f, 1.0f, 0.0f);
+}
+
 void Game::handleKeyPress(unsigned char key, int x, int y) {
     switch (key) {
     case 'w':
-        camera.moveForward(camMoveSpeed);
+        shooter.moveForward();
+        updateCamera();
         break;
     case 's':
-        camera.moveForward(-camMoveSpeed);
+        shooter.moveBackward();
+        updateCamera();
         break;
     case 'a':
-        camera.moveRight(-camMoveSpeed);
+        shooter.moveLeft();
+        updateCamera();
         break;
     case 'd':
-        camera.moveRight(camMoveSpeed);
+        shooter.moveRight();
+        updateCamera();
         break;
     case ' ':
         camera.moveUp(camMoveSpeed);

@@ -8,6 +8,7 @@
     <None Include="Assets\models\house\house.3ds" />
     <None Include="Assets\models\Medkit\Medkit.3DS" />
     <None Include="Assets\models\Zombie\Zombie.3DS" />
+    <None Include="Assets\models\Coin\coin1.3ds" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">
