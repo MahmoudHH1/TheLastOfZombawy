@@ -1,8 +1,13 @@
 ﻿  Game.cpp
-C:\Users\moham\OneDrive\Desktop\Github Repos\TheLastOfZombawy\Controllers\Game.cpp(28,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\moham\OneDrive\Desktop\Github Repos\TheLastOfZombawy\Controllers\Game.cpp(31,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\moham\OneDrive\Desktop\Github Repos\TheLastOfZombawy\Controllers\Game.cpp(34,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\moham\OneDrive\Desktop\Github Repos\TheLastOfZombawy\Controllers\Game.cpp(37,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\moham\OneDrive\Desktop\Github Repos\TheLastOfZombawy\Controllers\Game.cpp(33,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\moham\OneDrive\Desktop\Github Repos\TheLastOfZombawy\Controllers\Game.cpp(36,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\moham\OneDrive\Desktop\Github Repos\TheLastOfZombawy\Controllers\Game.cpp(39,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\moham\OneDrive\Desktop\Github Repos\TheLastOfZombawy\Controllers\Game.cpp(42,23): warning C4018: '<': signed/unsigned mismatch
+  Shooter.cpp
+C:\Users\moham\OneDrive\Desktop\Github Repos\TheLastOfZombawy\Controllers\Shooter.cpp(17,36): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\moham\OneDrive\Desktop\Github Repos\TheLastOfZombawy\Controllers\Shooter.cpp(17,22): warning C4305: 'argument': truncation from 'double' to 'float'
+  main.cpp
+  Generating Code...
 BoudingBox.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/INCREMENTAL:NO' specification
 OpenGLMe.2EE1F2C2\Debug\Medkit.obj : warning LNK4042: object specified more than once; extras ignored
   OpenGLMeshLoader.vcxproj -> C:\Users\moham\OneDrive\Desktop\Github Repos\TheLastOfZombawy\Debug\OpenGLMeshLoader19.exe

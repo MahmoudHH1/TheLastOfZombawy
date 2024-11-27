@@ -78,6 +78,8 @@
 #pragma warn( You need to uncomment this if you are using MFC )
 //#include "stdafx.h"
 #include <string>
+#include <iostream>
+#include <stdio.h>
 #include "Headers/Model_3DS.h"
 
 #include <math.h>			// Header file for the math library
@@ -355,10 +357,8 @@ void Model_3DS::Draw()
 	if (visible)
 	{
 
-		if (!boundsCalculated)
-		{
-			CalculateBoundingBox();
-		}
+		CalculateBoundingBox();
+
 
 		glPushMatrix();
 
@@ -1270,13 +1270,27 @@ void Model_3DS::CalculateBoundingBox() {
 }
 
 bool Model_3DS::CollidesWith(const Model_3DS& other) const {
+
+	//std::cout << "Other X : " << other.bounds.maxX << " " << other.bounds.minX << std::endl;
+	//std::cout << "Other Z : " << other.bounds.maxZ << " " << other.bounds.minZ << std::endl;
+
+
 	// Basic AABB collision detection
 	return !(other.bounds.maxX < bounds.minX ||
 		other.bounds.minX > bounds.maxX ||
-		other.bounds.maxY < bounds.minY ||
-		other.bounds.minY > bounds.maxY ||
+		//other.bounds.maxY < bounds.minY ||
+		//other.bounds.minY > bounds.maxY ||
 		other.bounds.maxZ < bounds.minZ ||
 		other.bounds.minZ > bounds.maxZ);
+}
+
+
+bool Model_3DS::CollidesWithOffset(const Model_3DS& other, float offsetX, float offsetZ) const {
+	if (other.bounds.maxX - offsetX <= bounds.maxX && bounds.maxX <= other.bounds.maxX + offsetX) {
+		if (other.bounds.maxZ - offsetZ <= bounds.maxZ && bounds.maxZ <= other.bounds.maxZ + offsetZ)
+			return true;
+	}
+	return false;
 }
 
 bool Model_3DS::PointInside(float x, float y, float z) const {

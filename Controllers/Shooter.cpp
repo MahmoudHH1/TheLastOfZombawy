@@ -1,5 +1,9 @@
+#include <stdio.h>
+#include <iostream>
 #include "Headers/Shooter.h"
 #include "Headers/Model_3DS.h"
+
+using namespace std;
 
 Shooter::Shooter(float x, float y, float z,
 	float rotX, float rotY, float rotZ, float scale) :
@@ -10,7 +14,7 @@ Shooter::Shooter(float x, float y, float z,
 
 Shooter::Shooter() :
 	health(100), score(0), hitDamage(50),
-	Model_3DS(0, 0, 0, 0, 0, 0, 0.1), hasKey(false), medkits(0) {
+	Model_3DS(-17.5, 0, 5.2, 0, 0, 0, 0.1), hasKey(false), medkits(0) {
 	Load("Assets/models/Shooter/Shooter.3DS");
 };
 
@@ -36,14 +40,19 @@ void Shooter::Heal(int healthRecovery) {
 }
 
 void Shooter::moveForward() {
-	pos.z += speed;
+	if (pos.z <= 18.2) 
+		pos.z += speed;
 }
 void Shooter::moveBackward() {
-	pos.z -= speed;
+	if (pos.z >= 5.1) 
+		pos.z -= speed;
+	
 }
 void Shooter::moveLeft() {
-	pos.x -= speed;
+	if (pos.x <= 18.1)
+		pos.x += speed;
 }
 void Shooter::moveRight() {
-	pos.x += speed;
+	if (pos.x >= -18.5)
+		pos.x -= speed;
 }

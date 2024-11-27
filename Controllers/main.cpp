@@ -289,10 +289,13 @@ void main(int argc, char** argv)
 	glutPassiveMotionFunc(MouseMovement);
 	glutSetCursor(GLUT_CURSOR_NONE);
 
-
+	
 	glutReshapeFunc(myReshape);
 
 	init();
+
+	glutIdleFunc(updateGame);
+
 
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_LIGHTING);

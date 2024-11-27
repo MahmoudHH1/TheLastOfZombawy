@@ -206,6 +206,7 @@ public:
 	// New methods for boundary checking
 	void CalculateBoundingBox();
 	bool CollidesWith(const Model_3DS& other) const;
+	bool CollidesWithOffset(const Model_3DS& other, float offsetX, float offsetZ) const;
 	bool PointInside(float x, float y, float z) const;
 
 	// Additional helper methods

@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <iostream>
+#include <cctype>
 #include "Headers/Game.h"
 #include "Headers/Zombie.h"
 #include "Headers/Coin.h"
@@ -12,12 +15,14 @@ bool isMouseLocked = true;
 float camMoveSpeed = 0.2f; // Camera movement speed
 
 
+using namespace std;
+
 Game::Game() {
     loadEnvironmentAssets();
     zombies.push_back(Zombie(10.0f, 0.0f, 10.0f, 0.0f, 0.0f, 0.0f, 0.1f, 12));
-    keys.push_back(Key(5.0f, 0.0f, 5.0f, 0.0f, 0.0f, 0.0f, 1.0f));
+    keys.push_back(Key(16.5f, 0.0f, 15.0f, 0.0f, 0.0f, 0.0f, 0.7f)); // X = 16.5 , Z = 17
     coins.push_back(Coin(2.0f, 0.0f, 2.0f, 0.0f, 0.0f, 0.0f, 0.1f));
-    medkits.push_back(Medkit(8.0f, 0.0f, 8.0f, 0.0f, 0.0f, 0.0f, 0.01f, 12));
+    //medkits.push_back(Medkit(8.0f, 0.0f, 8.0f, 0.0f, 0.0f, 0.0f, 0.01f, 12));
     camera = Cam();
     updateCamera();
 }
@@ -52,7 +57,9 @@ void Game::spawnMedkit() {
 }
 
 void Game::update() {
-
+	if (shooter.CollidesWithOffset(keys[0],1,1)) {
+		std::cout << "Key collected!" << std::endl;
+    }
 }
 
 void Game::updateCamera() {
@@ -82,6 +89,7 @@ void Game::updateCamera() {
 }
 
 void Game::handleKeyPress(unsigned char key, int x, int y) {
+    key = std::tolower(key);
     switch (key) {
     case 'w':
         shooter.moveForward();
