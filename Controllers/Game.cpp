@@ -57,8 +57,10 @@ void Game::spawnMedkit() {
 }
 
 void Game::update() {
-	if (shooter.CollidesWithOffset(keys[0],1,1)) {
-		std::cout << "Key collected!" << std::endl;
+	if (keys.size() > 0 && shooter.CollidesWithOffset(keys[0], 1.5f, 1.5f)) {
+        std::cout << "Collected" << endl;
+        shooter.CollectKey();
+        keys.clear();
     }
 }
 

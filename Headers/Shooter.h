@@ -14,7 +14,7 @@ public:
 	int medkits;
 	bool hasKey;
 
-	#define speed 1.0f;
+	#define speed 0.3f;
 
 	Shooter(float x, float y, float z
 		, float rotX, float rotY, float rotZ, float scale);
