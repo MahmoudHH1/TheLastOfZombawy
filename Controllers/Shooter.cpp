@@ -14,7 +14,7 @@ Shooter::Shooter(float x, float y, float z,
 
 Shooter::Shooter() :
 	health(100), score(0), hitDamage(50),
-	Model_3DS(-17.5, 0, 5.2, 0, 0, 0, 0.1), hasKey(false), medkits(0) {
+	Model_3DS(3, 0, -27, 0, 0, 0, 0.1), hasKey(false), medkits(0) {
 	Load("Assets/models/Shooter/Shooter.3DS");
 };
 

@@ -21,12 +21,14 @@ class Game {
 		Game();
 		void Draw();
 		void update();
+		void updateZombies();
 		void spawnZombies();
 		void spawnKey();
 		void spawnMedkit();
 		void handleKeyPress(unsigned char key , int x , int y);
 		void updateCamera();
 		void drawHUD();
+		void calculateDeltaTime();
 };
 
 #endif // !GAMAE_H

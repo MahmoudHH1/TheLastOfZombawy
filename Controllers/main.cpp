@@ -68,46 +68,48 @@ void cam() {
 
 
 void updateLights() {
-	// First light - Color changing spotlight
-	GLfloat r = (sin(colorTimer) + 1.0f) / 2.0f;
-	GLfloat g = (sin(colorTimer + 2.0944f) + 1.0f) / 2.0f;
-	GLfloat b = (sin(colorTimer + 4.18879f) + 1.0f) / 2.0f;
-
+	// First light - Color changing spotlight with increased intensity
+	GLfloat r = ((sin(colorTimer) + 1.0f) / 2.0f) * 2.0f; // Doubled intensity
+	GLfloat g = ((sin(colorTimer + 2.0944f) + 1.0f) / 2.0f) * 2.0f;
+	GLfloat b = ((sin(colorTimer + 4.18879f) + 1.0f) / 2.0f) * 2.0f;
 	GLfloat coloredLight[] = { r, g, b, 1.0f };
-	GLfloat light0_position[] = { 0.0f, 5.0f, -5.0f, 1.0f };
-	GLfloat light0_direction[] = { 0.0f, -1.0f, 0.0f }; // Points straight down
+	GLfloat light0_position[] = { 0.0f, 15.0f, 2.0f, 1.0f };
+	GLfloat light0_direction[] = { 0.0f, 0.0f, -1.0f };
 
+	// Reduced attenuation for farther light reach
 	glLightfv(GL_LIGHT0, GL_POSITION, light0_position);
 	glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, light0_direction);
-	glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, 45.0f);         // 45-degree spotlight cone
-	glLightf(GL_LIGHT0, GL_SPOT_EXPONENT, 2.0f);        // How focused the spotlight is
-	glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, 1.0f);
-	glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, 0.05f);  // Controls how quickly light fades with distance
-	glLightf(GL_LIGHT0, GL_QUADRATIC_ATTENUATION, 0.02f);
-	glLightfv(GL_LIGHT0, GL_DIFFUSE, coloredLight);
-	glLightfv(GL_LIGHT0, GL_SPECULAR, coloredLight);
+	glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, 60.0f);         // Wider angle
+	glLightf(GL_LIGHT0, GL_SPOT_EXPONENT, 1.0f);        // Less focused for broader illumination
+	glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, 0.5f); // Reduced from 1.0
+	glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, 0.02f);  // Reduced from 0.05
+	glLightf(GL_LIGHT0, GL_QUADRATIC_ATTENUATION, 0.0f); // Removed quadratic attenuation
 
-	// Second light - Blinking spotlight
+	// Increased light intensity
+	GLfloat brightColoredLight[] = { r * 3.0f, g * 3.0f, b * 3.0f, 1.0f };
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, brightColoredLight);
+	glLightfv(GL_LIGHT0, GL_SPECULAR, brightColoredLight);
+
+	// Second light - Brighter blinking spotlight
 	blinkTimer += 0.016f;
 	if (blinkTimer >= BLINK_INTERVAL) {
 		secondLightOn = !secondLightOn;
 		blinkTimer = 0.0f;
 	}
 
-	GLfloat light1_position[] = { 0.0f, 10.0f, 5.0f, 1.0f };
+	GLfloat light1_position[] = { 0.0f, 15.0f, 2.0f, 1.0f };
 	GLfloat light1_direction[] = { 0.0f, 0.0f, 1.0f };
-
 	glLightfv(GL_LIGHT1, GL_POSITION, light1_position);
 	glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, light1_direction);
-	glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 45.0f);
-	glLightf(GL_LIGHT1, GL_SPOT_EXPONENT, 2.0f);
-	glLightf(GL_LIGHT1, GL_CONSTANT_ATTENUATION, 1.0f);
-	glLightf(GL_LIGHT1, GL_LINEAR_ATTENUATION, 0.05f);
-	glLightf(GL_LIGHT1, GL_QUADRATIC_ATTENUATION, 0.02f);
+	glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 60.0f);         // Wider angle
+	glLightf(GL_LIGHT1, GL_SPOT_EXPONENT, 1.0f);        // Less focused
+	glLightf(GL_LIGHT1, GL_CONSTANT_ATTENUATION, 0.5f);  // Reduced
+	glLightf(GL_LIGHT1, GL_LINEAR_ATTENUATION, 0.02f);   // Reduced
+	glLightf(GL_LIGHT1, GL_QUADRATIC_ATTENUATION, 0.0f); // Removed
 
 	if (secondLightOn) {
 		glEnable(GL_LIGHT1);
-		GLfloat light1_diffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+		GLfloat light1_diffuse[] = { 3.0f, 3.0f, 3.0f, 1.0f }; // Tripled intensity
 		glLightfv(GL_LIGHT1, GL_DIFFUSE, light1_diffuse);
 	}
 	else {
@@ -122,34 +124,38 @@ void InitLightSource() {
 	glEnable(GL_LIGHT0);
 	glEnable(GL_LIGHT1);
 
-	// First light setup
-	GLfloat ambient0[] = { 0.1f, 0.1f, 0.1f, 1.0f };
-	GLfloat light0_position[] = { 0.0f, 10.0f, -5.0f, 1.0f };
+	// First light setup with increased ambient and brighter initial settings
+	GLfloat ambient0[] = { 0.3f, 0.3f, 0.3f, 1.0f };    // Increased ambient
+	GLfloat light0_position[] = { 0.0f, 15.0f, 2.0f, 1.0f };
 	GLfloat light0_direction[] = { 0.0f, 0.0f, -1.0f };
+	GLfloat diffuse0[] = { 3.0f, 3.0f, 3.0f, 1.0f };    // Bright diffuse
+	GLfloat specular0[] = { 3.0f, 3.0f, 3.0f, 1.0f };   // Bright specular
 
 	glLightfv(GL_LIGHT0, GL_AMBIENT, ambient0);
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse0);
+	glLightfv(GL_LIGHT0, GL_SPECULAR, specular0);
 	glLightfv(GL_LIGHT0, GL_POSITION, light0_position);
 	glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, light0_direction);
-	glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, 45.0f);
-	glLightf(GL_LIGHT0, GL_SPOT_EXPONENT, 2.0f);
-	glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, 1.0f);
-	glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, 0.05f);
-	glLightf(GL_LIGHT0, GL_QUADRATIC_ATTENUATION, 0.02f);
+	glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, 60.0f);
+	glLightf(GL_LIGHT0, GL_SPOT_EXPONENT, 1.0f);
+	glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, 0.5f);
+	glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, 0.02f);
+	glLightf(GL_LIGHT0, GL_QUADRATIC_ATTENUATION, 0.0f);
 
-	// Second light setup
-	GLfloat light1_position[] = { 0.0f, 15.0f, 10.0f, 1.0f };
-	GLfloat light1_direction[] = { 0.0f, -1.0f, 0.0f };
-	GLfloat ambient1[] = { 0.1f, 0.1f, 0.1f, 1.0f };
-	GLfloat diffuse1[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-	GLfloat specular1[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+	// Second light setup with increased brightness
+	GLfloat light1_position[] = { 0.0f, 15.0f, 2.0f, 1.0f };
+	GLfloat light1_direction[] = { 0.0f, 0.0f, 1.0f };
+	GLfloat ambient1[] = { 0.3f, 0.3f, 0.3f, 1.0f };     // Increased ambient
+	GLfloat diffuse1[] = { 3.0f, 3.0f, 3.0f, 1.0f };     // Tripled intensity
+	GLfloat specular1[] = { 3.0f, 3.0f, 3.0f, 1.0f };    // Tripled intensity
 
 	glLightfv(GL_LIGHT1, GL_POSITION, light1_position);
 	glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, light1_direction);
-	glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 45.0f);
-	glLightf(GL_LIGHT1, GL_SPOT_EXPONENT, 2.0f);
-	glLightf(GL_LIGHT1, GL_CONSTANT_ATTENUATION, 1.0f);
-	glLightf(GL_LIGHT1, GL_LINEAR_ATTENUATION, 0.05f);
-	glLightf(GL_LIGHT1, GL_QUADRATIC_ATTENUATION, 0.02f);
+	glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 60.0f);
+	glLightf(GL_LIGHT1, GL_SPOT_EXPONENT, 1.0f);
+	glLightf(GL_LIGHT1, GL_CONSTANT_ATTENUATION, 0.5f);
+	glLightf(GL_LIGHT1, GL_LINEAR_ATTENUATION, 0.02f);
+	glLightf(GL_LIGHT1, GL_QUADRATIC_ATTENUATION, 0.0f);
 	glLightfv(GL_LIGHT1, GL_AMBIENT, ambient1);
 	glLightfv(GL_LIGHT1, GL_DIFFUSE, diffuse1);
 	glLightfv(GL_LIGHT1, GL_SPECULAR, specular1);

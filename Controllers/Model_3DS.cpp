@@ -81,7 +81,7 @@
 #include <iostream>
 #include <stdio.h>
 #include "Headers/Model_3DS.h"
-
+#include <cstdlib>
 #include <math.h>			// Header file for the math library
 #include <gl\gl.h>			// Header file for the OpenGL32 library
 
@@ -357,7 +357,7 @@ void Model_3DS::Draw()
 	if (visible)
 	{
 
-		CalculateBoundingBox();
+		//CalculateBoundingBox();
 
 
 		glPushMatrix();
@@ -1289,6 +1289,15 @@ bool Model_3DS::CollidesWith(const Model_3DS& other) const {
 
 	// Return true if there's collision on both X and Z axes
 	return collisionX && collisionZ;
+}
+
+bool Model_3DS::CalculateCollisionWithLocation(const Model_3DS& other, float offsetX, float offsetZ) const {
+	// Calculate scaled and positioned bounds for both objects
+	if (std::abs(other.pos.x-pos.x)<=offsetX && std::abs(other.pos.z-pos.z)<=offsetZ)
+	{
+		return true;
+	}
+	return false;
 }
 
 

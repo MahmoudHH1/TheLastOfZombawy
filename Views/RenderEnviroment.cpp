@@ -12,7 +12,7 @@ GLuint wallTex_2;
 GLTexture wallTexture_1;
 GLTexture wallTexture_2;
 
-bool isDoorOpen = false;
+bool isDoorOpen = true ;
 
 void RenderTexturedCube(GLuint texture);
 
@@ -201,16 +201,20 @@ void RenderEnvironment() {
 	glTranslatef(0, 0, -40);
 	glPushMatrix();
 	glTranslatef(-8.0, 4.5, 40); // Offset for the door placement
-	glScalef(0.2, 9, 76);        // Shortened wall length to fit the door
+	glScalef(0.2, 9, 76);// Shortened wall length to fit the door
+	glTranslatef(20, 0, 0);
 	RenderWallLevel1();
+	/*glTranslatef(-80, 0, 0);
+	RenderWallLevel1();*/
+	glPopMatrix();
 	glPopMatrix();
 
-	// Render the door
-	glPushMatrix();
-	glTranslatef(8.0, 0, -40); // Align the door to the middle wall
-	RenderDoor();
-	glPopMatrix();
-	glPopMatrix();
+	//// Render the door
+	//glPushMatrix();
+	//glTranslatef(8.0, 0, -40); // Align the door to the middle wall
+	//RenderDoor();
+	//glPopMatrix();
+	//glPopMatrix();
 
 	// Render steps inside the room
 	RenderSteps();
