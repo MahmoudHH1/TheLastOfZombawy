@@ -20,14 +20,15 @@ class Game {
 
 		Game();
 		void Draw();
+		void drawHUD();
 		void update();
 		void updateZombies();
+		void updateCamera();
+		void updateFlashlight();
 		void spawnZombies();
 		void spawnKey();
 		void spawnMedkit();
 		void handleKeyPress(unsigned char key , int x , int y);
-		void updateCamera();
-		void drawHUD();
 		void calculateDeltaTime();
 };
 

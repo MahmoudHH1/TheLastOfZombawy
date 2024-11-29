@@ -13,12 +13,14 @@
 #include <vector>
 
 bool isMouseLocked = true;
+bool isFlashlightOn = true;
 float camMoveSpeed = 0.2f; // Camera movement speed
 float collisionTimer = 0.0f; // Timer to track elapsed time
 float deltaTime = 0.0f;      // Time elapsed per frame
 std::chrono::time_point<std::chrono::high_resolution_clock> lastTime;
 
 #define M_PI 3.14159265358979323846
+#define FLASHLIGHT_LIGHT GL_LIGHT2  // Using LIGHT2 for the flashlight
 
 using namespace std;
 
@@ -171,6 +173,52 @@ void Game::update() {
 
 	calculateDeltaTime();
 	updateZombies();
+	updateFlashlight();
+}
+void Game::updateFlashlight() {
+	if (!isFlashlightOn) {
+		glDisable(FLASHLIGHT_LIGHT);
+		return;
+	}
+
+	glEnable(FLASHLIGHT_LIGHT);
+
+	// Calculate flashlight position with adjusted offsets
+	float flashlightOffsetY = 7.0f;
+	float flashlightOffsetZ = 2.0f;  // Increased forward offset
+
+	// Position the flashlight
+	GLfloat light_position[] = {
+		shooter.pos.x,
+		shooter.pos.y + flashlightOffsetY,
+		shooter.pos.z + flashlightOffsetZ,
+		1.0f
+	};
+
+	// Calculate direction
+	GLfloat light_direction[] = {
+		camera.center.x - camera.eye.x,
+		camera.center.y - camera.eye.y,
+		camera.center.z - camera.eye.z
+	};
+
+	// Normalize direction
+	float length = sqrt(light_direction[0] * light_direction[0] +
+		light_direction[1] * light_direction[1] +
+		light_direction[2] * light_direction[2]);
+
+	light_direction[0] /= length;
+	light_direction[1] /= length;
+	light_direction[2] /= length;
+
+	// Enhanced light properties during runtime
+	GLfloat enhanced_diffuse[] = { 5.0f, 5.0f, 5.0f, 1.0f };
+	GLfloat enhanced_specular[] = { 5.0f, 5.0f, 5.0f, 1.0f };
+
+	glLightfv(FLASHLIGHT_LIGHT, GL_POSITION, light_position);
+	glLightfv(FLASHLIGHT_LIGHT, GL_SPOT_DIRECTION, light_direction);
+	glLightfv(FLASHLIGHT_LIGHT, GL_DIFFUSE, enhanced_diffuse);
+	glLightfv(FLASHLIGHT_LIGHT, GL_SPECULAR, enhanced_specular);
 }
 
 // Function to calculate deltaTime (time difference between frames)
@@ -295,6 +343,9 @@ void Game::handleKeyPress(unsigned char key, int x, int y) {
 	case 'p':
 		camera.toggleThirdPerson();
 		updateCamera();
+		break;
+	case 'f':
+		isFlashlightOn = !isFlashlightOn;
 		break;
 	case 27: // Escape key
 		isMouseLocked = false;

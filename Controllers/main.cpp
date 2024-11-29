@@ -5,6 +5,8 @@
 #include "Headers/Game.h"
 #include <glut.h>
 
+#define FLASHLIGHT_LIGHT GL_LIGHT2  // Using LIGHT2 for the flashlight
+
 int WIDTH = 1280;
 int HEIGHT = 720;
 
@@ -159,6 +161,23 @@ void InitLightSource() {
 	glLightfv(GL_LIGHT1, GL_AMBIENT, ambient1);
 	glLightfv(GL_LIGHT1, GL_DIFFUSE, diffuse1);
 	glLightfv(GL_LIGHT1, GL_SPECULAR, specular1);
+
+	//flashlight 
+	glEnable(GL_LIGHT2);
+	GLfloat flashlight_ambient[] = { 0.2f, 0.2f, 0.2f, 1.0f };     // Increased ambient
+	GLfloat flashlight_diffuse[] = { 5.0f, 5.0f, 5.0f, 1.0f };     // Much brighter diffuse
+	GLfloat flashlight_specular[] = { 5.0f, 5.0f, 5.0f, 1.0f };    // Much brighter specular
+
+	glLightfv(FLASHLIGHT_LIGHT, GL_AMBIENT, flashlight_ambient);
+	glLightfv(FLASHLIGHT_LIGHT, GL_DIFFUSE, flashlight_diffuse);
+	glLightfv(FLASHLIGHT_LIGHT, GL_SPECULAR, flashlight_specular);
+
+	// Set flashlight properties for more focused beam
+	glLightf(FLASHLIGHT_LIGHT, GL_SPOT_CUTOFF, 25.0f);        // Narrower beam angle
+	glLightf(FLASHLIGHT_LIGHT, GL_SPOT_EXPONENT, 40.0f);      // More focused spotlight
+	glLightf(FLASHLIGHT_LIGHT, GL_CONSTANT_ATTENUATION, 0.5f); // Reduced constant attenuation
+	glLightf(FLASHLIGHT_LIGHT, GL_LINEAR_ATTENUATION, 0.02f);  // Reduced linear attenuation
+	glLightf(FLASHLIGHT_LIGHT, GL_QUADRATIC_ATTENUATION, 0.0f);// Removed quadratic attenuation
 }
 
 
