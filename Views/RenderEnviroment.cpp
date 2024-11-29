@@ -12,6 +12,8 @@ GLuint wallTex_2;
 GLTexture wallTexture_1;
 GLTexture wallTexture_2;
 
+bool isDoorOpen = false;
+
 void RenderTexturedCube(GLuint texture);
 
 void loadEnvironmentAssets() {
@@ -108,60 +110,118 @@ void RenderGround()
 	glColor3f(1, 1, 1);	// Set material back to white instead of grey used for the ground texture.
 }
 
-void RenderEnvironment() {
-	// Original outer walls - made bigger
+// Function to render the door
+void RenderDoor() {
 	glPushMatrix();
-	glTranslatef(-20, 0, -20);  // Doubled from -10 to -20
-	glPushMatrix();
-	glTranslatef(0, 4.5, 20);   // Increased height and adjusted Z position
-	glScalef(0.2, 9, 45);       // Increased thickness, height, and length
-	RenderWallLevel2();
+	if (isDoorOpen) {
+		glTranslatef(2.0f, 0.0f, 0.0f); // Shift the door to simulate opening
+	}
+	glScalef(4.0f, 8.0f, 0.2f); // Door dimensions
+	RenderWallLevel1();         // Use wall texture for the door
 	glPopMatrix();
-	glPopMatrix();
+}
 
+// Function to render steps
+void RenderSteps() {
+	// Step along the bottom wall
 	glPushMatrix();
-	glTranslatef(20, 0, -20);   // Doubled from 10 to 20
-	glPushMatrix();
-	glTranslatef(0, 4.5, 20);   // Increased height and adjusted Z position
-	glScalef(0.2, 9, 45);       // Increased thickness, height, and length
-	RenderWallLevel2();
-	glPopMatrix();
-	glPopMatrix();
-
-	glPushMatrix();
-	glRotatef(90, 0, 1, 0);
-	glTranslatef(20, 0, -20);   // Doubled positions
-	glPushMatrix();
-	glTranslatef(0, 4.5, 20);   // Adjusted height and position
-	glScalef(0.2, 9, 45);       // Increased dimensions
-	RenderWallLevel2();
-	glPopMatrix();
-	glPopMatrix();
-
-	glPushMatrix();
-	glRotatef(90, 0, 1, 0);
-	glTranslatef(-20, 0, -20);  // Doubled positions
-	glPushMatrix();
-	glTranslatef(0, 4.5, 20);   // Adjusted height and position
-	glScalef(0.2, 9, 45);       // Increased dimensions
-	RenderWallLevel2();
-	glPopMatrix();
-	glPopMatrix();
-
-	// Middle wall - scaled to match
-	glPushMatrix();
-	glRotatef(90, 0, 1, 0);
-	glTranslatef(0, 0, -20);    // Adjusted position
-	glPushMatrix();
-	glTranslatef(0, 4.5, 20);   // Adjusted height and position
-	glScalef(0.2, 9, 45);       // Increased dimensions
+	glTranslatef(0, 0.5, -39.0); // Position the step near the wall
+	glScalef(80, 6, 10);         // Adjust dimensions for the wall length
 	RenderWallLevel1();
 	glPopMatrix();
+
+	// Step along the top wall
+	glPushMatrix();
+	glTranslatef(0, 0.5, 39.0);
+	glScalef(80, 6, 10);
+	RenderWallLevel1();
 	glPopMatrix();
 
-	// Ground - scaled up to match new room size
+	// Step along the left wall
 	glPushMatrix();
-	glScalef(1, 1, 1);          // Increased from 0.5 to match new room size
+	glTranslatef(-39.0, 0.5, 0);
+	glRotatef(90, 0, 1, 0);
+	glScalef(80, 6, 10);
+	RenderWallLevel1();
+	glPopMatrix();
+
+	// Step along the right wall
+	glPushMatrix();
+	glTranslatef(39.0, 0.5, 0);
+	glRotatef(90, 0, 1, 0);
+	glScalef(80, 6, 10);
+	RenderWallLevel1();
+	glPopMatrix();
+}
+
+// Function to render the environment
+void RenderEnvironment() {
+	// Outer walls
+	glPushMatrix();
+	glTranslatef(-40, 0, -40);
+	glPushMatrix();
+	glTranslatef(0, 4.5, 40);
+	glScalef(0.2, 9, 90);
+	RenderWallLevel2();
+	glPopMatrix();
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(40, 0, -40);
+	glPushMatrix();
+	glTranslatef(0, 4.5, 40);
+	glScalef(0.2, 9, 90);
+	RenderWallLevel2();
+	glPopMatrix();
+	glPopMatrix();
+
+	glPushMatrix();
+	glRotatef(90, 0, 1, 0);
+	glTranslatef(40, 0, -40);
+	glPushMatrix();
+	glTranslatef(0, 4.5, 40);
+	glScalef(0.2, 9, 90);
+	RenderWallLevel2();
+	glPopMatrix();
+	glPopMatrix();
+
+	glPushMatrix();
+	glRotatef(90, 0, 1, 0);
+	glTranslatef(-40, 0, -40);
+	glPushMatrix();
+	glTranslatef(0, 4.5, 40);
+	glScalef(0.2, 9, 90);
+	RenderWallLevel2();
+	glPopMatrix();
+	glPopMatrix();
+
+	// Middle wall with a door
+	glPushMatrix();
+	glRotatef(90, 0, 1, 0);
+	glTranslatef(0, 0, -40);
+	glPushMatrix();
+	glTranslatef(-8.0, 4.5, 40); // Offset for the door placement
+	glScalef(0.2, 9, 76);        // Shortened wall length to fit the door
+	RenderWallLevel1();
+	glPopMatrix();
+
+	// Render the door
+	glPushMatrix();
+	glTranslatef(8.0, 0, -40); // Align the door to the middle wall
+	RenderDoor();
+	glPopMatrix();
+	glPopMatrix();
+
+	// Render steps inside the room
+	RenderSteps();
+
+	// Render the ground
+	glPushMatrix();
+	glScalef(2, 1, 2);
 	RenderGround();
 	glPopMatrix();
+}
+
+void openDoor() {
+	isDoorOpen = true;
 }

@@ -1,13 +1,15 @@
 ﻿  Game.cpp
-C:\Users\moham\OneDrive\Desktop\Github Repos\TheLastOfZombawy\Controllers\Game.cpp(33,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\moham\OneDrive\Desktop\Github Repos\TheLastOfZombawy\Controllers\Game.cpp(36,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\moham\OneDrive\Desktop\Github Repos\TheLastOfZombawy\Controllers\Game.cpp(39,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\moham\OneDrive\Desktop\Github Repos\TheLastOfZombawy\Controllers\Game.cpp(42,23): warning C4018: '<': signed/unsigned mismatch
-  Shooter.cpp
-C:\Users\moham\OneDrive\Desktop\Github Repos\TheLastOfZombawy\Controllers\Shooter.cpp(17,36): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\moham\OneDrive\Desktop\Github Repos\TheLastOfZombawy\Controllers\Shooter.cpp(17,22): warning C4305: 'argument': truncation from 'double' to 'float'
-  main.cpp
-  Generating Code...
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(28,23): warning C4018: '<': signed/unsigned mismatch
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(69,5): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(73,5): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(78,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(82,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(102,23): warning C4018: '<': signed/unsigned mismatch
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(105,23): warning C4018: '<': signed/unsigned mismatch
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(108,23): warning C4018: '<': signed/unsigned mismatch
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(111,23): warning C4018: '<': signed/unsigned mismatch
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(140,23): warning C4018: '<': signed/unsigned mismatch
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(148,23): warning C4018: '<': signed/unsigned mismatch
 BoudingBox.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/INCREMENTAL:NO' specification
 OpenGLMe.2EE1F2C2\Debug\Medkit.obj : warning LNK4042: object specified more than once; extras ignored
-  OpenGLMeshLoader.vcxproj -> C:\Users\moham\OneDrive\Desktop\Github Repos\TheLastOfZombawy\Debug\OpenGLMeshLoader19.exe
+  OpenGLMeshLoader.vcxproj -> D:\Uni\graphics\TheLastOfZombawy\Debug\OpenGLMeshLoader19.exe

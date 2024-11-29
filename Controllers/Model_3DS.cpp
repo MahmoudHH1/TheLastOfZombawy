@@ -1270,19 +1270,27 @@ void Model_3DS::CalculateBoundingBox() {
 }
 
 bool Model_3DS::CollidesWith(const Model_3DS& other) const {
+	// Calculate scaled and positioned bounds for both objects
+	float thisMinX = bounds.minX * scale + pos.x;
+	float thisMaxX = bounds.maxX * scale + pos.x;
+	float thisMinZ = bounds.minZ * scale + pos.z;
+	float thisMaxZ = bounds.maxZ * scale + pos.z;
 
-	//std::cout << "Other X : " << other.bounds.maxX << " " << other.bounds.minX << std::endl;
-	//std::cout << "Other Z : " << other.bounds.maxZ << " " << other.bounds.minZ << std::endl;
+	float otherMinX = other.bounds.minX * other.scale + other.pos.x;
+	float otherMaxX = other.bounds.maxX * other.scale + other.pos.x;
+	float otherMinZ = other.bounds.minZ * other.scale + other.pos.z;
+	float otherMaxZ = other.bounds.maxZ * other.scale + other.pos.z;
 
+	// Check for intersection on X axis with scaled coordinates
+	bool collisionX = !(otherMaxX < thisMinX || otherMinX > thisMaxX);
 
-	// Basic AABB collision detection
-	return !(other.bounds.maxX < bounds.minX ||
-		other.bounds.minX > bounds.maxX ||
-		//other.bounds.maxY < bounds.minY ||
-		//other.bounds.minY > bounds.maxY ||
-		other.bounds.maxZ < bounds.minZ ||
-		other.bounds.minZ > bounds.maxZ);
+	// Check for intersection on Z axis with scaled coordinates
+	bool collisionZ = !(otherMaxZ < thisMinZ || otherMinZ > thisMaxZ);
+
+	// Return true if there's collision on both X and Z axes
+	return collisionX && collisionZ;
 }
+
 
 
 bool Model_3DS::CollidesWithOffset(const Model_3DS& other, float offsetX, float offsetZ) const {

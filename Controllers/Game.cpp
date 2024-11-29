@@ -19,16 +19,85 @@ using namespace std;
 
 Game::Game() {
     loadEnvironmentAssets();
-    zombies.push_back(Zombie(10.0f, 0.0f, 10.0f, 0.0f, 0.0f, 0.0f, 0.1f, 12));
-    keys.push_back(Key(16.5f, 0.0f, 15.0f, 0.0f, 0.0f, 0.0f, 0.7f)); // X = 16.5 , Z = 17
+    spawnZombies();
+    spawnMedkit();
     coins.push_back(Coin(2.0f, 0.0f, 2.0f, 0.0f, 0.0f, 0.0f, 0.1f));
-    //medkits.push_back(Medkit(8.0f, 0.0f, 8.0f, 0.0f, 0.0f, 0.0f, 0.01f, 12));
     camera = Cam();
     updateCamera();
+
+    for (int i = 0; i < medkits.size(); i++)
+    {
+        cout << "med " << i << " x " << medkits[i].pos.x <<" Z " << medkits[i].pos.z << endl;
+    }
 }
+
+
+
+// Add this implementation to your Game.cpp
+void renderText(float x, float y, const char* text) {
+    glDisable(GL_DEPTH_TEST);
+    glDisable(GL_LIGHTING);
+    glMatrixMode(GL_PROJECTION);
+    glPushMatrix();
+    glLoadIdentity();
+    gluOrtho2D(0, glutGet(GLUT_WINDOW_WIDTH), 0, glutGet(GLUT_WINDOW_HEIGHT));
+
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glLoadIdentity();
+
+    glColor3f(1.0f, 1.0f, 1.0f); // White text
+    glRasterPos2f(x, y);
+
+    for (const char* c = text; *c != '\0'; c++) {
+        glutBitmapCharacter(GLUT_BITMAP_HELVETICA_12, *c);
+    }
+
+    glPopMatrix();
+    glMatrixMode(GL_PROJECTION);
+    glPopMatrix();
+    glMatrixMode(GL_MODELVIEW);
+
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_LIGHTING);
+}
+
+void Game::drawHUD() {
+    char buffer[200];
+
+    // Display Score
+    sprintf(buffer, "Score: %d", shooter.score);
+    renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 20, buffer);
+
+    // Display Coordinates
+    sprintf(buffer, "Position: (%.2f, %.2f, %.2f)",
+        shooter.pos.x, shooter.pos.y, shooter.pos.z);
+    renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 40, buffer);
+
+	//Display the number of medkits collected
+	sprintf(buffer, "Medkits: %d", shooter.medkits);
+	renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 60, buffer);
+
+	// Display Health
+	sprintf(buffer, "Health: %d", shooter.health);
+	renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 80, buffer);
+
+	// Display Key
+	if (shooter.hasKey) {
+		renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 100, "Key: Collected");
+	}
+	else {
+		renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 100, "Key: Not Collected");
+	}
+
+
+}
+
 
 void Game::Draw() {
     RenderEnvironment();
+    drawHUD();
+
     shooter.Draw();
     for (int i = 0; i < zombies.size(); i++) {
         zombies[i].Draw();
@@ -44,24 +113,47 @@ void Game::Draw() {
     }
 }
 
+
 void Game::spawnZombies() {
-    //zombies.push_back(Zombie());
+	for (int i = 0; i <= 50; i+=10) {
+		zombies.push_back(Zombie(10.0f+i, 4.0f, 10.0f, 0.0f, 0.0f, 0.0f, 0.07f, 12));
+	}
 }
 
 void Game::spawnKey() {
-    //keys.push_back(Key());
+    keys.push_back(Key(16.5f, 0.0f, 15.0f, 0.0f, 0.0f, 0.0f, 0.7f)); // X = 16.5 , Z = 17
 }
 
 void Game::spawnMedkit() {
-    //medkits.push_back(Medkit());
+    medkits.push_back(Medkit(23.0f,0.0f,23.0f,0.0f,0.0f,0.0f,0.01f,10));
+    medkits.push_back(Medkit(23.0f, 0.0f, -23.0f, 0.0f, 0.0f, 0.0f, 0.01f, 10));
+    medkits.push_back(Medkit(-23.0f, 0.0f, 23.0f, 0.0f, 0.0f, 0.1f, 0.01f, 10));
+    medkits.push_back(Medkit(-23.0f, 0.0f, -23.0f, 0.0f, 0.0f, 0.1f, 0.01f, 10));
 }
 
 void Game::update() {
-	if (keys.size() > 0 && shooter.CollidesWithOffset(keys[0], 1.5f, 1.5f)) {
+	if (keys.size() > 0 && shooter.CollidesWith(keys[0])) {
         std::cout << "Collected" << endl;
         shooter.CollectKey();
         keys.clear();
     }
+    for (int i = 0; i < medkits.size(); i++) {
+        if (shooter.CollidesWithOffset(medkits[i] ,1.0f , 1.0f)) {
+            std::cout << "collesion with med" << endl;
+            shooter.CollectMedKit();
+            medkits.erase(medkits.begin() + i);
+        }
+    }
+
+    for (int i = 0; i < coins.size(); i++)
+    {
+        if (shooter.CollidesWith(coins[i])) {
+            shooter.CollectCoin();
+			coins.erase(coins.begin() + i);
+        }
+    }
+
+
 }
 
 void Game::updateCamera() {

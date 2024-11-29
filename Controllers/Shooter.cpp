@@ -40,19 +40,19 @@ void Shooter::Heal(int healthRecovery) {
 }
 
 void Shooter::moveForward() {
-	if (pos.z <= 18.2) 
+	//if (pos.z <= 18.2) 
 		pos.z += speed;
 }
 void Shooter::moveBackward() {
-	if (pos.z >= 5.1) 
+	//if (pos.z >= 5.1) 
 		pos.z -= speed;
 	
 }
 void Shooter::moveLeft() {
-	if (pos.x <= 18.1)
+	//if (pos.x <= 18.1)
 		pos.x += speed;
 }
 void Shooter::moveRight() {
-	if (pos.x >= -18.5)
+	//if (pos.x >= -18.5)
 		pos.x -= speed;
 }
