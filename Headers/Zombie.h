@@ -14,7 +14,7 @@ public:
 		float scale, int hitDamage);
 	Zombie();
 
-	void getHit(int hitDamage);
+	void moveBackwards(float distance);
 
 };
 

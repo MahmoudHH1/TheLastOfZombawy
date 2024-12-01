@@ -2,17 +2,17 @@
 #ifndef BULLET_H
 #define BULLET_H
 
-class Bullet {
+#include "Model_3DS.h"
+
+class Bullet : public Model_3DS {
 public:
+	bool isActive = true;
 
-	float posX, posY, posZ;  // position components in a linear fashion
-	float rotX, rotY, rotZ;  // rotation components in a linear fashion
-
-	Bullet(float x, float y, float z, float rotX, float rotY, float rotZ);
+	Bullet(float x, float y, float z, float rotX, float rotY, float rotZ , float scale);
 	Bullet();
 
 	void Draw();
-	void update(float deltaTime);
+	void update();
 };
 
 #endif // !BULLET_H

@@ -29,6 +29,7 @@ class Game {
 		void spawnZombies();
 		void spawnKey();
 		void spawnMedkit();
+		void shootBullet();
 		void handleKeyPress(unsigned char key , int x , int y);
 		void calculateDeltaTime();
 };

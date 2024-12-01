@@ -298,6 +298,12 @@ void updateGame() {
 	game.update();
 }
 
+void handleMouseClick(int button, int state, int x, int y) {
+	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+		game.shootBullet();
+	}
+}
+
 void main(int argc, char** argv)
 {
 	glutInit(&argc, argv);
@@ -313,6 +319,7 @@ void main(int argc, char** argv)
 	glutDisplayFunc(draw);
 
 	glutKeyboardFunc(handleUserInput);
+	glutMouseFunc(handleMouseClick);
 	glutPassiveMotionFunc(MouseMovement);
 	glutSetCursor(GLUT_CURSOR_NONE);
 

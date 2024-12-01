@@ -26,14 +26,11 @@ std::chrono::time_point<std::chrono::high_resolution_clock> lastTime;
 using namespace std;
 
 Game::Game() {
-
 	loadEnvironmentAssets();
 	spawnZombies();
 	spawnMedkit();
 	spawnKey();
 	coins.push_back(Coin(2.0f, 0.0f, 2.0f, 0.0f, 0.0f, 0.0f, 0.1f));
-	/*bullets.push_back(Bullet(1.0f,1.0f,1.0f,1.0f,1.0f,1.0f));
-	bullets.push_back(Bullet());*/
 	camera = Cam();
 }
 
@@ -109,7 +106,9 @@ void Game::Draw() {
 
 	shooter.Draw();
 	for (int i = 0; i < zombies.size(); i++) {
-		zombies[i].Draw();
+		if (zombies[i].health > 0) {
+			zombies[i].Draw();
+		}
 	}
 	for (int i = 0; i < coins.size(); i++) {
 		coins[i].Draw();
@@ -120,10 +119,11 @@ void Game::Draw() {
 	for (int i = 0; i < medkits.size(); i++) {
 		medkits[i].Draw();
 	}
-	//for (int i = 0; i < bullets.size(); i++) {
-	//		//bullets[i].Draw();
-	//	cout << bullets[i].posX;
-	//}
+	for (int i = 0; i < bullets.size(); i++) {
+		if (bullets[i].isActive) {
+			bullets[i].Draw();
+		}
+	}
 }
 
 
@@ -134,7 +134,7 @@ void Game::spawnZombies() {
 }
 
 void Game::spawnKey() {
-	keys.push_back(Key(28.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.7f)); // X = 16.5 , Z = 17
+	keys.push_back(Key(28.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.7f));
 }
 
 void Game::spawnMedkit() {
@@ -144,10 +144,15 @@ void Game::spawnMedkit() {
 	medkits.push_back(Medkit(-23.0f, 0.0f, -23.0f, 0.0f, 0.0f, 0.1f, 0.01f, 10));
 }
 
+
+void Game::shootBullet() {
+	bullets.push_back(Bullet(shooter.pos.x, shooter.pos.y + 4, shooter.pos.z, shooter.rot.x, shooter.rot.y, shooter.rot.z, 0.1f));
+}
+
 void Game::update() {
 	collisionTimer += deltaTime;
 
-	if (keys.size() > 0 && shooter.CalculateCollisionWithLocation(keys[0] , 1.7f , 1.7f)) {
+	if (keys.size() > 0 && shooter.CalculateCollisionWithLocation(keys[0], 1.7f, 1.7f)) {
 		shooter.CollectKey();
 		keys.clear();
 	}
@@ -160,7 +165,7 @@ void Game::update() {
 
 	for (int i = 0; i < coins.size(); i++)
 	{
-		if (shooter.CalculateCollisionWithLocation(coins[i] , 1.5f , 1.5f)) {
+		if (shooter.CalculateCollisionWithLocation(coins[i], 1.5f, 1.5f)) {
 			shooter.CollectCoin();
 			coins.erase(coins.begin() + i);
 		}
@@ -178,12 +183,28 @@ void Game::update() {
 		collisionTimer = 0.0f;
 	}
 
+	for (int i = 0; i < bullets.size(); i++) {
+		if (bullets[i].isActive)
+		{
+			bullets[i].update();
+			for (int j = 0; j < zombies.size(); j++)
+			{
+				if (zombies[j].health > 0 && zombies[j].CalculateCollisionWithLocation(bullets[i], 1.0f, 1.0f)) {
+					zombies[j].health -= shooter.hitDamage;
+					zombies[j].moveBackwards(2.0f);
+					bullets[i].isActive = false;
+				}
+			}
+		}
+
+	}
 
 	calculateDeltaTime();
 	updateZombies();
 	updateFlashlight();
 	updateCamera();
 }
+
 void Game::updateFlashlight() {
 	if (!isFlashlightOn) {
 		glDisable(FLASHLIGHT_LIGHT);
