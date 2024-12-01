@@ -7,8 +7,8 @@
 #include "Coin.h"
 #include "Key.h"
 #include "MedKit.h"
+#include "Bullet.h"
 #include <vector>
-
 class Game {
 	public :
 		Shooter shooter;
@@ -17,6 +17,7 @@ class Game {
 		std::vector<Coin> coins;
 		std::vector<Key> keys;
 		std::vector<Medkit> medkits;
+		std::vector<Bullet> bullets;
 
 		Game();
 		void Draw();

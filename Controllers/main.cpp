@@ -10,10 +10,7 @@
 int WIDTH = 1280;
 int HEIGHT = 720;
 
-//float camMoveSpeed = 0.05f; // Camera movement speed
-
-//GLuint tex;
-char title[] = "3D Model Loader Sample";
+char title[] = "The Last Of Zombawy";
 
 // 3D Projection Options
 GLdouble fovy = 45.0;
@@ -28,12 +25,7 @@ float blinkTimer = 0.0f;
 const float BLINK_INTERVAL = 1.0f; // 1 second interval for blinking
 const float COLOR_CHANGE_SPEED = 0.01f;
 
-//Cam camera;
 Game game;
-//bool keys[256] = { false };
-
-
-
 
 void centerMouse() {
 	POINT windowCenter;
@@ -49,14 +41,25 @@ void MouseMovement(int x, int y) {
 		int dy = y - HEIGHT / 2;
 
 		float sensitivity = -0.01f;
-		game.camera.rotateY(dx * sensitivity);
-		game.camera.rotateX(dy * sensitivity);
+
+		// Update the shooter's rotation
+		game.shooter.rot.y += dx * sensitivity; // Horizontal rotation
+		game.shooter.rot.x += dy * sensitivity; // Vertical rotation
+
+		// Clamp the vertical rotation to prevent flipping
+		if (game.shooter.rot.x > 89.0f) {
+			game.shooter.rot.x = 89.0f;
+		}
+		else if (game.shooter.rot.x < -89.0f) {
+			game.shooter.rot.x = -89.0f;
+		}
 
 		centerMouse();
 	}
 
 	glutPostRedisplay();
 }
+
 
 void cam() {
 	glMatrixMode(GL_PROJECTION);
@@ -310,7 +313,6 @@ void main(int argc, char** argv)
 	glutDisplayFunc(draw);
 
 	glutKeyboardFunc(handleUserInput);
-	//glutKeyboardUpFunc(KeyboardUp);
 	glutPassiveMotionFunc(MouseMovement);
 	glutSetCursor(GLUT_CURSOR_NONE);
 

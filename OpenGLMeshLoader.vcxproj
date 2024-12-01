@@ -91,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Controllers\BoudingBox.cpp" />
+    <ClCompile Include="Controllers\Bullet.cpp" />
     <ClCompile Include="Controllers\Coin.cpp" />
     <ClCompile Include="Controllers\Game.cpp" />
     <ClCompile Include="Controllers\Key.cpp" />
@@ -105,6 +106,7 @@
     <ClCompile Include="Views\RenderEnviroment.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Headers\Bullet.h" />
     <ClInclude Include="Headers\Camera.h" />
     <ClInclude Include="Headers\Coin.h" />
     <ClInclude Include="Headers\Game.h" />

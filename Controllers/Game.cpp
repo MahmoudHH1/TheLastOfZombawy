@@ -1,10 +1,11 @@
-#include <stdio.h>
+﻿#include <stdio.h>
 #include <iostream>
 #include <cctype>
 #include "Headers/Game.h"
 #include "Headers/Zombie.h"
 #include "Headers/Coin.h"
 #include "Headers/Key.h"
+#include "Headers/Bullet.h"
 #include "Headers/MedKit.h"
 #include "Headers/Camera.h"
 #include "Headers/RenderEnviroment.h"
@@ -31,12 +32,10 @@ Game::Game() {
 	spawnMedkit();
 	spawnKey();
 	coins.push_back(Coin(2.0f, 0.0f, 2.0f, 0.0f, 0.0f, 0.0f, 0.1f));
+	/*bullets.push_back(Bullet(1.0f,1.0f,1.0f,1.0f,1.0f,1.0f));
+	bullets.push_back(Bullet());*/
 	camera = Cam();
-	updateCamera();
-	
 }
-
-
 
 // Add this implementation to your Game.cpp
 void renderText(float x, float y, const char* text) {
@@ -79,20 +78,25 @@ void Game::drawHUD() {
 		shooter.pos.x, shooter.pos.y, shooter.pos.z);
 	renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 40, buffer);
 
+	// Display Coordinates
+	sprintf(buffer, "Rotation angles: (%.2f, %.2f, %.2f)",
+		shooter.rot.x, shooter.rot.y, shooter.rot.z);
+	renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 60, buffer);
+
 	//Display the number of medkits collected
 	sprintf(buffer, "Medkits: %d", shooter.medkits);
-	renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 60, buffer);
+	renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 80, buffer);
 
 	// Display Health
 	sprintf(buffer, "Health: %d", shooter.health);
-	renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 80, buffer);
+	renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 100, buffer);
 
 	// Display Key
 	if (shooter.hasKey) {
-		renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 100, "Key: Collected");
+		renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 120, "Key: Collected");
 	}
 	else {
-		renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 100, "Key: Not Collected");
+		renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 120, "Key: Not Collected");
 	}
 
 
@@ -116,6 +120,10 @@ void Game::Draw() {
 	for (int i = 0; i < medkits.size(); i++) {
 		medkits[i].Draw();
 	}
+	//for (int i = 0; i < bullets.size(); i++) {
+	//		//bullets[i].Draw();
+	//	cout << bullets[i].posX;
+	//}
 }
 
 
@@ -174,6 +182,7 @@ void Game::update() {
 	calculateDeltaTime();
 	updateZombies();
 	updateFlashlight();
+	updateCamera();
 }
 void Game::updateFlashlight() {
 	if (!isFlashlightOn) {
@@ -195,11 +204,11 @@ void Game::updateFlashlight() {
 		1.0f
 	};
 
-	// Calculate direction
+	// Calculate direction based on the camera's position and look-at point
 	GLfloat light_direction[] = {
-		camera.center.x - camera.eye.x,
-		camera.center.y - camera.eye.y,
-		camera.center.z - camera.eye.z
+		camera.lookX - camera.x,  // Direction in X
+		camera.lookY - camera.y,  // Direction in Y
+		camera.lookZ - camera.z   // Direction in Z
 	};
 
 	// Normalize direction
@@ -275,74 +284,81 @@ void Game::updateZombies() {
 }
 
 void Game::updateCamera() {
-
-
 	// Player position
-	Vector3f playerPos = { shooter.pos.x , shooter.pos.y , shooter.pos.z };
+	Vector3f playerPos = { shooter.pos.x, shooter.pos.y, shooter.pos.z };
 	Vector3f cameraOffset;
 	Vector3f forwardOffset;
+	Vector3f lookDirection;
+
+	// Compute the direction vector based on the player's rotation
+	float cosPitch = cosf(shooter.rot.x * M_PI / 180.0f);
+	float sinPitch = sinf(shooter.rot.x * M_PI / 180.0f);
+	float cosYaw = cosf(shooter.rot.y * M_PI / 180.0f);
+	float sinYaw = sinf(shooter.rot.y * M_PI / 180.0f);
+
+	// Calculate the forward direction vector the player is facing
+	lookDirection.x = cosPitch * sinYaw;
+	lookDirection.y = sinPitch;
+	lookDirection.z = cosPitch * cosYaw;
+
 	if (camera.isThirdPerson) {
-		// Offset to place the camera slightly behind and above the player's right shoulder
-		cameraOffset = Vector3f(1.75f, 8.5f, -5.0f);
-		forwardOffset = Vector3f(0.0f, 5.5f, 3.0f);
-		// Keep the camera upright
-		camera.top = Vector3f(0.0f, 1.0f, 0.0f);
+		// Position the camera behind the player
+		cameraOffset = Vector3f(
+			-lookDirection.x * 10.0f,  // Move back in X
+			8.5f,                      // Fixed camera height
+			-lookDirection.z * 10.0f   // Move back in Z
+		);
+		// Look ahead of the player in their facing direction
+		forwardOffset = playerPos + lookDirection * 10.0f;
 	}
-	else { // first Person
-		// Offset to place the camera slightly above the player's head
-		cameraOffset = Vector3f(0.0f, 7.5f, 0.0f);
-		forwardOffset = Vector3f(0.0f, 7.0f, 1.5f);
-		// Keep the camera upright
-		//camera.top = Vector3f(0.0f, 5.0f, 0.0f);
+	else {
+		// First-person camera: slightly above the player's head
+		cameraOffset = Vector3f(0.0f, 7.5f, 3.0f);
+		forwardOffset = playerPos + lookDirection * 25.0f;
 	}
-	// Set camera position relative to the player's position
-	camera.eye = playerPos + cameraOffset;
-	camera.center = playerPos + forwardOffset;
+
+	// Set the camera position and look-at point
+	camera.x = playerPos.x + cameraOffset.x;
+	camera.y = playerPos.y + cameraOffset.y;
+	camera.z = playerPos.z + cameraOffset.z;
+
+	camera.lookX = forwardOffset.x;
+	camera.lookY = forwardOffset.y;
+	camera.lookZ = forwardOffset.z;
 }
+
+
+
+
+
 
 void Game::handleKeyPress(unsigned char key, int x, int y) {
 	key = std::tolower(key);
 	switch (key) {
 	case 'w':
 		shooter.moveForward();
-		updateCamera();
 		break;
 	case 's':
 		shooter.moveBackward();
-		updateCamera();
 		break;
 	case 'a':
 		shooter.moveLeft();
-		updateCamera();
 		break;
 	case 'd':
 		shooter.moveRight();
-		updateCamera();
 		break;
 	case ' ':
-		camera.moveUp(camMoveSpeed);
 		break;
 	case 'c':
-		camera.moveUp(-camMoveSpeed);
 		break;
 	case 't':
-		camera.eye = Vector3f(0, 5, 0);
-		camera.center = Vector3f(0, 0, 0);
-		camera.top = Vector3f(0, 0, -1);
 		break;
 	case 'y':
-		camera.eye = Vector3f(5, 0, 0);
-		camera.center = Vector3f(0, 0, 0);
-		camera.top = Vector3f(0, 1, 0);
 		break;
 	case 'u':
-		camera.eye = Vector3f(0, 0, 5);
-		camera.center = Vector3f(0, 0, 0);
-		camera.top = Vector3f(0, 1, 0);
 		break;
 	case 'p':
 		camera.toggleThirdPerson();
-		updateCamera();
 		break;
 	case 'f':
 		isFlashlightOn = !isFlashlightOn;

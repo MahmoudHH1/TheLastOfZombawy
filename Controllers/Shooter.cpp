@@ -1,9 +1,13 @@
 #include <stdio.h>
 #include <iostream>
+#include <cmath>
 #include "Headers/Shooter.h"
 #include "Headers/Model_3DS.h"
 
 using namespace std;
+
+#define speed 0.5
+#define M_PI 3.14159265358979323846
 
 Shooter::Shooter(float x, float y, float z,
 	float rotX, float rotY, float rotZ, float scale) :
@@ -40,19 +44,49 @@ void Shooter::Heal(int healthRecovery) {
 }
 
 void Shooter::moveForward() {
-	//if (pos.z <= 18.2) 
-		pos.z += speed;
+    float yawRad = rot.y * M_PI / 180.0f; // Convert yaw rotation to radians
+    float newZ = pos.z + speed * cosf(yawRad); // Forward movement along z-axis
+    float newX = pos.x + speed * sinf(yawRad); // Forward movement along x-axis
+
+    // Check boundary conditions before updating position
+    if (newZ >= -32 && newZ <= 32 && newX >= -32 && newX <= 32) {
+        pos.z = newZ;
+        pos.x = newX;
+    }
 }
+
 void Shooter::moveBackward() {
-	//if (pos.z >= 5.1) 
-		pos.z -= speed;
-	
+    float yawRad = rot.y * M_PI / 180.0f; // Convert yaw rotation to radians
+    float newZ = pos.z - speed * cosf(yawRad); // Backward movement along z-axis
+    float newX = pos.x - speed * sinf(yawRad); // Backward movement along x-axis
+
+    // Check boundary conditions before updating position
+    if (newZ >= -32 && newZ <= 32 && newX >= -32 && newX <= 32) {
+        pos.z = newZ;
+        pos.x = newX;
+    }
 }
+
 void Shooter::moveLeft() {
-	//if (pos.x <= 18.1)
-		pos.x += speed;
+    float yawRad = rot.y * M_PI / 180.0f; // Convert yaw rotation to radians
+    float newZ = pos.z - speed * sinf(yawRad); // Left movement along z-axis
+    float newX = pos.x + speed * cosf(yawRad); // Left movement along x-axis
+
+    // Check boundary conditions before updating position
+    if (newZ >= -32 && newZ <= 32 && newX >= -32 && newX <= 32) {
+        pos.z = newZ;
+        pos.x = newX;
+    }
 }
+
 void Shooter::moveRight() {
-	//if (pos.x >= -18.5)
-		pos.x -= speed;
+    float yawRad = rot.y * M_PI / 180.0f; // Convert yaw rotation to radians
+    float newZ = pos.z + speed * sinf(yawRad); // Right movement along z-axis
+    float newX = pos.x - speed * cosf(yawRad); // Right movement along x-axis
+
+    // Check boundary conditions before updating position
+    if (newZ >= -32 && newZ <= 32 && newX >= -32 && newX <= 32) {
+        pos.z = newZ;
+        pos.x = newX;
+    }
 }
