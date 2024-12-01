@@ -193,6 +193,10 @@ void Game::update() {
 					zombies[j].health -= shooter.hitDamage;
 					zombies[j].moveBackwards(2.0f);
 					bullets[i].isActive = false;
+					if (zombies[j].health <= 0)
+					{
+						coins.push_back(Coin(zombies[j].pos.x, 0.0f, zombies[j].pos.z, 0.0f, 0.0f, 0.0f, 0.1f));
+					}
 				}
 			}
 		}
