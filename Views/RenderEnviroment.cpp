@@ -21,6 +21,9 @@ GLuint ceilingTex_2;
 GLTexture ceilingTexture_1;
 GLTexture ceilingTexture_2;
 
+GLuint doorTex;
+GLTexture doorTexture;
+
 bool isDoorOpen = true ;
 
 void RenderTexturedCube(GLuint texture);
@@ -47,6 +50,9 @@ void loadEnvironmentAssets() {
 
 	ceilingTexture_2.Load("Assets/textures/ceiling_2.bmp");
 	loadBMP(&ceilingTex_2, "Assets/textures/ceiling_2.bmp", true);
+
+	doorTexture.Load("Assets/textures/door.bmp");
+	loadBMP(&doorTex, "Assets/textures/door.bmp", true);
 }
 
 
@@ -126,16 +132,6 @@ void RenderGround(GLTexture groundTexture)
 	glColor3f(1, 1, 1);	// Set material back to white instead of grey used for the ground texture.
 }
 
-// Function to render the door
-void RenderDoor() {
-	glPushMatrix();
-	if (isDoorOpen) {
-		glTranslatef(2.0f, 0.0f, 0.0f); // Shift the door to simulate opening
-	}
-	glScalef(4.0f, 8.0f, 0.2f); // Door dimensions
-	RenderWallLevel1();         // Use wall texture for the door
-	glPopMatrix();
-}
 
 // Function to render steps
 void RenderSteps() {
@@ -267,6 +263,18 @@ void renderLevel1World() {
 	glPopMatrix();
 }
 
+// Function to render the door
+void RenderDoor() {
+	glDisable(GL_LIGHTING);
+	glPushMatrix();
+	glTranslatef(0, 0, 0);
+	glScalef(1, 1, 1);
+	renderTexturedWall(doorTexture);
+	glPopMatrix();
+	glEnable(GL_LIGHTING);
+	glColor3f(1, 1, 1);
+}
+
 void renderMiddleWall() {
 	
 	glEnable(GL_LIGHTING);
@@ -327,6 +335,13 @@ void renderMiddleWall() {
 	glPopMatrix();
 
 	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(0, 4.3, 5);
+	glScalef(3, 4.25, 1);
+	RenderDoor();
+	glPopMatrix();
+	glColor3f(1, 1, 1);
 }
 
 
@@ -377,21 +392,16 @@ void renderLevel2World() {
 	glColor3f(1, 1, 1); // reseting the color to white
 }
 
+
+
 // Function to render the environment
 void RenderEnvironment() {
 	
-	renderLevel1World();
 
 	renderMiddleWall();
 
 	renderLevel2World();
-
-	//// Render the door
-	//glPushMatrix();
-	//glTranslatef(8.0, 0, -40); // Align the door to the middle wall
-	//RenderDoor();
-	//glPopMatrix();
-	//glPopMatrix();
+	renderLevel1World();
 
 	// Render steps inside the room
 	RenderSteps();
