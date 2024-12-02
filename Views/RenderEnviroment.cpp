@@ -12,20 +12,26 @@ GLuint wallTex_2;
 GLTexture wallTexture_1;
 GLTexture wallTexture_2;
 
+GLuint ceilingTex_1;
+GLTexture ceilingTexture_1;
+
 bool isDoorOpen = true ;
 
 void RenderTexturedCube(GLuint texture);
 
 void loadEnvironmentAssets() {
 
-	wallTexture_1.Load("Assets/textures/wall-stone.bmp");
-	loadBMP(&wallTex_1, "Assets/textures/wall-stone.bmp", true);
+	wallTexture_1.Load("Assets/textures/wall_1.bmp");
+	loadBMP(&wallTex_1, "Assets/textures/wall_1.bmp", true);
 
-	wallTexture_2.Load("Assets/textures/wall-stone-2.bmp");
-	loadBMP(&wallTex_2, "Assets/textures/wall-stone-2.bmp", true);
+	wallTexture_2.Load("Assets/textures/wall_1.bmp");
+	loadBMP(&wallTex_2, "Assets/textures/wall_1.bmp", true);
 
-	groundTexture.Load("Assets/textures/ground-stone.bmp");
-	loadBMP(&groundTex, "Assets/textures/ground-stone.bmp", true);
+	groundTexture.Load("Assets/textures/ground_1.bmp");
+	loadBMP(&groundTex, "Assets/textures/ground_1.bmp", true);
+
+	ceilingTexture_1.Load("Assets/textures/ceiling_1.bmp");
+	loadBMP(&ceilingTex_1, "Assets/textures/ceiling_1.bmp", true);
 }
 
 
@@ -84,8 +90,6 @@ void RenderTexturedCube(GLuint texture) {
 void RenderGround()
 {
 	glDisable(GL_LIGHTING);	// Disable lighting 
-
-	glColor3f(0.6, 0.6, 0.6);	// Dim the ground texture a bit
 
 	glEnable(GL_TEXTURE_2D);	// Enable 2D texturing
 
@@ -154,6 +158,31 @@ void RenderSteps() {
 	glPopMatrix();
 }
 
+void renderCeiling() {
+
+	glDisable(GL_LIGHTING);	// Disable lighting
+	glEnable(GL_TEXTURE_2D);	// Enable 2D texturing
+
+	glColor3f(0.2, 0.2, 0.2);
+	glBindTexture(GL_TEXTURE_2D, ceilingTexture_1.texture[0]);	// Bind the ground texture
+
+	glPushMatrix();
+	glTranslatef(-10, 12, -25);
+	glScalef(5, 1, 3);
+	glBegin(GL_QUADS);
+	glNormal3f(0, 1, 0);	// Set quad normal direction.
+	glTexCoord2f(0, 0);		// Set tex coordinates ( Using (0,0) -> (5,5) with texture wrapping set to GL_REPEAT to simulate the ground repeated grass texture).
+	glVertex3f(-10, 0, -10);
+	glTexCoord2f(5, 0);
+	glVertex3f(10, 0, -10);
+	glTexCoord2f(5, 5);
+	glVertex3f(10, 0, 10);
+	glTexCoord2f(0, 5);
+	glVertex3f(-10, 0, 10);
+	glEnd();
+	glPopMatrix();
+}
+
 // Function to render the environment
 void RenderEnvironment() {
 	// Outer walls
@@ -161,7 +190,7 @@ void RenderEnvironment() {
 	glTranslatef(-40, 0, -40);
 	glPushMatrix();
 	glTranslatef(0, 4.5, 40);
-	glScalef(0.2, 9, 90);
+	glScalef(0.2, 15, 90);
 	RenderWallLevel2();
 	glPopMatrix();
 	glPopMatrix();
@@ -170,7 +199,7 @@ void RenderEnvironment() {
 	glTranslatef(40, 0, -40);
 	glPushMatrix();
 	glTranslatef(0, 4.5, 40);
-	glScalef(0.2, 9, 90);
+	glScalef(0.2, 15, 90);
 	RenderWallLevel2();
 	glPopMatrix();
 	glPopMatrix();
@@ -180,7 +209,7 @@ void RenderEnvironment() {
 	glTranslatef(40, 0, -40);
 	glPushMatrix();
 	glTranslatef(0, 4.5, 40);
-	glScalef(0.2, 9, 90);
+	glScalef(0.2, 15, 90);
 	RenderWallLevel2();
 	glPopMatrix();
 	glPopMatrix();
@@ -190,7 +219,7 @@ void RenderEnvironment() {
 	glTranslatef(-40, 0, -40);
 	glPushMatrix();
 	glTranslatef(0, 4.5, 40);
-	glScalef(0.2, 9, 90);
+	glScalef(0.2, 15, 90);
 	RenderWallLevel2();
 	glPopMatrix();
 	glPopMatrix();
@@ -201,7 +230,7 @@ void RenderEnvironment() {
 	glTranslatef(0, 0, -40);
 	glPushMatrix();
 	glTranslatef(-8.0, 4.5, 40); // Offset for the door placement
-	glScalef(0.2, 9, 76);// Shortened wall length to fit the door
+	glScalef(0.2, 15, 80);// Shortened wall length to fit the door
 	glTranslatef(20, 0, 0);
 	RenderWallLevel1();
 	/*glTranslatef(-80, 0, 0);
@@ -224,6 +253,7 @@ void RenderEnvironment() {
 	glScalef(2, 1, 2);
 	RenderGround();
 	glPopMatrix();
+	renderCeiling();
 }
 
 void openDoor() {
