@@ -4,16 +4,22 @@
 #include "glut.h"
 
 
-GLuint groundTex;
-GLTexture groundTexture;
+GLuint groundTex_1;
+GLuint groundTex_2;
+GLTexture groundTexture_1;
+GLTexture groundTexture_2;
 
 GLuint wallTex_1;
 GLuint wallTex_2;
+GLuint wallTex_3;
 GLTexture wallTexture_1;
 GLTexture wallTexture_2;
+GLTexture wallTexture_3;
 
 GLuint ceilingTex_1;
+GLuint ceilingTex_2;
 GLTexture ceilingTexture_1;
+GLTexture ceilingTexture_2;
 
 bool isDoorOpen = true ;
 
@@ -24,14 +30,23 @@ void loadEnvironmentAssets() {
 	wallTexture_1.Load("Assets/textures/wall_1.bmp");
 	loadBMP(&wallTex_1, "Assets/textures/wall_1.bmp", true);
 
-	wallTexture_2.Load("Assets/textures/wall_1.bmp");
-	loadBMP(&wallTex_2, "Assets/textures/wall_1.bmp", true);
+	wallTexture_2.Load("Assets/textures/wall_2.bmp");
+	loadBMP(&wallTex_2, "Assets/textures/wall_2.bmp", true);
 
-	groundTexture.Load("Assets/textures/ground_1.bmp");
-	loadBMP(&groundTex, "Assets/textures/ground_1.bmp", true);
+	wallTexture_3.Load("Assets/textures/wall_3.bmp");
+	loadBMP(&wallTex_3, "Assets/textures/wall_3.bmp", true);
+
+	groundTexture_1.Load("Assets/textures/ground_1.bmp");
+	loadBMP(&groundTex_1, "Assets/textures/ground_1.bmp", true);
+
+	groundTexture_2.Load("Assets/textures/ground_2.bmp");
+	loadBMP(&groundTex_2, "Assets/textures/ground_2.bmp", true);
 
 	ceilingTexture_1.Load("Assets/textures/ceiling_1.bmp");
 	loadBMP(&ceilingTex_1, "Assets/textures/ceiling_1.bmp", true);
+
+	ceilingTexture_2.Load("Assets/textures/ceiling_2.bmp");
+	loadBMP(&ceilingTex_2, "Assets/textures/ceiling_2.bmp", true);
 }
 
 
@@ -87,12 +102,9 @@ void RenderTexturedCube(GLuint texture) {
 	glEnd();
 }
 
-void RenderGround()
+void RenderGround(GLTexture groundTexture)
 {
-	glDisable(GL_LIGHTING);	// Disable lighting 
-
 	glEnable(GL_TEXTURE_2D);	// Enable 2D texturing
-
 	glBindTexture(GL_TEXTURE_2D, groundTexture.texture[0]);	// Bind the ground texture
 
 	glPushMatrix();
@@ -158,85 +170,183 @@ void RenderSteps() {
 	glPopMatrix();
 }
 
-void renderCeiling() {
+void RenderCeiling(GLTexture ceilingTexture) {
 
-	glDisable(GL_LIGHTING);	// Disable lighting
+	//glDisable(GL_LIGHTING);	// Disable lighting
 	glEnable(GL_TEXTURE_2D);	// Enable 2D texturing
 
-	glColor3f(0.2, 0.2, 0.2);
-	glBindTexture(GL_TEXTURE_2D, ceilingTexture_1.texture[0]);	// Bind the ground texture
+	//glColor3f(0.2, 0.2, 0.2);
+	glBindTexture(GL_TEXTURE_2D, ceilingTexture.texture[0]);	// Bind the ground texture
 
 	glPushMatrix();
-	glTranslatef(-10, 12, -25);
-	glScalef(5, 1, 3);
+	glTranslatef(0, 0, 0);
+	glScalef(1, 1, 1);
 	glBegin(GL_QUADS);
 	glNormal3f(0, 1, 0);	// Set quad normal direction.
 	glTexCoord2f(0, 0);		// Set tex coordinates ( Using (0,0) -> (5,5) with texture wrapping set to GL_REPEAT to simulate the ground repeated grass texture).
-	glVertex3f(-10, 0, -10);
+	glVertex3f(-1, 0, -1);
 	glTexCoord2f(5, 0);
-	glVertex3f(10, 0, -10);
+	glVertex3f(1, 0, -1);
 	glTexCoord2f(5, 5);
-	glVertex3f(10, 0, 10);
+	glVertex3f(1, 0, 1);
 	glTexCoord2f(0, 5);
-	glVertex3f(-10, 0, 10);
+	glVertex3f(-1, 0, 1);
 	glEnd();
 	glPopMatrix();
+
+	glEnable(GL_LIGHTING);	// Enable lighting again for other entites coming throung the pipeline.
+	glColor3f(1, 1, 1);	// Set material back to white instead of grey used for the ground texture.
+}
+
+
+void renderTexturedWall(GLTexture wallTexture) {
+
+	glEnable(GL_TEXTURE_2D);
+	glEnable(GL_LIGHTING);
+
+	glBindTexture(GL_TEXTURE_2D, wallTexture.texture[0]);
+	glPushMatrix();
+	
+	glTranslatef(0, 0, 0);
+	glScalef(1, 1, 1);
+	
+	glBegin(GL_QUADS);
+	glNormal3f(0, 0, 1);
+	glTexCoord2f(0, 0); 
+	glVertex3f(-1, -1, 0);
+	glTexCoord2f(1, 0);
+	glVertex3f(1, -1, 0);
+	glTexCoord2f(1, 1);
+	glVertex3f(1, 1, 0);
+	glTexCoord2f(0, 1);
+	glVertex3f(-1, 1, 0);
+	glEnd();
+	
+	glPopMatrix();
+}
+
+void renderLevel1World() {
+	// wall on the right
+	glPushMatrix();
+	glRotatef(90, 0, 1, 0);
+	glTranslatef(17.2, 1, -40);
+	glScalef(23, 15, 1);
+	renderTexturedWall(wallTexture_1);
+	glPopMatrix();
+
+
+	// wall on the left
+	glPushMatrix();
+	glRotatef(90, 0, 1, 0);
+	glTranslatef(17.2, 1, 40);
+	glScalef(23, 15, 1);
+	renderTexturedWall(wallTexture_1);
+	glPopMatrix();
+
+
+	// wall behind me
+	glPushMatrix();
+	glTranslatef(0, 1, -40);
+	glScalef(40, 15, 1);
+	renderTexturedWall(wallTexture_1);
+	glPopMatrix();
+
+
+	// the ceiling
+	glPushMatrix();
+	glTranslatef(-10, 12, -25);
+	glScalef(50, 1, 30);
+	RenderCeiling(ceilingTexture_1);
+	glPopMatrix();
+	
+	// the ground
+	glPushMatrix();
+	glTranslatef(0, 0, -15);
+	glScalef(2, 1, 1);
+	RenderGround(groundTexture_1);
+	glPopMatrix();
+}
+
+void renderMiddleWall() {
+	glEnable(GL_TEXTURE_2D);
+	glEnable(GL_LIGHTING);
+
+	glBindTexture(GL_TEXTURE_2D, wallTexture_3.texture[0]);
+	glPushMatrix();
+	glTranslatef(0, 1, 5);
+	glScalef(40, 15, 1);
+
+	glBegin(GL_QUADS);
+	glNormal3f(0, 0, 1);
+	glTexCoord2f(0, 0);
+	glVertex3f(-1, -1, 0);
+	glTexCoord2f(1, 0);
+	glVertex3f(1, -1, 0);
+	glTexCoord2f(1, 1);
+	glVertex3f(1, 1, 0);
+	glTexCoord2f(0, 1);
+	glVertex3f(-1, 1, 0);
+	glEnd();
+
+	glPopMatrix();
+}
+
+
+void renderLevel2World() {
+
+	//wall on right
+	glPushMatrix();
+	glRotatef(90, 0, 1, 0);
+	glTranslatef(-25, 1, -38.5);
+	glScalef(20, 15, 1);
+	renderTexturedWall(wallTexture_2);
+	glPopMatrix();
+
+	//wall on left
+	glPushMatrix();
+	glRotatef(90, 0, 1, 0);
+	glTranslatef(-25, 1, 38.5);
+	glScalef(20, 15, 1);
+	renderTexturedWall(wallTexture_2);
+	glPopMatrix();
+
+
+	// wall in front
+		// wall behind me
+	glPushMatrix();
+	glTranslatef(0, 1, 40);
+	glScalef(40, 15, 1);
+	renderTexturedWall(wallTexture_2);
+	glPopMatrix();
+
+
+	// Render the ground
+	glPushMatrix();
+	glColor3f(0.58, 0.3, 0);
+	glTranslatef(0, 0, 25);
+	glScalef(2, 1, 1);
+	RenderGround(groundTexture_2);
+	glPopMatrix();
+
+
+	// the ceiling
+	glPushMatrix();
+	glTranslatef(-10, 12, 30);
+	glScalef(50, 1, 25);
+	RenderCeiling(ceilingTexture_2);
+	glPopMatrix();
+	
+	glColor3f(1, 1, 1); // reseting the color to white
 }
 
 // Function to render the environment
 void RenderEnvironment() {
-	// Outer walls
-	glPushMatrix();
-	glTranslatef(-40, 0, -40);
-	glPushMatrix();
-	glTranslatef(0, 4.5, 40);
-	glScalef(0.2, 15, 90);
-	RenderWallLevel2();
-	glPopMatrix();
-	glPopMatrix();
+	
+	renderLevel1World();
 
-	glPushMatrix();
-	glTranslatef(40, 0, -40);
-	glPushMatrix();
-	glTranslatef(0, 4.5, 40);
-	glScalef(0.2, 15, 90);
-	RenderWallLevel2();
-	glPopMatrix();
-	glPopMatrix();
+	renderMiddleWall();
 
-	glPushMatrix();
-	glRotatef(90, 0, 1, 0);
-	glTranslatef(40, 0, -40);
-	glPushMatrix();
-	glTranslatef(0, 4.5, 40);
-	glScalef(0.2, 15, 90);
-	RenderWallLevel2();
-	glPopMatrix();
-	glPopMatrix();
-
-	glPushMatrix();
-	glRotatef(90, 0, 1, 0);
-	glTranslatef(-40, 0, -40);
-	glPushMatrix();
-	glTranslatef(0, 4.5, 40);
-	glScalef(0.2, 15, 90);
-	RenderWallLevel2();
-	glPopMatrix();
-	glPopMatrix();
-
-	// Middle wall with a door
-	glPushMatrix();
-	glRotatef(90, 0, 1, 0);
-	glTranslatef(0, 0, -40);
-	glPushMatrix();
-	glTranslatef(-8.0, 4.5, 40); // Offset for the door placement
-	glScalef(0.2, 15, 80);// Shortened wall length to fit the door
-	glTranslatef(20, 0, 0);
-	RenderWallLevel1();
-	/*glTranslatef(-80, 0, 0);
-	RenderWallLevel1();*/
-	glPopMatrix();
-	glPopMatrix();
+	renderLevel2World();
 
 	//// Render the door
 	//glPushMatrix();
@@ -248,12 +358,6 @@ void RenderEnvironment() {
 	// Render steps inside the room
 	RenderSteps();
 
-	// Render the ground
-	glPushMatrix();
-	glScalef(2, 1, 2);
-	RenderGround();
-	glPopMatrix();
-	renderCeiling();
 }
 
 void openDoor() {
