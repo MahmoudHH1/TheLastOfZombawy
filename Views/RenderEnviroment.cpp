@@ -268,28 +268,67 @@ void renderLevel1World() {
 }
 
 void renderMiddleWall() {
-	glEnable(GL_TEXTURE_2D);
+	
 	glEnable(GL_LIGHTING);
-
+	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, wallTexture_3.texture[0]);
-	glPushMatrix();
-	glTranslatef(0, 1, 5);
-	glScalef(40, 15, 1);
 
+	glPushMatrix();
+
+	// Top quad
+	glPushMatrix();
+	glTranslatef(0, 10.5, 5);
+	glScalef(40, 2, 1);
 	glBegin(GL_QUADS);
 	glNormal3f(0, 0, 1);
-	glTexCoord2f(0, 0);
+	glTexCoord2f(0, 0.8); // Top-left of the texture
 	glVertex3f(-1, -1, 0);
-	glTexCoord2f(1, 0);
+	glTexCoord2f(1, 0.8); // Top-right of the texture
 	glVertex3f(1, -1, 0);
-	glTexCoord2f(1, 1);
+	glTexCoord2f(1, 1);   // Bottom-right of the texture
 	glVertex3f(1, 1, 0);
-	glTexCoord2f(0, 1);
+	glTexCoord2f(0, 1);   // Bottom-left of the texture
 	glVertex3f(-1, 1, 0);
 	glEnd();
+	glPopMatrix();
+
+	// Left quad
+	glPushMatrix();
+	glTranslatef(-23, 3.5, 5);
+	glScalef(20, 5, 1);
+	glBegin(GL_QUADS);
+	glNormal3f(0, 0, 1);
+	glTexCoord2f(0, 0.5); // Top-left of the texture
+	glVertex3f(-1, -1, 0);
+	glTexCoord2f(0.5, 0.5); // Top-right of the texture
+	glVertex3f(1, -1, 0);
+	glTexCoord2f(0.5, 0.8); // Bottom-right of the texture
+	glVertex3f(1, 1, 0);
+	glTexCoord2f(0, 0.8);   // Bottom-left of the texture
+	glVertex3f(-1, 1, 0);
+	glEnd();
+	glPopMatrix();
+
+	// Right quad
+	glPushMatrix();
+	glTranslatef(23, 3.5, 5);
+	glScalef(20, 5, 1);
+	glBegin(GL_QUADS);
+	glNormal3f(0, 0, 1);
+	glTexCoord2f(0.5, 0.5); // Top-left of the texture
+	glVertex3f(-1, -1, 0);
+	glTexCoord2f(1, 0.5);   // Top-right of the texture
+	glVertex3f(1, -1, 0);
+	glTexCoord2f(1, 0.8);   // Bottom-right of the texture
+	glVertex3f(1, 1, 0);
+	glTexCoord2f(0.5, 0.8); // Bottom-left of the texture
+	glVertex3f(-1, 1, 0);
+	glEnd();
+	glPopMatrix();
 
 	glPopMatrix();
 }
+
 
 
 void renderLevel2World() {
@@ -312,7 +351,6 @@ void renderLevel2World() {
 
 
 	// wall in front
-		// wall behind me
 	glPushMatrix();
 	glTranslatef(0, 1, 40);
 	glScalef(40, 15, 1);
