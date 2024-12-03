@@ -353,7 +353,15 @@ void Game::updateCamera() {
 }
 
 
-
+void handleOpenDoor(Shooter shooter) {
+	bool doorIsOpening = getIsDoorOpening();
+	float doorAngle = getDoorAngle();
+	if (!doorIsOpening && doorAngle < 90.0f && shooter.hasKey) {
+		setDoorOpening(true);
+		int doorLastTime = glutGet(GLUT_ELAPSED_TIME);
+		setDoorLastTime(doorLastTime);
+	}
+}
 
 
 
@@ -387,6 +395,9 @@ void Game::handleKeyPress(unsigned char key, int x, int y) {
 		break;
 	case 'f':
 		isFlashlightOn = !isFlashlightOn;
+		break;
+	case 'e':
+		handleOpenDoor(shooter);
 		break;
 	case 27: // Escape key
 		isMouseLocked = false;

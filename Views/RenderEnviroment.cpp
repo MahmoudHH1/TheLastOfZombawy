@@ -24,7 +24,26 @@ GLTexture ceilingTexture_2;
 GLuint doorTex;
 GLTexture doorTexture;
 
-bool isDoorOpen = true ;
+static bool doorIsOpening = false;
+static float doorAngle = 0.0f;
+static int doorLastTime = 0; // To track elapsed time for animation
+
+
+bool getIsDoorOpening() {
+	return doorIsOpening;
+}
+
+float getDoorAngle() {
+	return doorAngle;
+}
+
+void setDoorLastTime(int time) {
+	doorLastTime = time;
+}
+
+void setDoorOpening(bool opening) {
+	doorIsOpening = opening;
+}
 
 void RenderTexturedCube(GLuint texture);
 
@@ -263,17 +282,43 @@ void renderLevel1World() {
 	glPopMatrix();
 }
 
+// Function to update the door angle
+void UpdateDoor() {
+	if (doorIsOpening) {
+		int currentTime = glutGet(GLUT_ELAPSED_TIME); // Get current time in milliseconds
+		float deltaTime = (currentTime - doorLastTime) / 1000.0f; // Convert ms to seconds
+		doorLastTime = currentTime;
+
+		// Increment the door angle over time
+		doorAngle += 50.0f * deltaTime; // Adjust speed as needed
+		if (doorAngle >= 90.0f) { // Limit to a 90-degree rotation
+			doorAngle = 90.0f;
+			doorIsOpening = false; // Stop opening once fully open
+		}
+	}
+}
+
 // Function to render the door
 void RenderDoor() {
+
+	UpdateDoor();
+
 	glDisable(GL_LIGHTING);
 	glPushMatrix();
 	glTranslatef(0, 0, 0);
+
+	// Rotate the door around its hinge
+	glTranslatef(-1.0f, 0, 0); // Move pivot point to the hinge
+	glRotatef(doorAngle, 0, -1, 0); // Rotate around the Y-axis
+	glTranslatef(1.0f, 0, 0); // Move back to the door's center
+	
 	glScalef(1, 1, 1);
 	renderTexturedWall(doorTexture);
 	glPopMatrix();
 	glEnable(GL_LIGHTING);
 	glColor3f(1, 1, 1);
 }
+
 
 void renderMiddleWall() {
 	
@@ -406,8 +451,4 @@ void RenderEnvironment() {
 	// Render steps inside the room
 	RenderSteps();
 
-}
-
-void openDoor() {
-	isDoorOpen = true;
 }
