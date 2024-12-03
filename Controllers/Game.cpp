@@ -354,9 +354,16 @@ void Game::updateCamera() {
 
 
 void handleOpenDoor(Shooter shooter) {
+
+	bool inPositionX = shooter.pos.x > -3 && shooter.pos.x < 3;
+	bool inPositionZ = shooter.pos.z > -5.0f && shooter.pos.z < -0.35;
+
 	bool doorIsOpening = getIsDoorOpening();
 	float doorAngle = getDoorAngle();
-	if (!doorIsOpening && doorAngle < 90.0f && shooter.hasKey) {
+
+	bool shooterCanOpenDoor = shooter.hasKey && inPositionX && inPositionZ;
+
+	if (!doorIsOpening && doorAngle < 90.0f && shooterCanOpenDoor) {
 		setDoorOpening(true);
 		int doorLastTime = glutGet(GLUT_ELAPSED_TIME);
 		setDoorLastTime(doorLastTime);

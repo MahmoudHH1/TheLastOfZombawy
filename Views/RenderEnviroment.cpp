@@ -380,7 +380,7 @@ void renderMiddleWall() {
 	glPopMatrix();
 
 	glPopMatrix();
-
+	// rendering the door
 	glPushMatrix();
 	glTranslatef(0, 4.3, 5);
 	glScalef(3, 4.25, 1);
