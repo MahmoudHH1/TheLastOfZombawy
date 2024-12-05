@@ -132,7 +132,7 @@ void Game::Draw() {
 
 void Game::spawnZombies() {
 	for (int i = 0; i < 50; i += 10) {
-		zombies.push_back(Zombie(-20 + i, 4.0f, -1.0f, 0.0f, 180.0f, 0.0f, 0.07f, 12));
+		zombies.push_back(Zombie(-20 + i, 4.0f, -1.0f, 0.0f, 180.0f, 0.0f, 5.0f, 12));
 	}
 }
 
@@ -141,10 +141,10 @@ void Game::spawnKey() {
 }
 
 void Game::spawnMedkit() {
-	medkits.push_back(Medkit(23.0f, 0.0f, 23.0f, 0.0f, 0.0f, 0.0f, 0.01f, 10));
-	medkits.push_back(Medkit(23.0f, 0.0f, -23.0f, 0.0f, 0.0f, 0.0f, 0.01f, 10));
-	medkits.push_back(Medkit(-23.0f, 0.0f, 23.0f, 0.0f, 0.0f, 0.1f, 0.01f, 10));
-	medkits.push_back(Medkit(-23.0f, 0.0f, -23.0f, 0.0f, 0.0f, 0.1f, 0.01f, 10));
+	medkits.push_back(Medkit(23.0f, 0.0f, 23.0f, 0.0f, 0.0f, 0.0f, 3.0f, 10));
+	medkits.push_back(Medkit(23.0f, 0.0f, -23.0f, 0.0f, 0.0f, 0.0f, 3.0f, 10));
+	medkits.push_back(Medkit(-23.0f, 0.0f, 23.0f, 0.0f, 0.0f, 0.1f, 3.0f, 10));
+	medkits.push_back(Medkit(-23.0f, 0.0f, -23.0f, 0.0f, 0.0f, 0.1f, 3.0f, 10));
 }
 
 

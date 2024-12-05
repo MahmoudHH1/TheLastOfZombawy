@@ -840,10 +840,17 @@ void Model_3DS::MapNameChunkProcessor(long length, long findex, int matindex)
 
 	std::string n = name;
 	n.erase(n.end() - 3, n.end());
-	n += "bmp";
+	if (!n.empty() && n.back() != '.') {
+		n += ".bmp";
+	}
+	else {
+		n += "bmp";
+	}
 	// Load the name and indicate that the material has a texture
 	char fullname[80];
 	sprintf(fullname, "%s%s", path, n.c_str());
+	printf("Loading BMP file: %s\n", fullname);
+
 	Materials[matindex].tex.Load(fullname);
 	Materials[matindex].textured = true;
 
