@@ -1,68 +1,21 @@
-﻿  BoudingBox.cpp
-  Bullet.cpp
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Bullet.cpp(20,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Bullet.cpp(21,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  Coin.cpp
-  Game.cpp
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(70,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(74,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(79,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(84,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(88,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(108,20): warning C4018: '<': signed/unsigned mismatch
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(113,20): warning C4018: '<': signed/unsigned mismatch
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(116,20): warning C4018: '<': signed/unsigned mismatch
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(119,20): warning C4018: '<': signed/unsigned mismatch
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(122,20): warning C4018: '<': signed/unsigned mismatch
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(159,20): warning C4018: '<': signed/unsigned mismatch
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(166,20): warning C4018: '<': signed/unsigned mismatch
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(177,21): warning C4018: '<': signed/unsigned mismatch
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(186,20): warning C4018: '<': signed/unsigned mismatch
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(190,22): warning C4018: '<': signed/unsigned mismatch
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(271,20): warning C4018: '<': signed/unsigned mismatch
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(295,21): warning C4018: '<': signed/unsigned mismatch
-  Key.cpp
-  Zombie.cpp
-  BoundingBox.h
-  GLTexture.cpp
-D:\Uni\graphics\TheLastOfZombawy\Controllers\GLTexture.cpp(61,16): warning C4996: '_strlwr': This function or variable may be unsafe. Consider using _strlwr_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-D:\Uni\graphics\TheLastOfZombawy\Controllers\GLTexture.cpp(65,17): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-D:\Uni\graphics\TheLastOfZombawy\Controllers\GLTexture.cpp(77,16): warning C4996: '_strlwr': This function or variable may be unsafe. Consider using _strlwr_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-D:\Uni\graphics\TheLastOfZombawy\Controllers\GLTexture.cpp(146,15): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  Medkit.cpp
-  Medkit.h
-  Model_3DS.cpp
-  D:\Uni\graphics\TheLastOfZombawy\Controllers\Model_3DS.cpp(78) : You need to uncomment this if you are using MFC
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Model_3DS.cpp(260,10): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Model_3DS.cpp(290,11): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Model_3DS.cpp(846,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  main.cpp
-  Shooter.cpp
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Shooter.cpp(9,9): warning C4005: 'speed': macro redefinition
-      D:\Uni\graphics\TheLastOfZombawy\Headers\Shooter.h(17,10):
-      see previous definition of 'speed'
-  
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Shooter.cpp(21,32): warning C4305: 'argument': truncation from 'double' to 'float'
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Shooter.cpp(47,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Shooter.cpp(48,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Shooter.cpp(49,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Shooter.cpp(59,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Shooter.cpp(60,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Shooter.cpp(61,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Shooter.cpp(71,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Shooter.cpp(72,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Shooter.cpp(73,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Shooter.cpp(83,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Shooter.cpp(84,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Shooter.cpp(85,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  RenderEnviroment.cpp
-D:\Uni\graphics\TheLastOfZombawy\TextureBuilder.h(32,52): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
-  (compiling source file 'Views/RenderEnviroment.cpp')
-  
-D:\Uni\graphics\TheLastOfZombawy\TextureBuilder.h(33,52): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
-  (compiling source file 'Views/RenderEnviroment.cpp')
-  
-  Generating Code...
+﻿  Game.cpp
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(71,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(75,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(80,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(85,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(89,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(109,20): warning C4018: '<': signed/unsigned mismatch
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(114,20): warning C4018: '<': signed/unsigned mismatch
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(117,20): warning C4018: '<': signed/unsigned mismatch
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(120,20): warning C4018: '<': signed/unsigned mismatch
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(123,20): warning C4018: '<': signed/unsigned mismatch
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(162,20): warning C4018: '<': signed/unsigned mismatch
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(170,20): warning C4018: '<': signed/unsigned mismatch
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(182,21): warning C4018: '<': signed/unsigned mismatch
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(192,20): warning C4018: '<': signed/unsigned mismatch
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(196,22): warning C4018: '<': signed/unsigned mismatch
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(278,20): warning C4018: '<': signed/unsigned mismatch
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(302,21): warning C4018: '<': signed/unsigned mismatch
 BoudingBox.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/INCREMENTAL:NO' specification
 OpenGLMe.2EE1F2C2\Debug\Medkit.obj : warning LNK4042: object specified more than once; extras ignored
   OpenGLMeshLoader.vcxproj -> D:\Uni\graphics\TheLastOfZombawy\Debug\OpenGLMeshLoader19.exe

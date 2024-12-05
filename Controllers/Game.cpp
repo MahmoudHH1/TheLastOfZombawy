@@ -9,6 +9,7 @@
 #include "Headers/MedKit.h"
 #include "Headers/Camera.h"
 #include "Headers/RenderEnviroment.h"
+#include "Headers/Sound.h"
 
 #include<chrono>
 #include <vector>
@@ -147,6 +148,7 @@ void Game::spawnMedkit() {
 
 void Game::shootBullet() {
 	bullets.push_back(Bullet(shooter.pos.x, shooter.pos.y + 4, shooter.pos.z, shooter.rot.x, shooter.rot.y, shooter.rot.z, 0.1f));
+	playGunSound();
 }
 
 void Game::update() {
@@ -155,11 +157,13 @@ void Game::update() {
 	if (keys.size() > 0 && shooter.CalculateCollisionWithLocation(keys[0], 1.7f, 1.7f)) {
 		shooter.CollectKey();
 		keys.clear();
+		playKeySound();
 	}
 	for (int i = 0; i < medkits.size(); i++) {
 		if (shooter.CalculateCollisionWithLocation(medkits[i], 1.0f, 1.0f)) {
 			shooter.CollectMedKit();
 			medkits.erase(medkits.begin() + i);
+			playMedkitCollectSound();
 		}
 	}
 
@@ -168,6 +172,7 @@ void Game::update() {
 		if (shooter.CalculateCollisionWithLocation(coins[i], 1.5f, 1.5f)) {
 			shooter.CollectCoin();
 			coins.erase(coins.begin() + i);
+			playCoinSound();
 		}
 	}
 
@@ -175,8 +180,9 @@ void Game::update() {
 	if (collisionTimer >= 1.0f) {
 		// Check for collision with zombies
 		for (int i = 0; i < zombies.size(); i++) {
-			if (shooter.CalculateCollisionWithLocation(zombies[i], 3.0f, 3.0f)) {
+			if (zombies[i].health > 0 && shooter.CalculateCollisionWithLocation(zombies[i], 3.0f, 3.0f)) {
 				shooter.health -= zombies[i].hitDamage; // Reduce health on collision
+				playPlayerHitSound();
 			}
 		}
 		// Reset the timer after checking
@@ -195,6 +201,7 @@ void Game::update() {
 					bullets[i].isActive = false;
 					if (zombies[j].health <= 0)
 					{
+						playZombieDeathSound();
 						coins.push_back(Coin(zombies[j].pos.x, 0.0f, zombies[j].pos.z, 0.0f, 0.0f, 0.0f, 0.1f));
 					}
 				}
@@ -364,6 +371,7 @@ void handleOpenDoor(Shooter shooter) {
 	bool shooterCanOpenDoor = shooter.hasKey && inPositionX && inPositionZ;
 
 	if (!doorIsOpening && doorAngle < 90.0f && shooterCanOpenDoor) {
+		playDoorSound();
 		setDoorOpening(true);
 		int doorLastTime = glutGet(GLUT_ELAPSED_TIME);
 		setDoorLastTime(doorLastTime);
@@ -388,6 +396,10 @@ void Game::handleKeyPress(unsigned char key, int x, int y) {
 		shooter.moveRight();
 		break;
 	case ' ':
+		break;
+	case 'h':
+		shooter.Heal(10);
+		playUsingMedkitSound();
 		break;
 	case 'c':
 		break;

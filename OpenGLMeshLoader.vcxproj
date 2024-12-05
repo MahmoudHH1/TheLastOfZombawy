@@ -95,6 +95,7 @@
     <ClCompile Include="Controllers\Coin.cpp" />
     <ClCompile Include="Controllers\Game.cpp" />
     <ClCompile Include="Controllers\Key.cpp" />
+    <ClCompile Include="Controllers\Sound.cpp" />
     <ClCompile Include="Controllers\Zombie.cpp" />
     <ClCompile Include="Headers\BoundingBox.h" />
     <ClCompile Include="Controllers\GLTexture.cpp" />
@@ -117,6 +118,7 @@
     <ClInclude Include="Headers\RenderGround.h" />
     <ClInclude Include="Headers\RenderWall.h" />
     <ClInclude Include="Headers\Shooter.h" />
+    <ClInclude Include="Headers\Sound.h" />
     <ClInclude Include="Headers\Zombie.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

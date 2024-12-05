@@ -52,6 +52,7 @@
     <ClCompile Include="Controllers\Key.cpp" />
     <ClCompile Include="Controllers\Zombie.cpp" />
     <ClCompile Include="Controllers\Bullet.cpp" />
+    <ClCompile Include="Controllers\Sound.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\GLTexture.h">
@@ -72,5 +73,6 @@
     <ClInclude Include="Headers\Key.h" />
     <ClInclude Include="Headers\Zombie.h" />
     <ClInclude Include="Headers\Bullet.h" />
+    <ClInclude Include="Headers\Sound.h" />
   </ItemGroup>
 </Project>
