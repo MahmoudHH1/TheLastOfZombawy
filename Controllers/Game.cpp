@@ -33,6 +33,8 @@ Game::Game() {
 	spawnKey();
 	coins.push_back(Coin(2.0f, 0.0f, 2.0f, 0.0f, 0.0f, 0.0f, 0.1f));
 	camera = Cam();
+	level = 1;
+	isDoorOpen = false;
 }
 
 // Add this implementation to your Game.cpp
@@ -360,21 +362,27 @@ void Game::updateCamera() {
 }
 
 
-void handleOpenDoor(Shooter shooter) {
+void Game::handleOpenDoor(Shooter shooter) {
+
 
 	bool inPositionX = shooter.pos.x > -3 && shooter.pos.x < 3;
-	bool inPositionZ = shooter.pos.z > -5.0f && shooter.pos.z < -0.35;
+	bool inPositionZ = shooter.pos.z > -5.0f && shooter.pos.z < 2.0;
 
 	bool doorIsOpening = getIsDoorOpening();
 	float doorAngle = getDoorAngle();
 
 	bool shooterCanOpenDoor = shooter.hasKey && inPositionX && inPositionZ;
 
+	cout << "shooter has key" << shooter.hasKey << endl;
+	cout << "shooter in position x" << inPositionX << endl;
+	cout << "shooter in position z" << inPositionZ << endl;
+
 	if (!doorIsOpening && doorAngle < 90.0f && shooterCanOpenDoor) {
 		playDoorSound();
 		setDoorOpening(true);
 		int doorLastTime = glutGet(GLUT_ELAPSED_TIME);
 		setDoorLastTime(doorLastTime);
+		level = 2;
 	}
 }
 
@@ -382,18 +390,20 @@ void handleOpenDoor(Shooter shooter) {
 
 void Game::handleKeyPress(unsigned char key, int x, int y) {
 	key = std::tolower(key);
+
+	bool hasKey = shooter.hasKey;
 	switch (key) {
 	case 'w':
-		shooter.moveForward();
+		shooter.moveForward(level);
 		break;
 	case 's':
-		shooter.moveBackward();
+		shooter.moveBackward(level);
 		break;
 	case 'a':
-		shooter.moveLeft();
+		shooter.moveLeft(level);
 		break;
 	case 'd':
-		shooter.moveRight();
+		shooter.moveRight(level);
 		break;
 	case ' ':
 		break;

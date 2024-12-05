@@ -13,6 +13,8 @@ class Game {
 	public :
 		Shooter shooter;
 		Cam camera;
+		int level;
+		bool isDoorOpen;
 		std::vector<Zombie> zombies;
 		std::vector<Coin> coins;
 		std::vector<Key> keys;
@@ -31,6 +33,7 @@ class Game {
 		void spawnMedkit();
 		void shootBullet();
 		void handleKeyPress(unsigned char key , int x , int y);
+		void handleOpenDoor(Shooter shooter);
 		void calculateDeltaTime();
 };
 

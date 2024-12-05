@@ -23,10 +23,13 @@ public:
 	void CollectCoin();
 	void CollectMedKit();
 	void Heal(int healthRecovery);
-	void moveForward();
-	void moveBackward();
-	void moveLeft();
-	void moveRight();
+	void moveForward(int level);
+	void moveBackward(int level);
+	void moveLeft(int level);
+	void moveRight(int level);
+	bool isCollidingWithMiddleWall(float newX , float newZ);
+	bool isCollidingWithDoor(float newX, float newZ);
+	bool inBounds(float newX , float newZ);
 };
 
 #endif SHOOTER_H
