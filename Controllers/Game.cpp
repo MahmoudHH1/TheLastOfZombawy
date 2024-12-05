@@ -10,7 +10,7 @@
 #include "Headers/Camera.h"
 #include "Headers/RenderEnviroment.h"
 #include "Headers/Sound.h"
-
+#include "Headers/BigZombie.h"
 #include<chrono>
 #include <vector>
 
@@ -33,6 +33,7 @@ Game::Game() {
 	spawnKey();
 	coins.push_back(Coin(2.0f, 0.0f, 2.0f, 0.0f, 0.0f, 0.0f, 0.1f));
 	camera = Cam();
+	bigZombie = BigZombie(23,0,16,5,-90,0,4.0,30);
 	level = 1;
 	isDoorOpen = false;
 }
@@ -108,6 +109,7 @@ void Game::Draw() {
 	drawHUD();
 
 	shooter.Draw();
+	bigZombie.Draw();
 	for (int i = 0; i < zombies.size(); i++) {
 		if (zombies[i].health > 0) {
 			zombies[i].Draw();
@@ -132,7 +134,7 @@ void Game::Draw() {
 
 void Game::spawnZombies() {
 	for (int i = 0; i < 50; i += 10) {
-		zombies.push_back(Zombie(-20 + i, 4.0f, -1.0f, 0.0f, 180.0f, 0.0f, 5.0f, 12));
+		zombies.push_back(Zombie(-20 + i, 4.0f, -1.0f, 0.0f, 180.0f, 0.0f, 0.07f, 12));
 	}
 }
 
@@ -208,6 +210,13 @@ void Game::update() {
 					}
 				}
 			}
+
+			if (bigZombie.health>0 && bigZombie.CalculateCollisionWithLocation(bullets[i],1.0f,1.0f))
+			{
+				bigZombie.health -= shooter.hitDamage;
+				bullets[i].isActive = false;
+
+			}
 		}
 
 	}
@@ -216,6 +225,9 @@ void Game::update() {
 	updateZombies();
 	updateFlashlight();
 	updateCamera();
+	if (level == 2) {
+		updateBigZombie();
+	}
 }
 
 void Game::updateFlashlight() {
@@ -270,6 +282,38 @@ void Game::calculateDeltaTime() {
 	std::chrono::duration<float> elapsed = now - lastTime;
 	deltaTime = elapsed.count();
 	lastTime = now;
+}
+
+
+void Game::updateBigZombie() {
+	const float ZOMBIE_SPEED = 0.000005f;  // Adjust this value to control zombie movement speed
+	const float MIN_DISTANCE = 3.0f;   // Minimum distance to keep from player
+
+	// Calculate direction vector from bigZombie to player
+	float dirX = shooter.pos.x - bigZombie.pos.x;
+	float dirZ = shooter.pos.z - bigZombie.pos.z;
+
+	// Calculate distance
+	float distance = sqrt(dirX * dirX + dirZ * dirZ);
+
+	// Only move if we're further than minimum distance
+	if (distance > MIN_DISTANCE) {
+		// Normalize direction vector
+		dirX /= distance;
+		dirZ /= distance;
+
+		// Update bigZombie position
+		bigZombie.pos.x += dirX * ZOMBIE_SPEED;
+		bigZombie.pos.z += dirZ * ZOMBIE_SPEED;
+
+		// Calculate rotation angle for bigZombie to face player
+		float angle = atan2(dirX, dirZ) * (180.0f / M_PI);
+		bigZombie.rot.y = angle;
+	}
+
+	// Optional: Add simple collision detection between bigZombie and other zombies
+	// If you want to handle collision with other zombies, you can keep the collision detection part.
+	// For now, I assume `bigZombie` is the only zombie.
 }
 
 

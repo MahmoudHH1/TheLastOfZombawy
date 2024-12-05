@@ -90,6 +90,7 @@
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Controllers\BigZombie.cpp" />
     <ClCompile Include="Controllers\BoudingBox.cpp" />
     <ClCompile Include="Controllers\Bullet.cpp" />
     <ClCompile Include="Controllers\Coin.cpp" />
@@ -107,6 +108,7 @@
     <ClCompile Include="Views\RenderEnviroment.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Headers\BigZombie.h" />
     <ClInclude Include="Headers\Bullet.h" />
     <ClInclude Include="Headers\Camera.h" />
     <ClInclude Include="Headers\Coin.h" />

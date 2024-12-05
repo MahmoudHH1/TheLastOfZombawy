@@ -8,6 +8,7 @@
 #include "Key.h"
 #include "MedKit.h"
 #include "Bullet.h"
+#include "BigZombie.h"
 #include <vector>
 class Game {
 	public :
@@ -15,6 +16,7 @@ class Game {
 		Cam camera;
 		int level;
 		bool isDoorOpen;
+		BigZombie bigZombie;
 		std::vector<Zombie> zombies;
 		std::vector<Coin> coins;
 		std::vector<Key> keys;
@@ -26,6 +28,7 @@ class Game {
 		void drawHUD();
 		void update();
 		void updateZombies();
+		void updateBigZombie();
 		void updateCamera();
 		void updateFlashlight();
 		void spawnZombies();
