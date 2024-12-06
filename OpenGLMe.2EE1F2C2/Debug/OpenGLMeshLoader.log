@@ -9,13 +9,13 @@ D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(143,20): warning C4018: '<
 D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(146,20): warning C4018: '<': signed/unsigned mismatch
 D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(149,20): warning C4018: '<': signed/unsigned mismatch
 D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(152,20): warning C4018: '<': signed/unsigned mismatch
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(202,20): warning C4018: '<': signed/unsigned mismatch
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(210,20): warning C4018: '<': signed/unsigned mismatch
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(222,21): warning C4018: '<': signed/unsigned mismatch
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(232,20): warning C4018: '<': signed/unsigned mismatch
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(236,22): warning C4018: '<': signed/unsigned mismatch
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(360,20): warning C4018: '<': signed/unsigned mismatch
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(384,21): warning C4018: '<': signed/unsigned mismatch
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(203,20): warning C4018: '<': signed/unsigned mismatch
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(211,20): warning C4018: '<': signed/unsigned mismatch
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(223,21): warning C4018: '<': signed/unsigned mismatch
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(233,20): warning C4018: '<': signed/unsigned mismatch
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(237,22): warning C4018: '<': signed/unsigned mismatch
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(361,20): warning C4018: '<': signed/unsigned mismatch
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(385,21): warning C4018: '<': signed/unsigned mismatch
 BigZombie.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/INCREMENTAL:NO' specification
 OpenGLMe.2EE1F2C2\Debug\Medkit.obj : warning LNK4042: object specified more than once; extras ignored
   OpenGLMeshLoader.vcxproj -> D:\Uni\graphics\TheLastOfZombawy\Debug\OpenGLMeshLoader19.exe

@@ -176,7 +176,8 @@ void Game::spawnMedkit() {
 
 
 void Game::shootBullet() {
-	bullets.push_back(Bullet(shooter.pos.x, shooter.pos.y + 4, shooter.pos.z, shooter.rot.x, shooter.rot.y, shooter.rot.z, 0.1f));
+	bullets.push_back(Bullet(shooter.pos.x, shooter.pos.y + 4, shooter.pos.z, shooter.rot.x, shooter.rot.y, -shooter.rot.z, 20.0f));
+	//bullets.push_back(Bullet());
 	playGunSound();
 }
 

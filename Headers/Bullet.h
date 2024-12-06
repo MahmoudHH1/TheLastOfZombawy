@@ -11,7 +11,6 @@ public:
 	Bullet(float x, float y, float z, float rotX, float rotY, float rotZ , float scale);
 	Bullet();
 
-	void Draw();
 	void update();
 };
 
