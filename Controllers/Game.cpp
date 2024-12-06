@@ -36,68 +36,82 @@ Game::Game() {
 	bigZombie = BigZombie(23,0,16,5,-90,0,4.0,30);
 	level = 1;
 	isDoorOpen = false;
+	isGameWon = false;
+	isGameOver = false;
 }
 
-// Add this implementation to your Game.cpp
-void renderText(float x, float y, const char* text) {
+void renderText(float x, float y, const char* text, int fontSize) {
+	void* fonts[] = {
+		GLUT_BITMAP_HELVETICA_10,
+		GLUT_BITMAP_HELVETICA_12,
+		GLUT_BITMAP_HELVETICA_18,
+		GLUT_BITMAP_TIMES_ROMAN_10,
+		GLUT_BITMAP_TIMES_ROMAN_24
+	};
+
+	void* selectedFont;
+	if (fontSize <= 10) selectedFont = fonts[0];
+	else if (fontSize <= 12) selectedFont = fonts[1];
+	else if (fontSize <= 18) selectedFont = fonts[2];
+	else if (fontSize <= 24) selectedFont = fonts[3];
+	else selectedFont = fonts[4];
+
 	glDisable(GL_DEPTH_TEST);
 	glDisable(GL_LIGHTING);
 	glMatrixMode(GL_PROJECTION);
 	glPushMatrix();
 	glLoadIdentity();
 	gluOrtho2D(0, glutGet(GLUT_WINDOW_WIDTH), 0, glutGet(GLUT_WINDOW_HEIGHT));
-
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 	glLoadIdentity();
-
-	glColor3f(1.0f, 1.0f, 1.0f); // White text
+	glColor3f(1.0f, 1.0f, 1.0f);
 	glRasterPos2f(x, y);
 
 	for (const char* c = text; *c != '\0'; c++) {
-		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_12, *c);
+		glutBitmapCharacter(selectedFont, *c);
 	}
 
 	glPopMatrix();
 	glMatrixMode(GL_PROJECTION);
 	glPopMatrix();
 	glMatrixMode(GL_MODELVIEW);
-
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_LIGHTING);
 }
+
 
 void Game::drawHUD() {
 	char buffer[200];
 
 	// Display Score
 	sprintf(buffer, "Score: %d", shooter.score);
-	renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 20, buffer);
+	renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 20, buffer , 10);
 
 	// Display Coordinates
 	sprintf(buffer, "Position: (%.2f, %.2f, %.2f)",
 		shooter.pos.x, shooter.pos.y, shooter.pos.z);
-	renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 40, buffer);
+	renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 40, buffer , 10);
 
 	// Display Coordinates
 	sprintf(buffer, "Rotation angles: (%.2f, %.2f, %.2f)",
 		shooter.rot.x, shooter.rot.y, shooter.rot.z);
-	renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 60, buffer);
+	renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 60, buffer , 10);
 
 	//Display the number of medkits collected
 	sprintf(buffer, "Medkits: %d", shooter.medkits);
-	renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 80, buffer);
+	renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 80, buffer , 10);
 
 	// Display Health
 	sprintf(buffer, "Health: %d", shooter.health);
-	renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 100, buffer);
+	renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 100, buffer,10);
 
 	// Display Key
 	if (shooter.hasKey) {
-		renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 120, "Key: Collected");
+		renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 120, "Key: Collected" , 10);
 	}
 	else {
-		renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 120, "Key: Not Collected");
+		renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 120, "Key: Not Collected" , 10);
 	}
 
 
@@ -105,6 +119,17 @@ void Game::drawHUD() {
 
 
 void Game::Draw() {
+
+	if (isGameOver) {
+		renderText(500, 500, "Game Over!" , 300);
+		return;
+	}
+
+	if (isGameWon) {
+		renderText(500, 500, "You Won!" , 300);
+		return;
+	}
+
 	RenderEnvironment();
 	drawHUD();
 
@@ -157,6 +182,17 @@ void Game::shootBullet() {
 
 void Game::update() {
 	collisionTimer += deltaTime;
+
+	if (shooter.health <= 0) {
+		isGameOver = true;
+		return;
+	}
+
+	if (bigZombie.health <= 0)
+	{
+		isGameWon = true;
+		return;
+	}
 
 	if (keys.size() > 0 && shooter.CalculateCollisionWithLocation(keys[0], 1.7f, 1.7f)) {
 		shooter.CollectKey();

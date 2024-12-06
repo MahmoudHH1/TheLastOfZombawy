@@ -16,6 +16,8 @@ class Game {
 		Cam camera;
 		int level;
 		bool isDoorOpen;
+		bool isGameWon;
+		bool isGameOver;
 		BigZombie bigZombie;
 		std::vector<Zombie> zombies;
 		std::vector<Coin> coins;
