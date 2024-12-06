@@ -80,6 +80,53 @@ void renderText(float x, float y, const char* text, int fontSize) {
 	glEnable(GL_LIGHTING);
 }
 
+void Game::drawCrossHair() {
+	float yOffset = camera.isThirdPerson ? 170 : 50;
+	float xOffset = camera.isThirdPerson ? 0 : 20;
+
+	// Disable depth testing and lighting to draw on top of everything
+	glDisable(GL_DEPTH_TEST);
+	glDisable(GL_LIGHTING);
+
+	// Set up orthogonal projection for 2D rendering
+	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
+	glLoadIdentity();
+	gluOrtho2D(0, glutGet(GLUT_WINDOW_WIDTH), 0, glutGet(GLUT_WINDOW_HEIGHT));
+
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	glLoadIdentity();
+
+	// Crosshair color (white)
+	glColor3f(1.0f, 1.0f, 1.0f);
+
+	// Get window center
+	int centerX = glutGet(GLUT_WINDOW_WIDTH) / 2;
+	int centerY = glutGet(GLUT_WINDOW_HEIGHT) / 2 + yOffset;
+
+	// Draw crosshair lines
+	glLineWidth(2.0f);
+	glBegin(GL_LINES);
+	// Horizontal line
+	glVertex2i(centerX - 10, centerY);
+	glVertex2i(centerX + 10, centerY);
+
+	// Vertical line
+	glVertex2i(centerX, centerY - 10);
+	glVertex2i(centerX, centerY + 10);
+	glEnd();
+
+	// Restore the previous matrices and enable depth testing and lighting
+	glPopMatrix();
+	glMatrixMode(GL_PROJECTION);
+	glPopMatrix();
+	glMatrixMode(GL_MODELVIEW);
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_LIGHTING);
+}
+
+
 
 void Game::drawHUD() {
 	char buffer[200];
@@ -130,6 +177,7 @@ void Game::Draw() {
 		return;
 	}
 
+	
 	RenderEnvironment();
 	drawHUD();
 
@@ -157,6 +205,9 @@ void Game::Draw() {
 			bullets[i].Draw();
 		}
 	}
+
+	drawCrossHair();
+
 }
 
 

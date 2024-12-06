@@ -40,7 +40,7 @@ class Game {
 		void handleKeyPress(unsigned char key , int x , int y);
 		void handleOpenDoor(Shooter shooter);
 		void calculateDeltaTime();
-
+		void drawCrossHair();
 		bool allZombiesDead();
 };
 
