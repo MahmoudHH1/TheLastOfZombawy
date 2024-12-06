@@ -1,6 +1,7 @@
 #include "TextureBuilder.h"
 #include "Headers/RenderEnviroment.h"
 #include "Headers/GLTexture.h"
+#include "Headers/Model_3DS.h"
 #include "glut.h"
 
 
@@ -23,6 +24,8 @@ GLTexture ceilingTexture_2;
 
 GLuint doorTex;
 GLTexture doorTexture;
+
+Model_3DS locker_model;
 
 static bool doorIsOpening = false;
 static float doorAngle = 0.0f;
@@ -72,6 +75,24 @@ void loadEnvironmentAssets() {
 
 	doorTexture.Load("Assets/textures/door.bmp");
 	loadBMP(&doorTex, "Assets/textures/door.bmp", true);
+
+	locker_model.Load("Assets/models/Locker/Locker.3DS");
+}
+
+void drawLockers() {
+	glPushMatrix();
+	glTranslatef(-35, 0, 25);
+	glScalef(10, 20, 35);
+	locker_model.Draw();
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(0, 0, 35);
+	glScalef(60, 20, 10);
+	glRotatef(90, 0, 1, 0);
+	locker_model.Draw();
+	glPopMatrix();
+
 }
 
 
@@ -152,38 +173,6 @@ void RenderGround(GLTexture groundTexture)
 }
 
 
-// Function to render steps
-void RenderSteps() {
-	// Step along the bottom wall
-	glPushMatrix();
-	glTranslatef(0, 0.5, -39.0); // Position the step near the wall
-	glScalef(80, 6, 10);         // Adjust dimensions for the wall length
-	RenderWallLevel1();
-	glPopMatrix();
-
-	// Step along the top wall
-	glPushMatrix();
-	glTranslatef(0, 0.5, 39.0);
-	glScalef(80, 6, 10);
-	RenderWallLevel1();
-	glPopMatrix();
-
-	// Step along the left wall
-	glPushMatrix();
-	glTranslatef(-39.0, 0.5, 0);
-	glRotatef(90, 0, 1, 0);
-	glScalef(80, 6, 10);
-	RenderWallLevel1();
-	glPopMatrix();
-
-	// Step along the right wall
-	glPushMatrix();
-	glTranslatef(39.0, 0.5, 0);
-	glRotatef(90, 0, 1, 0);
-	glScalef(80, 6, 10);
-	RenderWallLevel1();
-	glPopMatrix();
-}
 
 void RenderCeiling(GLTexture ceilingTexture) {
 
@@ -448,7 +437,6 @@ void RenderEnvironment() {
 	renderLevel2World();
 	renderLevel1World();
 
-	// Render steps inside the room
-	RenderSteps();
+	drawLockers();
 
 }

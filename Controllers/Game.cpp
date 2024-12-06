@@ -133,6 +133,7 @@ void Game::Draw() {
 	RenderEnvironment();
 	drawHUD();
 
+
 	shooter.Draw();
 	bigZombie.Draw();
 	for (int i = 0; i < zombies.size(); i++) {
