@@ -179,7 +179,7 @@ void Game::spawnMedkit() {
 
 
 void Game::shootBullet() {
-	bullets.push_back(Bullet(shooter.pos.x, shooter.pos.y + 4, shooter.pos.z, shooter.rot.x, shooter.rot.y, -shooter.rot.z, 20.0f));
+	bullets.push_back(Bullet(shooter.pos.x, shooter.pos.y + 4, shooter.pos.z, shooter.rot.x, shooter.rot.y, -shooter.rot.z, 10.0f));
 	playGunSound();
 }
 
@@ -260,7 +260,7 @@ void Game::update() {
 				}
 			}
 
-			if (bigZombie.health > 0 && bigZombie.CalculateCollisionWithLocation(bullets[i], 1.0f, 1.0f))
+			if (bigZombie.health > 0 && bigZombie.CalculateCollisionWithLocation(bullets[i], 2.5f, 2.5f))
 			{
 				bigZombie.health -= shooter.hitDamage;
 				bullets[i].isActive = false;
@@ -335,7 +335,7 @@ void Game::calculateDeltaTime() {
 
 
 void Game::updateBigZombie() {
-	const float ZOMBIE_SPEED = 0.00001f;  // Adjust this value to control zombie movement speed
+	const float ZOMBIE_SPEED = 0.0005f;  // Adjust this value to control zombie movement speed
 	const float MIN_DISTANCE = 3.0f;   // Minimum distance to keep from player
 
 	// Calculate direction vector from bigZombie to player
@@ -367,7 +367,7 @@ void Game::updateBigZombie() {
 
 
 void Game::updateZombies() {
-	const float ZOMBIE_SPEED = 0.000005f;  // Adjust this value to control zombie movement speed
+	const float ZOMBIE_SPEED = 0.001f;  // Adjust this value to control zombie movement speed
 	const float MIN_DISTANCE = 3.0f;   // Minimum distance to keep from player
 
 	for (int i = 0; i < zombies.size(); i++) {
@@ -431,9 +431,9 @@ void Game::updateCamera() {
 	if (camera.isThirdPerson) {
 		// Position the camera behind the player
 		cameraOffset = Vector3f(
-			-lookDirection.x * 10.0f,  // Move back in X
+			-lookDirection.x * 9.0f,  // Move back in X
 			8.5f,                      // Fixed camera height
-			-lookDirection.z * 10.0f   // Move back in Z
+			-lookDirection.z * 5.0f   // Move back in Z
 		);
 		// Look ahead of the player in their facing direction
 		forwardOffset = playerPos + lookDirection * 10.0f;
@@ -450,7 +450,7 @@ void Game::updateCamera() {
 	camera.z = playerPos.z + cameraOffset.z;
 
 	camera.lookX = forwardOffset.x;
-	camera.lookY = forwardOffset.y;
+	camera.lookY = -forwardOffset.y;
 	camera.lookZ = forwardOffset.z;
 }
 

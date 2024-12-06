@@ -3,7 +3,7 @@
 #include <cmath>
 #include <iostream>
 
-#define speed 0.001f
+#define speed 0.1f
 #define M_PI 3.14159265358979323846
 
 Bullet::Bullet(float x, float y, float z, float rotX, float rotY, float rotZ, float scale)

@@ -38,21 +38,22 @@ void centerMouse() {
 void MouseMovement(int x, int y) {
 	if (game.camera.isMouseLocked) {
 		int dx = x - WIDTH / 2;
-		int dy = y - HEIGHT / 2;
+		int dy = (y - HEIGHT / 2) * -1;
 
-		float sensitivity = -0.01f;
+		float sensitivity = -0.07f;
 
 		// Update the shooter's rotation
 		game.shooter.rot.y += dx * sensitivity; // Horizontal rotation
 		game.shooter.rot.x += dy * sensitivity; // Vertical rotation
 
 		// Clamp the vertical rotation to prevent flipping
-		if (game.shooter.rot.x > 89.0f) {
-			game.shooter.rot.x = 89.0f;
+		if (game.shooter.rot.x > 20.0f) {
+			game.shooter.rot.x = 20.0f;
 		}
-		else if (game.shooter.rot.x < -89.0f) {
-			game.shooter.rot.x = -89.0f;
+		else if (game.shooter.rot.x < -20.0f) {
+			game.shooter.rot.x = -20.0f;
 		}
+
 
 		centerMouse();
 	}
@@ -78,13 +79,13 @@ void updateLights() {
 	GLfloat g = ((sin(colorTimer + 2.0944f) + 1.0f) / 2.0f) * 2.0f;
 	GLfloat b = ((sin(colorTimer + 4.18879f) + 1.0f) / 2.0f) * 2.0f;
 	GLfloat coloredLight[] = { r, g, b, 1.0f };
-	GLfloat light0_position[] = { 0.0f, 15.0f, 2.0f, 1.0f };
+	GLfloat light0_position[] = { 15.0f, 15.0f, 5.0f, 1.0f };
 	GLfloat light0_direction[] = { 0.0f, 0.0f, -1.0f };
 
 	// Reduced attenuation for farther light reach
 	glLightfv(GL_LIGHT0, GL_POSITION, light0_position);
 	glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, light0_direction);
-	glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, 60.0f);         // Wider angle
+	glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, 40.0f);         // Wider angle
 	glLightf(GL_LIGHT0, GL_SPOT_EXPONENT, 1.0f);        // Less focused for broader illumination
 	glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, 0.5f); // Reduced from 1.0
 	glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, 0.02f);  // Reduced from 0.05
@@ -168,16 +169,16 @@ void InitLightSource() {
 	//flashlight 
 	glEnable(GL_LIGHT2);
 	GLfloat flashlight_ambient[] = { 0.2f, 0.2f, 0.2f, 1.0f };     // Increased ambient
-	GLfloat flashlight_diffuse[] = { 5.0f, 5.0f, 5.0f, 1.0f };     // Much brighter diffuse
-	GLfloat flashlight_specular[] = { 5.0f, 5.0f, 5.0f, 1.0f };    // Much brighter specular
+	GLfloat flashlight_diffuse[] = { 6.0f, 6.0f, 6.0f, 1.0f };     // Much brighter diffuse
+	GLfloat flashlight_specular[] = { 3.0f, 3.0f, 3.0f, 1.0f };    // Much brighter specular
 
 	glLightfv(FLASHLIGHT_LIGHT, GL_AMBIENT, flashlight_ambient);
 	glLightfv(FLASHLIGHT_LIGHT, GL_DIFFUSE, flashlight_diffuse);
 	glLightfv(FLASHLIGHT_LIGHT, GL_SPECULAR, flashlight_specular);
 
 	// Set flashlight properties for more focused beam
-	glLightf(FLASHLIGHT_LIGHT, GL_SPOT_CUTOFF, 25.0f);        // Narrower beam angle
-	glLightf(FLASHLIGHT_LIGHT, GL_SPOT_EXPONENT, 40.0f);      // More focused spotlight
+	glLightf(FLASHLIGHT_LIGHT, GL_SPOT_CUTOFF, 20.0f);        // Narrower beam angle
+	glLightf(FLASHLIGHT_LIGHT, GL_SPOT_EXPONENT, 50.0f);      // More focused spotlight
 	glLightf(FLASHLIGHT_LIGHT, GL_CONSTANT_ATTENUATION, 0.5f); // Reduced constant attenuation
 	glLightf(FLASHLIGHT_LIGHT, GL_LINEAR_ATTENUATION, 0.02f);  // Reduced linear attenuation
 	glLightf(FLASHLIGHT_LIGHT, GL_QUADRATIC_ATTENUATION, 0.0f);// Removed quadratic attenuation
