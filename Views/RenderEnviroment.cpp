@@ -26,6 +26,7 @@ GLuint doorTex;
 GLTexture doorTexture;
 
 Model_3DS locker_model;
+Model_3DS bush_model;
 
 static bool doorIsOpening = false;
 static float doorAngle = 0.0f;
@@ -77,6 +78,7 @@ void loadEnvironmentAssets() {
 	loadBMP(&doorTex, "Assets/textures/door.bmp", true);
 
 	locker_model.Load("Assets/models/Locker/Locker.3DS");
+	bush_model.Load("Assets/models/tree/bush.3ds");
 }
 
 void drawLockers() {
@@ -426,6 +428,21 @@ void renderLevel2World() {
 	glColor3f(1, 1, 1); // reseting the color to white
 }
 
+void drawBushes() {
+	for (int i = 0; i <= 38; i += 4) {
+		glPushMatrix();
+		glTranslatef(i, 0, -37);
+		glScalef(2, 2, 4);
+		bush_model.Draw();
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-i, 0, -37);
+		glScalef(2, 2, 4);
+		bush_model.Draw();
+		glPopMatrix();
+	}
+}
 
 
 // Function to render the environment
@@ -438,5 +455,6 @@ void RenderEnvironment() {
 	renderLevel1World();
 
 	drawLockers();
+	drawBushes();
 
 }
