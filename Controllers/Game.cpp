@@ -161,7 +161,6 @@ void Game::drawHUD() {
 		renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 120, "Key: Not Collected", 10);
 	}
 
-
 }
 
 
@@ -207,7 +206,8 @@ void Game::Draw() {
 	}
 
 	drawCrossHair();
-
+	if (level == 2)
+		DrawBigZombieHP();
 }
 
 
@@ -401,6 +401,70 @@ void Game::calculateDeltaTime() {
 	lastTime = now;
 }
 
+
+void Game::DrawBigZombieHP() {
+	// Disable depth testing and lighting for 2D rendering
+	glDisable(GL_DEPTH_TEST);
+	glDisable(GL_LIGHTING);
+
+	// Set up orthogonal projection for 2D rendering
+	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
+	glLoadIdentity();
+	gluOrtho2D(0, glutGet(GLUT_WINDOW_WIDTH), 0, glutGet(GLUT_WINDOW_HEIGHT));
+
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	glLoadIdentity();
+
+	// Health bar dimensions and position
+	float barWidth = 300.0f;
+	float barHeight = 30.0f;
+	float xPos = (glutGet(GLUT_WINDOW_WIDTH) - barWidth) / 2;  // Center horizontally
+	float yPos = 60;  // Near top of screen
+
+	// Draw brown background (empty health bar)
+	glColor3f(0.6f, 0.3f, 0.0f);  // Brown color
+	glBegin(GL_QUADS);
+	glVertex2f(xPos, yPos);
+	glVertex2f(xPos + barWidth, yPos);
+	glVertex2f(xPos + barWidth, yPos + barHeight);
+	glVertex2f(xPos, yPos + barHeight);
+	glEnd();
+
+	// Draw red health bar based on current health
+	float healthPercentage = bigZombie.health / 250.0f;  // 250 is max health
+	glColor3f(1.0f, 0.0f, 0.0f);  // Red color
+	glBegin(GL_QUADS);
+	glVertex2f(xPos, yPos);
+	glVertex2f(xPos + (barWidth * healthPercentage), yPos);
+	glVertex2f(xPos + (barWidth * healthPercentage), yPos + barHeight);
+	glVertex2f(xPos, yPos + barHeight);
+	glEnd();
+
+	// Draw border
+	glColor3f(0.0f, 0.0f, 0.0f);  // Black color
+	glLineWidth(2.0f);
+	glBegin(GL_LINE_LOOP);
+	glVertex2f(xPos, yPos);
+	glVertex2f(xPos + barWidth, yPos);
+	glVertex2f(xPos + barWidth, yPos + barHeight);
+	glVertex2f(xPos, yPos + barHeight);
+	glEnd();
+
+	// Restore previous matrices and enable depth testing and lighting
+	glPopMatrix();
+	glMatrixMode(GL_PROJECTION);
+	glPopMatrix();
+	glMatrixMode(GL_MODELVIEW);
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_LIGHTING);
+
+	// Draw health value text
+	char buffer[50];
+	sprintf(buffer, "Boss HP: %d/250", bigZombie.health);
+	renderText(xPos, yPos + barHeight + 15, buffer, 12);
+}
 
 void Game::updateBigZombie() {
 	const float ZOMBIE_SPEED = 0.0005f;  // Adjust this value to control zombie movement speed

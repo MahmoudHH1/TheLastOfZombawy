@@ -38,6 +38,7 @@ class Game {
 		void spawnMedkit();
 		void shootBullet();
 		void handleKeyPress(unsigned char key , int x , int y);
+		void DrawBigZombieHP();
 		void handleOpenDoor(Shooter shooter);
 		void handleCloseDoor(Shooter shooter);
 		void calculateDeltaTime();
