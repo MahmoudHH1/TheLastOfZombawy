@@ -33,7 +33,7 @@ Game::Game() {
 	spawnKey();
 	coins.push_back(Coin(2.0f, 0.0f, 2.0f, 0.0f, 0.0f, 0.0f, 0.1f));
 	camera = Cam();
-	bigZombie = BigZombie(23,0,16,5,-90,0,4.0,30);
+	bigZombie = BigZombie(23, 0, 16, 5, -90, 0, 4.0, 40);
 	level = 1;
 	isDoorOpen = false;
 	isGameWon = false;
@@ -86,32 +86,32 @@ void Game::drawHUD() {
 
 	// Display Score
 	sprintf(buffer, "Score: %d", shooter.score);
-	renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 20, buffer , 10);
+	renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 20, buffer, 10);
 
 	// Display Coordinates
 	sprintf(buffer, "Position: (%.2f, %.2f, %.2f)",
 		shooter.pos.x, shooter.pos.y, shooter.pos.z);
-	renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 40, buffer , 10);
+	renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 40, buffer, 10);
 
 	// Display Coordinates
 	sprintf(buffer, "Rotation angles: (%.2f, %.2f, %.2f)",
 		shooter.rot.x, shooter.rot.y, shooter.rot.z);
-	renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 60, buffer , 10);
+	renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 60, buffer, 10);
 
 	//Display the number of medkits collected
 	sprintf(buffer, "Medkits: %d", shooter.medkits);
-	renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 80, buffer , 10);
+	renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 80, buffer, 10);
 
 	// Display Health
 	sprintf(buffer, "Health: %d", shooter.health);
-	renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 100, buffer,10);
+	renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 100, buffer, 10);
 
 	// Display Key
 	if (shooter.hasKey) {
-		renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 120, "Key: Collected" , 10);
+		renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 120, "Key: Collected", 10);
 	}
 	else {
-		renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 120, "Key: Not Collected" , 10);
+		renderText(10, glutGet(GLUT_WINDOW_HEIGHT) - 120, "Key: Not Collected", 10);
 	}
 
 
@@ -121,12 +121,12 @@ void Game::drawHUD() {
 void Game::Draw() {
 
 	if (isGameOver) {
-		renderText(500, 500, "Game Over!" , 300);
+		renderText(500, 500, "Game Over!", 300);
 		return;
 	}
 
 	if (isGameWon) {
-		renderText(500, 500, "You Won!" , 300);
+		renderText(500, 500, "You Won!", 300);
 		return;
 	}
 
@@ -145,7 +145,9 @@ void Game::Draw() {
 		coins[i].Draw();
 	}
 	for (int i = 0; i < keys.size(); i++) {
-		keys[i].Draw();
+		if (allZombiesDead()) {
+			keys[i].Draw();
+		}
 	}
 	for (int i = 0; i < medkits.size(); i++) {
 		medkits[i].Draw();
@@ -178,8 +180,17 @@ void Game::spawnMedkit() {
 
 void Game::shootBullet() {
 	bullets.push_back(Bullet(shooter.pos.x, shooter.pos.y + 4, shooter.pos.z, shooter.rot.x, shooter.rot.y, -shooter.rot.z, 20.0f));
-	//bullets.push_back(Bullet());
 	playGunSound();
+}
+
+
+bool Game::allZombiesDead() {
+	for (int i = 0; i < zombies.size(); i++) {
+		if (zombies[i].health > 0) {
+			return false;
+		}
+	}
+	return true;
 }
 
 void Game::update() {
@@ -196,7 +207,7 @@ void Game::update() {
 		return;
 	}
 
-	if (keys.size() > 0 && shooter.CalculateCollisionWithLocation(keys[0], 1.7f, 1.7f)) {
+	if (allZombiesDead() && keys.size() > 0 && shooter.CalculateCollisionWithLocation(keys[0], 1.7f, 1.7f)) {
 		shooter.CollectKey();
 		keys.clear();
 		playKeySound();
@@ -249,7 +260,7 @@ void Game::update() {
 				}
 			}
 
-			if (bigZombie.health>0 && bigZombie.CalculateCollisionWithLocation(bullets[i],1.0f,1.0f))
+			if (bigZombie.health > 0 && bigZombie.CalculateCollisionWithLocation(bullets[i], 1.0f, 1.0f))
 			{
 				bigZombie.health -= shooter.hitDamage;
 				bullets[i].isActive = false;
@@ -324,7 +335,7 @@ void Game::calculateDeltaTime() {
 
 
 void Game::updateBigZombie() {
-	const float ZOMBIE_SPEED = 0.000005f;  // Adjust this value to control zombie movement speed
+	const float ZOMBIE_SPEED = 0.00001f;  // Adjust this value to control zombie movement speed
 	const float MIN_DISTANCE = 3.0f;   // Minimum distance to keep from player
 
 	// Calculate direction vector from bigZombie to player

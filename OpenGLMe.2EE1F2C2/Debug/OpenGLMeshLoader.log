@@ -1,21 +1,24 @@
-﻿  Game.cpp
+﻿  BigZombie.cpp
+  Game.cpp
 D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(88,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
 D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(92,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
 D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(97,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
 D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(102,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
 D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(106,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(138,20): warning C4018: '<': signed/unsigned mismatch
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(143,20): warning C4018: '<': signed/unsigned mismatch
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(146,20): warning C4018: '<': signed/unsigned mismatch
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(149,20): warning C4018: '<': signed/unsigned mismatch
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(139,20): warning C4018: '<': signed/unsigned mismatch
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(144,20): warning C4018: '<': signed/unsigned mismatch
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(147,20): warning C4018: '<': signed/unsigned mismatch
 D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(152,20): warning C4018: '<': signed/unsigned mismatch
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(203,20): warning C4018: '<': signed/unsigned mismatch
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(211,20): warning C4018: '<': signed/unsigned mismatch
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(223,21): warning C4018: '<': signed/unsigned mismatch
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(233,20): warning C4018: '<': signed/unsigned mismatch
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(237,22): warning C4018: '<': signed/unsigned mismatch
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(361,20): warning C4018: '<': signed/unsigned mismatch
-D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(385,21): warning C4018: '<': signed/unsigned mismatch
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(155,20): warning C4018: '<': signed/unsigned mismatch
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(188,20): warning C4018: '<': signed/unsigned mismatch
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(215,20): warning C4018: '<': signed/unsigned mismatch
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(223,20): warning C4018: '<': signed/unsigned mismatch
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(235,21): warning C4018: '<': signed/unsigned mismatch
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(245,20): warning C4018: '<': signed/unsigned mismatch
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(249,22): warning C4018: '<': signed/unsigned mismatch
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(373,20): warning C4018: '<': signed/unsigned mismatch
+D:\Uni\graphics\TheLastOfZombawy\Controllers\Game.cpp(397,21): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
 BigZombie.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/INCREMENTAL:NO' specification
 OpenGLMe.2EE1F2C2\Debug\Medkit.obj : warning LNK4042: object specified more than once; extras ignored
   OpenGLMeshLoader.vcxproj -> D:\Uni\graphics\TheLastOfZombawy\Debug\OpenGLMeshLoader19.exe
