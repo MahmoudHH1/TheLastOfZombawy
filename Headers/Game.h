@@ -39,6 +39,7 @@ class Game {
 		void shootBullet();
 		void handleKeyPress(unsigned char key , int x , int y);
 		void handleOpenDoor(Shooter shooter);
+		void handleCloseDoor(Shooter shooter);
 		void calculateDeltaTime();
 		void drawCrossHair();
 		bool allZombiesDead();

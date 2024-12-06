@@ -7,6 +7,7 @@ void setDoorLastTime(int time);
 bool getIsDoorOpening();
 float getDoorAngle();
 void setDoorOpening(bool opening);
+void setDoorClosing(bool closing);
 
 void loadEnvironmentAssets();
 void RenderEnvironment();

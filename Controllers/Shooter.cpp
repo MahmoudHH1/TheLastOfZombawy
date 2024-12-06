@@ -56,13 +56,13 @@ bool Shooter::isCollidingWithDoor(float newX,float newZ) {
 }
 
 
-void Shooter::moveForward(int level) {
+void Shooter::moveForward(int level , bool isDoorOpen) {
     float yawRad = rot.y * M_PI / 180.0f; // Convert yaw rotation to radians
     float newZ = pos.z + speed * cosf(yawRad); // Forward movement along z-axis
     float newX = pos.x + speed * sinf(yawRad); // Forward movement along x-axis
 
     // Check boundary conditions before updating position
-    if (!isCollidingWithMiddleWall(newX , newZ)&& inBounds(newX , newZ) &&(!isCollidingWithDoor(newX , newZ)|| (level==2)))
+    if (!isCollidingWithMiddleWall(newX , newZ)&& inBounds(newX , newZ) &&(!isCollidingWithDoor(newX , newZ)|| (level==2 && isDoorOpen) ))
     {
         pos.z = newZ;
         pos.x = newX;
@@ -72,39 +72,39 @@ void Shooter::moveForward(int level) {
     }*/
 }
 
-void Shooter::moveBackward(int level) {
+void Shooter::moveBackward(int level , bool isDoorOpen) {
     float yawRad = rot.y * M_PI / 180.0f; // Convert yaw rotation to radians
     float newZ = pos.z - speed * cosf(yawRad); // Backward movement along z-axis
     float newX = pos.x - speed * sinf(yawRad); // Backward movement along x-axis
 
     // Check boundary conditions before updating position
-    if (!isCollidingWithMiddleWall(newX, newZ) && inBounds(newX, newZ) && (!isCollidingWithDoor(newX, newZ) || (level == 2)))
+    if (!isCollidingWithMiddleWall(newX, newZ) && inBounds(newX, newZ) && (!isCollidingWithDoor(newX, newZ) || (level == 2 && isDoorOpen)))
     {
         pos.z = newZ;
         pos.x = newX;
     }
 }
 
-void Shooter::moveLeft(int level) {
+void Shooter::moveLeft(int level, bool isDoorOpen) {
     float yawRad = rot.y * M_PI / 180.0f; // Convert yaw rotation to radians
     float newZ = pos.z - speed * sinf(yawRad); // Left movement along z-axis
     float newX = pos.x + speed * cosf(yawRad); // Left movement along x-axis
 
     // Check boundary conditions before updating position
-    if (!isCollidingWithMiddleWall(newX, newZ) && inBounds(newX, newZ) && (!isCollidingWithDoor(newX, newZ) || (level == 2)))
+    if (!isCollidingWithMiddleWall(newX, newZ) && inBounds(newX, newZ) && (!isCollidingWithDoor(newX, newZ) || (level == 2 && isDoorOpen)))
     {
         pos.z = newZ;
         pos.x = newX;
     }
 }
 
-void Shooter::moveRight(int level) {
+void Shooter::moveRight(int level, bool isDoorOpen) {
     float yawRad = rot.y * M_PI / 180.0f; // Convert yaw rotation to radians
     float newZ = pos.z + speed * sinf(yawRad); // Right movement along z-axis
     float newX = pos.x - speed * cosf(yawRad); // Right movement along x-axis
 
     // Check boundary conditions before updating position
-    if (!isCollidingWithMiddleWall(newX, newZ) && inBounds(newX, newZ) && (!isCollidingWithDoor(newX, newZ) || (level == 2)))
+    if (!isCollidingWithMiddleWall(newX, newZ) && inBounds(newX, newZ) && (!isCollidingWithDoor(newX, newZ) || (level == 2 && isDoorOpen)))
     {
         pos.z = newZ;
         pos.x = newX;

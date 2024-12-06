@@ -244,6 +244,21 @@ bool Game::allZombiesDead() {
 	return true;
 }
 
+void Game::handleCloseDoor(Shooter shooter) {
+	bool inPositionZ = shooter.pos.z > 8.0f;
+	bool doorIsClosing = getIsDoorOpening();
+	float doorAngle = getDoorAngle();
+	bool CanCloseDoor = inPositionZ;
+	if (!doorIsClosing && doorAngle == 90.0f && CanCloseDoor) {
+		playDoorSound();
+		setDoorClosing(true);
+		int doorLastTime = glutGet(GLUT_ELAPSED_TIME);
+		setDoorLastTime(doorLastTime);
+		isDoorOpen = false;
+	}
+}
+
+
 void Game::update() {
 	collisionTimer += deltaTime;
 
@@ -328,6 +343,8 @@ void Game::update() {
 	if (level == 2) {
 		updateBigZombie();
 	}
+
+	handleCloseDoor(shooter);
 }
 
 void Game::updateFlashlight() {
@@ -527,8 +544,12 @@ void Game::handleOpenDoor(Shooter shooter) {
 		int doorLastTime = glutGet(GLUT_ELAPSED_TIME);
 		setDoorLastTime(doorLastTime);
 		level = 2;
-	}
+		isDoorOpen = true;
+	} 
+
+
 }
+
 
 
 
@@ -538,16 +559,16 @@ void Game::handleKeyPress(unsigned char key, int x, int y) {
 	bool hasKey = shooter.hasKey;
 	switch (key) {
 	case 'w':
-		shooter.moveForward(level);
+		shooter.moveForward(level,isDoorOpen);
 		break;
 	case 's':
-		shooter.moveBackward(level);
+		shooter.moveBackward(level,isDoorOpen);
 		break;
 	case 'a':
-		shooter.moveLeft(level);
+		shooter.moveLeft(level,isDoorOpen);
 		break;
 	case 'd':
-		shooter.moveRight(level);
+		shooter.moveRight(level,isDoorOpen);
 		break;
 	case ' ':
 		break;

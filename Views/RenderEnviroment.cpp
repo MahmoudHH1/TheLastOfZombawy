@@ -29,6 +29,7 @@ Model_3DS locker_model;
 Model_3DS bush_model;
 
 static bool doorIsOpening = false;
+static bool doorIsClosing = false;
 static float doorAngle = 0.0f;
 static int doorLastTime = 0; // To track elapsed time for animation
 
@@ -47,6 +48,11 @@ void setDoorLastTime(int time) {
 
 void setDoorOpening(bool opening) {
 	doorIsOpening = opening;
+}
+
+
+void setDoorClosing(bool closing) {
+	doorIsClosing = closing;
 }
 
 void RenderTexturedCube(GLuint texture);
@@ -274,7 +280,7 @@ void renderLevel1World() {
 }
 
 // Function to update the door angle
-void UpdateDoor() {
+void UpdateDoor() { // phase is 1 or - 1
 	if (doorIsOpening) {
 		int currentTime = glutGet(GLUT_ELAPSED_TIME); // Get current time in milliseconds
 		float deltaTime = (currentTime - doorLastTime) / 1000.0f; // Convert ms to seconds
@@ -285,6 +291,18 @@ void UpdateDoor() {
 		if (doorAngle >= 90.0f) { // Limit to a 90-degree rotation
 			doorAngle = 90.0f;
 			doorIsOpening = false; // Stop opening once fully open
+		}
+	}
+	if (doorIsClosing) {
+		int currentTime = glutGet(GLUT_ELAPSED_TIME); // Get current time in milliseconds
+		float deltaTime = (currentTime - doorLastTime) / 1000.0f; // Convert ms to seconds
+		doorLastTime = currentTime;
+
+		// Increment the door angle over time
+		doorAngle -= 50.0f * deltaTime; // Adjust speed as needed
+		if (doorAngle <= 0) { // Limit to a 90-degree rotation
+			doorAngle = 0;
+			doorIsClosing = false; // Stop opening once fully open
 		}
 	}
 }
