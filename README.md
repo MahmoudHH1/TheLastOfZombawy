@@ -64,7 +64,7 @@ In **El7ag-Zombawy**, you spawn in a room surrounded by zombies. Your mission is
 ### 2️⃣ **Clone the Repository**  
 Open a terminal and run:  
 ```bash
-git clone https://github.com/your-username/El7ag-Zombawy.git
+git clone https://github.com/MahmoudHH1/TheLastOfZombawy.git
 cd El7ag-Zombawy
 ```
 
